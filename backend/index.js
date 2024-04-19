@@ -25,3 +25,23 @@ app.get('/registro' , async(req,res) => {
     const [result] = await pool.query('SELECT * FROM usuarios')
     res.send(result)
 })
+
+app.get('/peliculas' , async(req,res) => {
+    const [result] = await pool.query('SELECT * FROM peliculas')
+    res.send(result)
+})
+
+app.get('/peliculas/:id' , async(req,res) => {
+    const [result] = await pool.query('SELECT * FROM peliculas where id = ?', [req.params.id])
+    res.send(result)
+})
+
+app.get('/series' , async(req,res) => {
+    const [result] = await pool.query('SELECT * FROM series')
+    res.send(result)
+})
+
+app.get('/series/:id' , async(req,res) => {
+    const [result] = await pool.query('SELECT * FROM series where id = ?', [req.params.id])
+    res.send(result)
+})
