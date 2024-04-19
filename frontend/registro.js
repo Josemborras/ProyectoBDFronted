@@ -1,8 +1,12 @@
 const form = document.querySelector('form')
+const nombre = document.querySelector('#nombre')
+const apellidos = document.querySelector('#apellidos')
 
 
-
+// PETICIÓN POST PARA GUARDAR DATOS EN EL SERVIDOR
 const guardarUsuario = (url, datos) => {
+
+    console.log(datos)
 
     fetch(url, {
         method : 'POST',
@@ -19,7 +23,7 @@ const guardarUsuario = (url, datos) => {
             throw new Error('error en la petiición')
         }
     })
-    .then(json => console.log('Usuario registrado'))
+    .then(json => console.log('Empleado registrado'))
 }
 
 form.addEventListener('submit' , (e) =>{
@@ -33,8 +37,11 @@ form.addEventListener('submit' , (e) =>{
     const correo = document.querySelector('#correo').value
     const password = document.querySelector('#password').value
     const apodo = document.querySelector('#apodo').value
-    const url_foto = document.querySelector('#apellido_uno').value
+    const url_foto = document.querySelector('#url_foto').value
+    const id_plan = document.querySelector('#id_plan').value
+    
 
+    console.log(nombre)
     const datos = {
         nombre : nombre,
         apellido_uno : apellido_uno,
@@ -42,8 +49,8 @@ form.addEventListener('submit' , (e) =>{
         correo : correo,
         password : password,
         apodo : apodo,
-        url_foto : url_foto
-
+        url_foto : url_foto,
+        id_plan : id_plan
     }
 
 
