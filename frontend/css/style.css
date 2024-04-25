@@ -1,0 +1,98 @@
+*{
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+#pantallalogin{
+    background-image: url(../img/fondo-login.png);
+    background-color: #191919;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;   
+}
+
+#datoslogin{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 754px;
+    justify-content: space-between;
+}
+#datoslogin img{
+    height: 104px;
+    width: 446.86px;
+}
+#datoslogin label{
+    font-size: 27px;
+    font-weight: 700;
+}
+#datoslogin input{
+    font-size: 20px;
+    font-weight: 300;
+}
+#datoslogin p{
+    font-size: 18px;
+    font-weight: 500;
+}
+#datoslogin form{
+    display: flex;
+    flex-direction: column;
+    height: 357px;
+    justify-content: space-between;
+    align-items: center;
+}
+.forgot-password{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 125px;
+}
+.forgot-password a{
+    text-align: right;
+    font-weight: 400;
+}
+.grupoinput{
+    display: flex;
+    flex-direction: column;
+    height: 97px;
+    justify-content: space-between;
+}
+.grupoinput input{
+    box-sizing: border-box;
+    width: 542px;
+    height: 55px;
+    border-radius: 8px;
+    padding-left: 16px;
+    background-color: #C8C8C8;
+    color: #9C8E8E;    
+}
+
+#lineasO{
+    width: 542px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#lineasO hr{
+    width: 247px;
+}
+
+button{
+    background-color: #F0C53B;
+    padding: 13px 41px;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #000000;
+}
+button:hover{
+    background-color: #9A833A;
+}
