@@ -36,7 +36,6 @@ form.addEventListener('submit' , (e) =>{
     const apellido_dos = document.querySelector('#apellido_dos').value
     const correo = document.querySelector('#correo').value
     const password = document.querySelector('#password').value
-    const url_foto = document.querySelector('#url_foto').value
     const id_plan = document.querySelector('#id_plan').value
     
 
@@ -47,7 +46,6 @@ form.addEventListener('submit' , (e) =>{
         apellido_dos : apellido_dos,
         correo : correo,
         password : password,
-        url_foto : url_foto,
         id_plan : id_plan
     }
 
