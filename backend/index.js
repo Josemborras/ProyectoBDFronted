@@ -81,6 +81,11 @@ app.get('/recomendados' , async(req,res) => {
     res.send(result)
 })
 
+app.get('/peliculas/novedades' , async(req,res)=>{
+    const [result] = await pool.query('SELECT * FROM peliculas ORDER BY fecha DESC')
+    res.send(result)
+})
+
 app.get('/planes' , async(req,res)=>{
     const [result] = await pool.query('SELECT * FROM planes')
     res.send(result)
