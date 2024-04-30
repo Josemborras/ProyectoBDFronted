@@ -1,7 +1,5 @@
 *{
-    font-family: "Inter", sans-serif;
-    margin: 0;
-    padding: 0;
+    color: white;
 }
 
 #pantallalogin{
@@ -48,6 +46,11 @@
     justify-content: space-between;
     align-items: center;
 }
+#datoslogin form button h1{
+    font-size: 24px;
+    color: black;
+    font-weight: 500;
+}
 .forgot-password{
     display: flex;
     flex-direction: column;
@@ -82,16 +85,4 @@
 }
 #lineasO hr{
     width: 247px;
-}
-
-button{
-    background-color: #F0C53B;
-    padding: 13px 41px;
-    border-radius: 8px;
-    font-size: 24px;
-    font-weight: 500;
-    color: #000000;
-}
-button:hover{
-    background-color: #9A833A;
 }

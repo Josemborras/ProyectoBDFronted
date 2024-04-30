@@ -1,0 +1,16 @@
+*{
+    color: black
+}
+.panel{
+    padding: 20px;
+    height: 380px;
+    width: 170px;
+    border-radius: 8px;
+    border: 1px solid #00000040;
+}
+.inner-panel{
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

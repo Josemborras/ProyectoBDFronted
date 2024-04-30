@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeCinema: Registro</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/registro.css">
+</head>
+<body>
+    <div>
+        <div>
+
+        </div>
+        <div id="container-panel">
+            <div class="panel">
+                <div class="cabecera">
+                    <h3 id="cabecera-nombre-plan1"></h3>
+                    <p id="cabecera-calidad-plan1"></p>
+                </div>
+                <div class="inner-panel">
+                    <p>Precio al mes</p>
+                    <p id="precio-plan1"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Resolución</p>
+                    <p id="resolucion-plan1"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Anuncios</p>
+                    <p id="anuncios-plan1"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Número de perfiles</p>
+                    <p id="nperfiles-plan1"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Pantallas simultáneas</p>
+                    <p id="npantallas-plan1"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Descargas</p>
+                    <p id="descargas-plan1"></p>
+                </div>
+
+            </div>
+
+            <div class="panel">
+                <div class="cabecera">
+                    <h3 id="cabecera-nombre-plan2"></h3>
+                    <p id="cabecera-calidad-plan2"></p>
+                </div>
+                <div class="inner-panel">
+                    <p>Precio al mes</p>
+                    <p id="precio-plan2"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Resolución</p>
+                    <p id="resolucion-plan2"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Anuncios</p>
+                    <p id="anuncios-plan2"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Número de perfiles</p>
+                    <p id="nperfiles-plan2"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Pantallas simultáneas</p>
+                    <p id="npantallas-plan2"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Descargas</p>
+                    <p id="descargas-plan2"></p>
+                </div>
+
+            </div>
+
+            <div class="panel">
+                <div class="cabecera">
+                    <h3 id="cabecera-nombre-plan3"></h3>
+                    <p id="cabecera-calidad-plan3"></p>
+                </div>
+                <div class="inner-panel">
+                    <p>Precio al mes</p>
+                    <p id="precio-plan3"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Resolución</p>
+                    <p id="resolucion-plan3"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Anuncios</p>
+                    <p id="anuncios-plan3"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Número de perfiles</p>
+                    <p id="nperfiles-plan3"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Pantallas simultáneas</p>
+                    <p id="npantallas-plan3"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Descargas</p>
+                    <p id="descargas-plan3"></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--<script src="./registro.js"></script>-->
+    <script>
+        const nombrePlan1 = document.querySelector('#cabecera-nombre-plan1')
+        const resolucionCabecera1 = document.querySelector('#cabecera-calidad-plan1')
+        const precio1 = document.querySelector('#precio-plan1')
+        const anuncios1 = document.querySelector('#anuncios-plan1')
+        const perfiles1 = document.querySelector('#nperfiles-plan1')
+        const pantallas1 = document.querySelector('#npantallas-plan1')
+        const descargas1 = document.querySelector('#descargas-plan1')
+        const resolucion1 = document.querySelector('#resolucion-plan1')
+
+        const nombrePlan2 = document.querySelector('#cabecera-nombre-plan2')
+        const resolucionCabecera2 = document.querySelector('#cabecera-calidad-plan2')
+        const precio2 = document.querySelector('#precio-plan2')
+        const anuncios2 = document.querySelector('#anuncios-plan2')
+        const perfiles2 = document.querySelector('#nperfiles-plan2')
+        const pantallas2 = document.querySelector('#npantallas-plan2')
+        const descargas2 = document.querySelector('#descargas-plan2')
+        const resolucion2 = document.querySelector('#resolucion-plan2')
+
+        const nombrePlan3 = document.querySelector('#cabecera-nombre-plan3')
+        const resolucionCabecera3= document.querySelector('#cabecera-calidad-plan3')
+        const precio3 = document.querySelector('#precio-plan3')
+        const anuncios3 = document.querySelector('#anuncios-plan3')
+        const perfiles3 = document.querySelector('#nperfiles-plan3')
+        const pantallas3 = document.querySelector('#npantallas-plan3')
+        const descargas3 = document.querySelector('#descargas-plan3')
+        const resolucion3 = document.querySelector('#resolucion-plan3')
+
+        fetch('http://localhost:3000/planes')
+            .then(res => res.json())
+            .then(json => {
+                let datos = json[2]
+                    nombrePlan1.innerHTML = datos.nombre
+
+                    calidadesCabecera(datos.calidad, resolucionCabecera1)
+
+                    precio1.innerHTML = datos.precio + '€'
+
+                    calidadResolucion(datos.calidad, resolucion1)
+
+                    checkBooleanos(datos.anuncios, anuncios1)
+
+                    perfiles1.innerHTML = datos.numero_perfiles
+
+                    pantallas1.innerHTML = datos.num_pantalla
+
+                    checkBooleanos(datos.descargas, descargas1)
+
+                    datos = json[1]
+                    nombrePlan2.innerHTML = datos.nombre
+
+                    calidadesCabecera(datos.calidad, resolucionCabecera2)
+
+                    precio1.innerHTML = datos.precio + '€'
+                
+                    calidadResolucion(datos.calidad, resolucion2)
+
+                    checkBooleanos(datos.anuncios, anuncios2)
+
+                    perfiles2.innerHTML = datos.numero_perfiles
+
+                    pantallas2.innerHTML = datos.num_pantalla
+
+                    checkBooleanos(datos.descargas, descargas2)
+
+                    datos = json[0]
+                    nombrePlan3.innerHTML = datos.nombre
+
+                    calidadesCabecera(datos.calidad, resolucionCabecera3)
+
+                    precio3.innerHTML = datos.precio + '€'
+                
+                    calidadResolucion(datos.calidad, resolucion3)
+
+                    checkBooleanos(datos.anuncios, anuncios3)
+
+                    perfiles3.innerHTML = datos.numero_perfiles
+
+                    pantallas3.innerHTML = datos.num_pantalla
+
+                    checkBooleanos(datos.descargas, descargas3)
+            })
+
+            const calidadResolucion = (dato, valor) =>{
+                switch(dato){
+                        case 1:
+                            valor.innerHTML="1280 x 720 (720p)"
+                            break
+                        case 2:
+                            valor.innerHTML="1920 x 1080 (1080p)"
+                            break
+                        case 3:
+                            valor.innerHTML+="3840 x 2160 (4K)"
+                            break
+                        default:
+                            valor.innerHTML=""
+                    }
+            }
+
+            const calidadesCabecera = (dato, valor) =>{
+                switch(dato){
+                        case 1:
+                            valor.innerHTML="720p"
+                            break
+                        case 2:
+                            valor.innerHTML="1080p"
+                            break
+                        case 3:
+                            valor.innerHTML+="4K"
+                            break
+                        default:
+                            valor.innerHTML=""
+                            
+                    }
+            }
+
+            const checkBooleanos = (dato, valor) =>{
+                if(dato == 1){
+                        valor.innerHTML = "Sí"
+                    }else{
+                        valor.innerHTML = "No"
+                    }
+            }
+    </script>
+</body>
+</html>
