@@ -13,7 +13,8 @@
 
         </div>
         <div id="container-panel">
-            <div class="panel">
+            <!--
+                <div class="panel">
                 <div class="cabecera">
                     <h3 id="cabecera-nombre-plan1"></h3>
                     <p id="cabecera-calidad-plan1"></p>
@@ -123,11 +124,111 @@
                 </div>
 
             </div>
+            -->
         </div>
     </div>
 
-    <!--<script src="./registro.js"></script>-->
     <script>
+        const contenedorPanel = document.querySelector('#container-panel')
+        fetch('http://localhost:3000/planes')
+            .then(res => res.json())
+            .then(json => {
+                console.log(json)
+                for(let i = 2; i>=0 ; --i){
+                    contenedorPanel.innerHTML += `
+                <div class="panel">
+                <div class="cabecera">
+                    <h3>${json[i].nombre}</h3>
+                    <p class="cabecera-calidad-plan"></p>
+                </div>
+                <div class="inner-panel">
+                    <p>Precio al mes</p>
+                    <p>${json[i].precio}€</p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Resolución</p>
+                    <p class="resolucion-plan"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Anuncios</p>
+                    <p class="anuncios-plan"></p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Número de perfiles</p>
+                    <p class="perfiles-plan">${json[i].numero_perfiles}</p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Pantallas simultáneas</p>
+                    <p class="pantallas-plan">${json[i].num_pantalla}</p>
+                    <hr>
+                </div>
+                <div class="inner-panel">
+                    <p>Descargas</p>
+                    <p class="descargas-plan"></p>
+                </div>
+
+            </div>
+                `
+                const cabeceraCalidad = document.querySelector('.cabecera-calidad-plan')
+                const resolucion = document.querySelector('.resolucion-plan')
+                const anuncios = document.querySelector('.anuncios-plan')
+                const descargas = document.querySelector('.descargas-plan')
+                calidadResolucion(json[i].calidad, resolucion)
+                calidadesCabecera(json[i].calidad, resolucion)
+                checkBooleanos(json[i].descargas, descargas)
+                checkBooleanos(json[i].anuncios, anuncios)
+                }
+            })
+
+            const calidadResolucion = (dato, valor) =>{
+                switch(dato){
+                        case 1:
+                            valor.innerHTML="1280 x 720 (720p)"
+                            break
+                        case 2:
+                            valor.innerHTML="1920 x 1080 (1080p)"
+                            break
+                        case 3:
+                            valor.innerHTML+="3840 x 2160 (4K)"
+                            break
+                        default:
+                            valor.innerHTML=""
+                    }
+            }
+
+            const calidadesCabecera = (dato, valor) =>{
+                switch(dato){
+                        case 1:
+                            valor.innerHTML="720p"
+                            break
+                        case 2:
+                            valor.innerHTML="1080p"
+                            break
+                        case 3:
+                            valor.innerHTML+="4K"
+                            break
+                        default:
+                            valor.innerHTML=""
+                            
+                    }
+            }
+
+            const checkBooleanos = (dato, valor) =>{
+                if(dato == 1){
+                        valor.innerHTML = "Sí"
+                    }else{
+                        valor.innerHTML = "No"
+                    }
+            }
+    </script>
+
+    <!--<script src="./registro.js"></script>-->
+    <!--
+<script>
         const nombrePlan1 = document.querySelector('#cabecera-nombre-plan1')
         const resolucionCabecera1 = document.querySelector('#cabecera-calidad-plan1')
         const precio1 = document.querySelector('#precio-plan1')
@@ -160,53 +261,32 @@
             .then(json => {
                 let datos = json[2]
                     nombrePlan1.innerHTML = datos.nombre
-
                     calidadesCabecera(datos.calidad, resolucionCabecera1)
-
                     precio1.innerHTML = datos.precio + '€'
-
                     calidadResolucion(datos.calidad, resolucion1)
-
                     checkBooleanos(datos.anuncios, anuncios1)
-
                     perfiles1.innerHTML = datos.numero_perfiles
-
                     pantallas1.innerHTML = datos.num_pantalla
-
                     checkBooleanos(datos.descargas, descargas1)
 
                     datos = json[1]
                     nombrePlan2.innerHTML = datos.nombre
-
                     calidadesCabecera(datos.calidad, resolucionCabecera2)
-
                     precio1.innerHTML = datos.precio + '€'
-                
                     calidadResolucion(datos.calidad, resolucion2)
-
                     checkBooleanos(datos.anuncios, anuncios2)
-
                     perfiles2.innerHTML = datos.numero_perfiles
-
                     pantallas2.innerHTML = datos.num_pantalla
-
                     checkBooleanos(datos.descargas, descargas2)
 
                     datos = json[0]
                     nombrePlan3.innerHTML = datos.nombre
-
                     calidadesCabecera(datos.calidad, resolucionCabecera3)
-
                     precio3.innerHTML = datos.precio + '€'
-                
                     calidadResolucion(datos.calidad, resolucion3)
-
                     checkBooleanos(datos.anuncios, anuncios3)
-
                     perfiles3.innerHTML = datos.numero_perfiles
-
                     pantallas3.innerHTML = datos.num_pantalla
-
                     checkBooleanos(datos.descargas, descargas3)
             })
 
@@ -251,5 +331,6 @@
                     }
             }
     </script>
+    -->
 </body>
 </html>
