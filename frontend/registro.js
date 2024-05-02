@@ -20,7 +20,7 @@ const guardarUsuario = (url, datos) => {
         if(res.ok){
             return res.json()
         }else{
-            throw new Error('error en la petiición')
+            throw new Error('error en la petición')
         }
     })
     .then(json => console.log('Empleado registrado'))
