@@ -32,12 +32,15 @@ body{
     flex-direction: column;
     justify-content: space-between;
 }
+.display-img{
+    display: none;
+}
 .panel p{
     font-weight: 300;
 }
 .cabecera{
     box-sizing: border-box;
-    padding-left: 10px;
+    padding: 5px 10px 0 10px;
     height: 55px;
     width: 168px;
     display: flex;

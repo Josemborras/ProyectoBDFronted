@@ -25,6 +25,7 @@
         <div>
             <div id="container-panel">
             </div>
+
             <div id="container-inputs">
                 <form>
                     <div class="inner-input">
@@ -84,11 +85,13 @@
                 console.log(json)
                 for(let i = 2; i>=0 ; --i){
                     contenedorPanel.innerHTML += `
-                <div class="panel" onClick=ingresarDatos(${json[i].id}) onClick=>
+                <div class="panel" onClick="ingresarDatos(${json[i].id}); getId(${i})" id="id${i}">
                 <div class="cabecera" id="cabecera${i}">
                     <h3>${json[i].nombre}</h3>
-                    <p class="cabecera-calidad-plan">${calidadesCabecera(json[i].calidad, resolucion)}</p>
-                    <img src="  ./img/tick.png">
+                    <div style="display:flex;flex-direction:row;width:100%;justify-content:space-between">
+                        <p class="cabecera-calidad-plan">${calidadesCabecera(json[i].calidad, resolucion)}</p>
+                        <img class="display-img" src="  ./img/tick.png">
+                    </div>
                 </div>
                 <div class="inner-panel">
                     <p>Precio al mes</p>
@@ -124,6 +127,11 @@
                 `
                 }
             })
+
+            const isClicked = (id) =>{
+                switch(id){
+                }
+            }
             
             boton.addEventListener('click', (e) =>{
                 if(pagina == 2){
@@ -172,8 +180,15 @@
             
             const ingresarDatos = (id) => {
                 sessionStorage.setItem('planId', id)
-
             }
+
+            const getId = (id) =>{
+                let planes = document.getElementsByClassName('panel')[0]
+                let imagen = document.querySelector('.panel img')
+                imagen.classList.toggle("display-img")
+                planes.style.boxShadow = " 115px black"
+                console.log(planes)
+            }   
 
             const avanzarPaso = () =>{
                 if(pagina <= 4){
