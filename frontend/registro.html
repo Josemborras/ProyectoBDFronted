@@ -62,12 +62,30 @@
                         <!-- <button id="boton-form" type="submit">Siguiente</button> -->
                     </form>
                 </div>
+                <div id="container-pago">
+                    <div class="desplegables">
+                        <div style="display: flex; flex-direction: column; justify-content: space-between; height: 42px;">
+                            <img src="./img/icon-visa.png" alt="">
+                            <img src="./img/icon-mastercard.png" alt="">
+                        </div>
+                        <p>Tarjeta de crédito/débito</p>
+                    </div>
+                    <div class="desplegables">
+                        <img src="./img/icon-paypal.png" alt="">
+                        <p>PayPal</p>
+                    </div>
+                    <div class="desplegables">
+                        <img src="./img/" alt="">
+                        <p>Tarjeta regalo</p>
+                    </div>
+                </div>
             </div>
             <button id="boton-general" type="submit">Siguiente</button>
         </div>
     </div>
 
     <script>
+        const contenedorPago = document.querySelector('#container-pago')
         const contenedorPanel = document.querySelector('#container-panel')
         const contenedorInputs = document.querySelector('#container-inputs')
         const pasos = document.querySelector('#pasos')
@@ -148,7 +166,6 @@
             
             boton.addEventListener('click', (e) =>{
                 if(pagina == 2){
-                    
                 }else{
                     e.preventDefault()
                 }
@@ -200,6 +217,7 @@
                         item.innerHTML = `¡Ya casi estamos! Rellena los siguientes campos para completar tu registro`
                         break
                     case 3:
+                        console.log("patata")
                         item.innerHTML = `Método de pago`
                         break
                     default:
@@ -252,6 +270,7 @@
                     setClase(paso2, 'completado')
                     deleteClass(paso2, 'actual')
                     setClase(paso3, 'actual')
+                    contenedorPago.style.display = 'flex'
                     break
                     case 4:
                         --pagina
@@ -297,10 +316,11 @@
                     if((nombre.value == '' || nombre.value == null) || correo.value == '' || correo.value == null ||apellido_uno == '' || apellido_uno == null || password.value == '' || password.value == null){
                         pagina = 2
                         alert('Por favor rellena todos los campos marcados con un (*)')
-                    }
-                    
-                    if(password.value != repeatPassword.value){
+                    }else if(password.value != repeatPassword.value){
                         alert('Las contraseñas no son iguales')
+                        pagina = 2
+                    }else if(!validarEmail(correo.value)) {
+                        alert("La dirección de correo electrónico no es válida.");
                         pagina = 2
                     }
                 }
@@ -340,6 +360,11 @@
                     --pagina
                     checkPagina(pagina, frase)
                 }
+                if(pagina != 0){
+                    pasos.innerHTML = `
+                Paso ${pagina}
+                `
+                }
 
                 switch(pagina){
                     case 0:
@@ -361,6 +386,7 @@
                     deleteClass(paso1, 'actual')
                     setClase(paso2, 'actual')
                     deleteClass(paso3, 'actual')
+                    contenedorPago.style.display = 'none'
                     break
 
                     case 3:
@@ -368,17 +394,17 @@
                     contenedorInputs.style.display = 'none'
                     setClase(paso2, 'completado')
                     deleteClass(paso2, 'actual')
-                    setClase(paso3, 'actual')
+                    setClase(paso3, 'actual')   
                     break
 
                     default: break
                 }
+            }
 
-                if(pagina != 0){
-                    pasos.innerHTML = `
-                Paso ${pagina}
-                `
-                }
+            const validarEmail = (email) =>{
+                // Expresión regular para validar un email
+                var patron = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+                return patron.test(email)
             }
 
             const setClase = (actual, clase) =>{

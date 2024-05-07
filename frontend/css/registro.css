@@ -157,3 +157,7 @@ body{
     width: 1188px;
     height: 92px;
 }
+#container-pago{
+    display: none;
+    
+}
