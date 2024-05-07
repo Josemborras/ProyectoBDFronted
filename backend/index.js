@@ -12,6 +12,8 @@ app.listen(3000)
 
 app.post('/registro' , async(req,res) => {
 
+    const {nombre, apellido_uno, apellido_dos, correo, password, id_plan} = req.body
+
     const [result] = await pool.query('INSERT INTO usuarios (nombre, apellido_uno, apellido_dos, correo, password, id_plan, status)VALUES (?,?,?,?,?,?,0)' , [nombre, apellido_uno, apellido_dos, correo, password, id_plan])
 
     res.send({
@@ -79,7 +81,7 @@ app.get('/recomendados' , async(req,res) => {
     res.send(result)
 })
 
-app.get('/pelicula/novedades' , async(req,res)=>{
+app.get('/novedades' , async(req,res)=>{
     const [result] = await pool.query('SELECT * FROM peliculas ORDER BY fecha DESC')
     res.send(result)
 })
@@ -111,7 +113,7 @@ app.delete('/perfiles/:id', async(req,res)=>{
     res.send(result)
 })
 
-app.post('/perfiles/:id', async(req,res)=>{
+app.post('/perfiles/', async(req,res)=>{
     const { nombre, id_usuario, id_imagen} = req.body
 
     const [result] = await pool.query('INSERT INTO perfiles (`id`, `nombre`, `id_usuario`, `id_imagen`) VALUES (NULL, ?, ?, ?);', [nombre, id_usuario, id_imagen])

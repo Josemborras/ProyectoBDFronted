@@ -20,7 +20,7 @@ const guardarUsuario = (url, datos) => {
         if(res.ok){
             return res.json()
         }else{
-            throw new Error('error en la petiición')
+            throw new Error('error en la petición')
         }
     })
     .then(json => console.log('Empleado registrado'))
@@ -39,18 +39,18 @@ form.addEventListener('submit' , (e) =>{
     const id_plan = document.querySelector('#id_plan').value
     
 
-    console.log(nombre)
+
     const datos = {
         nombre : nombre,
         apellido_uno : apellido_uno,
         apellido_dos : apellido_dos,
         correo : correo,
         password : password,
-        id_plan : id_plan
+        id_plan : id_plan,
     }
 
-
+    
     guardarUsuario(url, datos)
-
+    
 
 })

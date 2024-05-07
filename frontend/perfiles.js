@@ -1,0 +1,75 @@
+const addPerfil = document.querySelector('#addPerfil')
+const deletePerfil = document.querySelector('#deletePerfil')
+
+
+// PETICIÓN POST PARA GUARDAR DATOS EN EL SERVIDOR
+const guardarPerfil = (url, datos) => {
+
+    console.log(datos)
+
+    fetch(url, {
+        method : 'POST',
+        headers :{
+            'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify(datos)
+
+    })
+    .then( res => {
+        if(res.ok){
+            return res.json()
+        }else{
+            throw new Error('error en la petición')
+        }
+    })
+    .then(json => console.log('Perfil registrado'))
+}
+
+
+const eliminarPerfil = (url)=>{
+    fetch(url, {
+        method : 'DELETE',
+
+    })
+    .then( res=>{
+        if(res.ok){
+            return res.json()
+        }else{
+            throw new Error('error en la petición')
+        }
+    })
+    .then(json => console.log('Perfil eliminado'))
+}
+
+
+addPerfil.addEventListener('submit' , (e) =>{
+    e.preventDefault()
+
+    const url = 'http://localhost:3000/perfiles'
+
+    const nombre = document.querySelector('#nombre').value
+    
+    const id_usuario = document.querySelector('#id_usuario').value
+
+    const id_imagen = document.querySelector('#id_imagen').value
+
+
+    const datos = {
+        nombre : nombre,
+        id_imagen : id_imagen,
+        id_usuario : id_usuario        
+    }
+
+    guardarPerfil(url, datos)
+})
+
+
+deletePerfil.addEventListener('submit' , (e)=>{
+    e.preventDefault()
+
+    const id_usuario = document.querySelector('#deleteId').value
+
+    const url = 'http://localhost:3000/perfiles/' + id_usuario
+
+    eliminarPerfil(url)
+})
