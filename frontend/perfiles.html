@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeCinema: Perfiles</title>
+    <link rel="stylesheet" href="./css/perfiles.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="go-back">
+        <a href="./login.html"><img src="./img/flecha-atras-blanca.png" alt=""></a>
+    </div>
+    <div id="container-global">
+        <div id="container-general">
+            <p style="font-weight: 600; font-size: 36px;">¿Quién eres? Elige tú perfil</p>
+            <div id="container-group">
+                <div id="container-perfiles">
+
+                </div>
+                <div class="btn-perfil" id="add-btn">
+                    <img src="./img/icon-add.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const addDiv = document.querySelector('#add-btn')
+
+        fetch('http://localhost:3000/')
+        .then(res => res.json())
+        .then(json =>{
+            
+        })
+
+        addDiv.addEventListener('click', () =>{
+
+        })
+    </script>
+</body>
+</html>

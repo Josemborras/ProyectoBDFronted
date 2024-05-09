@@ -159,5 +159,19 @@ body{
 }
 #container-pago{
     display: none;
-    
+    flex-direction: column;
+    height: 250px;
+    justify-content: space-between;
+}
+.desplegables{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 310px;
+    height: 35px;
+    padding: 10px 119px 10px 27px;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-weight: 300;
+    align-items: center;
 }

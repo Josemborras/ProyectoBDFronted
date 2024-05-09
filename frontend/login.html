@@ -39,6 +39,11 @@
 
     <script>
         sessionStorage.clear()
+        const boton = document.querySelector('button')
+        boton.addEventListener('click', (e) =>{
+            e.preventDefault()
+            window.location = './perfiles.html'
+        })
     </script>
 </body>
 </html>
