@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="go-back">
-        <a href="./login.html"><img src="./img/flecha-atras-blanca.png" alt=""></a>
+        <a id="atras" href="./login.html"><img src="./img/flecha-atras-blanca.png" alt=""></a>
     </div>
     <div id="container-global">
         <div id="container-general">
@@ -27,15 +27,43 @@
 
     <script>
         const addDiv = document.querySelector('#add-btn')
+        const containerPerfiles = document.querySelector('#container-perfiles')
+        const containerGeneral = document.querySelector('#container-general')
+        const containerGlobal = document.querySelector('#container-global')
 
-        fetch('http://localhost:3000/')
+        fetch('http://localhost:3000/perfiles/usuario/3')
         .then(res => res.json())
         .then(json =>{
-            
+            for(let i of json){
+                containerPerfiles.innerHTML += `
+                <div class="caja-perfil">
+                    <div class="btn-perfil" style="background-image: url(${i.url}); background-size: contain; background-position: center; background-repeat: no-repeat"></div>
+                    <p>${i.nombre}<p>
+                </div>
+            `
+            }
+        })
+
+        fetch('http://localhost:3000/perfiles/usuario/38/cantidad')
+        .then(res => res.json())
+        .then(json =>{
+            const data = json[0]
+            console.log(data)
+            if(data.cantidad_perfiles == data.maximo_perfiles){
+                addDiv.style.display = 'none'
+            }
         })
 
         addDiv.addEventListener('click', () =>{
+            const atras = document.querySelector('#atras')
+            containerGeneral.style.display = 'none'
 
+            containerGlobal.innerHTML += `
+            <div style="witdh: 360px; height: 440px">
+                <img src="./img/img-camara.png">
+            </div>
+            `
+            atras.setAttribute('href', './perfiles.html')
         })
     </script>
 </body>
