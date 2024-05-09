@@ -2,10 +2,68 @@ const addPerfil = document.querySelector('#addPerfil')
 const deletePerfil = document.querySelector('#deletePerfil')
 
 
-// PETICIÓN POST PARA GUARDAR DATOS EN EL SERVIDOR
-const guardarPerfil = (url, datos) => {
 
-    console.log(datos)
+addPerfil.addEventListener('submit' , (e) =>{
+    e.preventDefault()
+
+    const url = 'http://localhost:3000/perfiles'
+
+    const nombre = document.querySelector('#nombre').value
+
+    const id_usuario = document.querySelector('#id_usuario').value
+
+    const id_imagen = document.querySelector('#id_imagen').value
+
+
+
+    fetch('http://localhost:3000/perfiles/usuario/'+id_usuario+"/cantidad")
+    .then(res => res.json())
+    .then(data =>{
+
+        const maximo = data[0].maximo_perfiles
+        const cantidad = data[0].cantidad_perfiles
+
+        let maxReached = false
+
+        if(maximo<=cantidad){
+            maxReached=true
+        }
+
+        if (maxReached) {
+            console.log("Maximo de usuarios alcanzado")
+        }else{
+            const datos = {
+                nombre : nombre,
+                id_imagen : id_imagen,
+                id_usuario : id_usuario
+            }
+
+            guardarPerfil(url, datos)
+        }
+
+
+
+    })
+
+
+
+
+
+})
+
+
+deletePerfil.addEventListener('submit' , (e)=>{
+    e.preventDefault()
+
+    const id = document.querySelector('#deleteId').value
+
+    const url = 'http://localhost:3000/perfiles/' + id
+
+    eliminarPerfil(url)
+})
+
+
+const guardarPerfil = (url, datos) => {
 
     fetch(url, {
         method : 'POST',
@@ -25,7 +83,6 @@ const guardarPerfil = (url, datos) => {
     .then(json => console.log('Perfil registrado'))
 }
 
-
 const eliminarPerfil = (url)=>{
     fetch(url, {
         method : 'DELETE',
@@ -40,36 +97,3 @@ const eliminarPerfil = (url)=>{
     })
     .then(json => console.log('Perfil eliminado'))
 }
-
-
-addPerfil.addEventListener('submit' , (e) =>{
-    e.preventDefault()
-
-    const url = 'http://localhost:3000/perfiles'
-
-    const nombre = document.querySelector('#nombre').value
-    
-    const id_usuario = document.querySelector('#id_usuario').value
-
-    const id_imagen = document.querySelector('#id_imagen').value
-
-
-    const datos = {
-        nombre : nombre,
-        id_imagen : id_imagen,
-        id_usuario : id_usuario        
-    }
-
-    guardarPerfil(url, datos)
-})
-
-
-deletePerfil.addEventListener('submit' , (e)=>{
-    e.preventDefault()
-
-    const id_usuario = document.querySelector('#deleteId').value
-
-    const url = 'http://localhost:3000/perfiles/' + id_usuario
-
-    eliminarPerfil(url)
-})
