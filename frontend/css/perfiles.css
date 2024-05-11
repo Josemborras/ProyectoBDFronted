@@ -56,3 +56,23 @@
     font-size: 30px;
     font-weight: 400;
 }
+
+input{
+    width: 350px;
+    height: 60px;
+    border-radius: 8px;
+    padding-left: 16px;
+    background-color: #C8C8C8;
+    color: #9C8E8E;
+    border: 0px;
+    font-weight: 300;
+    font-size: 18px;
+}
+.titular-guardar-perfil{
+    font-size: 36px;
+    font-weight: 600;
+    color: white;
+}
+#img-perfil-guardar:hover{
+    cursor: pointer;
+}

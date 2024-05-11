@@ -103,6 +103,7 @@ app.post('/peliculas', async(req,res)=>{
 
 app.get('/perfiles/:id', async(req,res)=>{
     const [result] = await pool.query('SELECT perfiles.id, perfiles.nombre, perfiles.id_usuario, imagenes_perfil.url FROM perfiles JOIN imagenes_perfil ON imagenes_perfil.id = perfiles.id_imagen WHERE perfiles.id = ?', [req.params.id])
+    res.send(result)
 })
 
 app.get('/perfiles/usuario/:id', async(req,res)=>{
@@ -111,7 +112,7 @@ app.get('/perfiles/usuario/:id', async(req,res)=>{
 })
 
 app.get('/perfiles/usuario/:id/cantidad', async(req,res)=>{
-    const [result] = await pool.query('SELECT usuarios.correo, usuarios.id_plan, COUNT(perfiles.id) AS cantidad_perfiles, planes.num_pantalla AS "maximo_perfiles" FROM usuarios JOIN perfiles ON usuarios.id = perfiles.id_usuario JOIN planes ON planes.id = usuarios.id_plan WHERE usuarios.id = ?', [req.params.id])
+    const [result] = await pool.query('SELECT usuarios.correo, usuarios.id_plan, COUNT(perfiles.id) AS cantidad_perfiles, planes.numero_perfiles AS "maximo_perfiles" FROM usuarios JOIN perfiles ON usuarios.id = perfiles.id_usuario JOIN planes ON planes.id = usuarios.id_plan WHERE usuarios.id = ?', [req.params.id])
 
     res.send(result)
 })

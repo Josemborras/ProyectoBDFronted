@@ -63,6 +63,9 @@ body{
     flex-direction: column;
     justify-content: space-between;
 }
+.panel:hover{
+    cursor: pointer;
+}
 .display-img{
     display: none;
 }

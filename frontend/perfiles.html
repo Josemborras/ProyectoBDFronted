@@ -26,12 +26,13 @@
     </div>
 
     <script>
+        const id_usuario = sessionStorage.getItem('userID')
         const addDiv = document.querySelector('#add-btn')
         const containerPerfiles = document.querySelector('#container-perfiles')
         const containerGeneral = document.querySelector('#container-general')
         const containerGlobal = document.querySelector('#container-global')
 
-        fetch('http://localhost:3000/perfiles/usuario/3')
+        fetch('http://localhost:3000/perfiles/usuario/' + id_usuario)
         .then(res => res.json())
         .then(json =>{
             for(let i of json){
@@ -44,7 +45,7 @@
             }
         })
 
-        fetch('http://localhost:3000/perfiles/usuario/38/cantidad')
+        fetch(`http://localhost:3000/perfiles/usuario/${id_usuario}/cantidad`)
         .then(res => res.json())
         .then(json =>{
             const data = json[0]
@@ -59,11 +60,46 @@
             containerGeneral.style.display = 'none'
 
             containerGlobal.innerHTML += `
-            <div style="witdh: 360px; height: 440px">
-                <img src="./img/img-camara.png">
+            <div style="witdh: 360px; height: 440px; display: flex; flex-direction: column; justify-content: space-between; align-items: center">
+                <img id="img-perfil-guardar" class="cursor: point" src="./img/img-camara.png">
+                <p class="titular-guardar-perfil">Nombre del perfil</p>
+                <input type="text" id="nombre-guardar" placeholder="Introduce el nombre del perfil">
+                <button>Guardar</button>
             </div>
             `
             atras.setAttribute('href', './perfiles.html')
+            const boton = document.querySelector('button')
+
+            boton.addEventListener('click', () =>{
+
+            const nombre = document.querySelector('#nombre-guardar').value
+            const foto = document.querySelector('#img-perfil-guardar')
+
+            console.log(nombre)
+            let id_imagen = 1
+
+            datos = {nombre, id_usuario, id_imagen}
+
+                fetch('http://localhost:3000/perfiles/', {
+                    method : 'POST',
+                    headers :{
+                        'Content-Type' : 'application/json'
+                    },
+                    body : JSON.stringify(datos)
+
+                })
+                    .then( res => {
+                        if(res.ok){
+                            return res.json()
+                        }else{
+                            throw new Error('Error en la petición')
+                        }
+                    })
+                    .then(json => console.log('Empleado registrado'))
+
+                    window.location = './perfiles.html'
+                    window.location.reload()
+            })
         })
     </script>
 </body>

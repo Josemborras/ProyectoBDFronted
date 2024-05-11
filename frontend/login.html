@@ -42,7 +42,27 @@
         const boton = document.querySelector('button')
         boton.addEventListener('click', (e) =>{
             e.preventDefault()
-            window.location = './perfiles.html'
+            const correo = document.querySelector('#correo').value
+            const password = document.querySelector('#password').value
+            fetch('http://localhost:3000/usuarios')
+                .then(res => res.json())
+                .then(json =>{
+                    console.log(json)
+                    let encontrado = false
+                    for(let i of json){
+                        if(correo == i.correo){
+                            if(password == i.password){
+                                sessionStorage.setItem('userID', i.id)
+                                encontrado = true
+                                window.location = './perfiles.html'
+                                break
+                            }
+                        }
+                    }
+                    if(encontrado == false){
+                        alert('Correo o contraseña incorrecto(s)')
+                    }
+                })
         })
     </script>
 </body>
