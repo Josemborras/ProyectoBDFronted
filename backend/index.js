@@ -26,6 +26,22 @@ app.get('/usuarios' , async(req,res) => {
     res.send(result)
 })
 
+app.get('/busqueda' , async(req,res) => {
+    const searchTerm = req.query.searchTerm;
+
+    const queryString = `
+    SELECT * FROM peliculas
+    WHERE nombre LIKE ?
+    OR id_director IN (SELECT id FROM directores WHERE nombre LIKE ?) 
+    OR id IN (SELECT id_pelicula FROM actores_peliculas WHERE id_actor IN (SELECT id FROM actores WHERE nombre LIKE ?))
+`;
+    
+    const [result] = await pool.query(queryString, [`%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`]);
+    
+    res.send(result);
+});
+
+
 app.get('/peliculas' , async(req,res) => {
     const [result] = await pool.query('SELECT * FROM peliculas')
     res.send(result)
