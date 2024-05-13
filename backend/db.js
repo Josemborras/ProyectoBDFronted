@@ -4,5 +4,5 @@ export const pool =createPool({
     host : "localhost",
     user : "root",
     password: "",
-    database: "homeCinema_bd"
+    database: "homecinema_bd"
 })

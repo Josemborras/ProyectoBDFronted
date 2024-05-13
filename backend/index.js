@@ -30,10 +30,20 @@ app.get('/busqueda' , async(req,res) => {
     const searchTerm = req.query.searchTerm;
 
     const queryString = `
-    SELECT * FROM peliculas
-    WHERE nombre LIKE ?
-    OR id_director IN (SELECT id FROM directores WHERE nombre LIKE ?) 
-    OR id IN (SELECT id_pelicula FROM actores_peliculas WHERE id_actor IN (SELECT id FROM actores WHERE nombre LIKE ?))
+    SELECT DISTINCT p.*
+    FROM peliculas p
+    LEFT JOIN directores d ON p.id_director = d.id
+    LEFT JOIN actores_peliculas ap ON p.id = ap.id_pelicula
+    LEFT JOIN actores a ON ap.id_actor = a.id
+    LEFT JOIN categorias_peliculas cp ON p.id = cp.id_pelicula
+    LEFT JOIN categorias c ON cp.id_categoria = c.id
+    WHERE p.nombre LIKE '%${searchTerm}%'
+    OR d.nombre LIKE '%${searchTerm}%'
+    OR a.nombre LIKE '%${searchTerm}%'
+    OR c.genero LIKE '%${searchTerm}%'
+    OR CONCAT(d.nombre, ' ', d.apellido_uno) LIKE '%${searchTerm}%'
+    OR CONCAT(a.nombre, ' ', a.apellido_uno) LIKE '%${searchTerm}%';
+
 `;
     
     const [result] = await pool.query(queryString, [`%${searchTerm}%`, `%${searchTerm}%`, `%${searchTerm}%`]);
