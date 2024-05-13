@@ -87,3 +87,14 @@
 #lineasO hr{
     width: 247px;
 }
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+    #pantallalogin{
+        background-image: url(../img/fondo-login-2.png);
+        flex-direction: column;
+        justify-content: center;
+    }
+    #datoslogin{
+        width: auto;
+    }
+}

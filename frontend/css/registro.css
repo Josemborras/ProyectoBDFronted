@@ -169,12 +169,36 @@ body{
 .desplegables{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 310px;
-    height: 35px;
-    padding: 10px 119px 10px 27px;
+    justify-content:flex-start;
+    width: 450px;
+    height: 55px;
     border: 1px solid black;
     border-radius: 8px;
     font-weight: 300;
     align-items: center;
+}
+.radio-pago{
+    margin-left: 27px;
+    margin-right: 50px;
+}
+.inner-pago{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 257px;
+    align-items: center;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+    #general-container{
+        width: 700px;
+        height: 910px;
+    }
+    #main-container{
+        height: 100vh;
+    }
+
+    #container-panel{
+        display: none;
+    }
 }

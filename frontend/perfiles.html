@@ -63,20 +63,24 @@
             <div style="witdh: 360px; height: 440px; display: flex; flex-direction: column; justify-content: space-between; align-items: center">
                 <img id="img-perfil-guardar" class="cursor: point" src="./img/img-camara.png">
                 <p class="titular-guardar-perfil">Nombre del perfil</p>
-                <input type="text" id="nombre-guardar" placeholder="Introduce el nombre del perfil">
+                <input type="text" id="nombre-guardar" placeholder="Introduce el nombre del perfil" autocomplete="off">
                 <button>Guardar</button>
             </div>
             `
             atras.setAttribute('href', './perfiles.html')
             const boton = document.querySelector('button')
 
+
             boton.addEventListener('click', () =>{
 
             const nombre = document.querySelector('#nombre-guardar').value
             const foto = document.querySelector('#img-perfil-guardar')
 
-            console.log(nombre)
-            let id_imagen = 1
+            if(nombre == ''){
+                window.location.reload()
+            }
+
+
 
             datos = {nombre, id_usuario, id_imagen}
 
