@@ -141,7 +141,13 @@ app.post('/perfiles/', async(req,res)=>{
 })
 
 app.get('/imagenes/perfil', async(req, res)=>{
-    const result = await pool.query('SELECT * FROM imagenes_perfil')
+    const [result] = await pool.query('SELECT * FROM imagenes_perfil')
+
+    res.send(result)
+})
+
+app.get('/imagenes/carrusel', async(req, res)=>{
+    const [result] = await pool.query('SELECT series.*, imagenes_serie.url_foto FROM series JOIN imagenes_serie ON imagenes_serie.id_serie=series.id WHERE imagenes_serie.nombre LIKE "%banner%";')
 
     res.send(result)
 })
