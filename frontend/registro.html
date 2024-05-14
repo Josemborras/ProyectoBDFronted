@@ -123,7 +123,24 @@
                 const anuncios = document.querySelector('.anuncios-plan')
                 const descargas = document.querySelector('.descargas-plan')
 
-                for(let i = 2; i>=0 ; --i){
+                if(window.innerWidth < 1024 && window.innerWidth >= 768){
+                    for(let i = 2; i>=0 ; --i){
+                    contenedorPanel.innerHTML += `
+                <div onClick="ingresarDatos(${json[i].id}); getId(${json[i].id})" id="id${i}">
+                    <div class="cabecera" id="cabecera${i}">
+                        <h3>${json[i].nombre}</h3>
+                        <div style="display:flex;flex-direction:row;width:100%;justify-content:space-between; max-height: 18px">
+                            <p class="cabecera-calidad-plan">${calidadesCabecera(json[i].calidad)}</p>
+                            <img class="display-img" src="  ./img/tick.png" style="height: 24px; width: 24px">
+                        </div>
+                    </div>
+                </div>
+                `
+                }
+                }
+
+                if(window.innerWidth >= 1024){
+                    for(let i = 2; i>=0 ; --i){
                     contenedorPanel.innerHTML += `
                 <div class="panel" onClick="ingresarDatos(${json[i].id}); getId(${json[i].id})" id="id${i}">
                 <div class="cabecera" id="cabecera${i}">
@@ -166,6 +183,11 @@
             </div>
                 `
                 }
+
+                
+
+                }
+
             })
 
             const isClicked = (id) =>{
@@ -239,7 +261,22 @@
             }
 
             const getId = (id) =>{
-                id = 3-id
+                if(window.innerWidth < 1024 && window.innerWidth >= 768){
+                    id = 3-id
+                let planes = document.getElementsByClassName('cabecera')
+                let imagen = planes[id].querySelector('img')
+                for(let i = 0; i < planes.length; ++i){
+                    if(i == id){
+                        planes[i].style.boxShadow = "0px 0px 8px #00000080"
+                        planes[i].querySelector('img').classList.remove("display-img")
+                    }else{
+                        planes[i].style.boxShadow = "none"
+                        planes[i].querySelector('img').classList.add("display-img")
+                    }
+                }
+                }
+                if(window.innerWidth >= 1024){
+                    id = 3-id
                 let planes = document.getElementsByClassName('panel')
                 let imagen = planes[id].querySelector('img')
                 for(let i = 0; i < planes.length; ++i){
@@ -251,7 +288,8 @@
                         planes[i].querySelector('img').classList.add("display-img")
                     }
                 }
-            }   
+                }
+            }
 
             const refreshPagina = () =>{
                 switch(pagina){
