@@ -56,8 +56,31 @@ body{
     align-items: center;
 }
 
+.titlePeliculas{
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.titlePeliculas a{
+    text-decoration: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    color: white;
+    margin-right: 15px;
+}
+
+.titlePeliculas img{
+    margin-bottom: -1px;
+}
+
 
 .footer{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #494949;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
