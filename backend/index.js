@@ -103,6 +103,8 @@ app.post('/peliculas', async(req,res)=>{
 
 app.get('/perfiles/:id', async(req,res)=>{
     const [result] = await pool.query('SELECT perfiles.id, perfiles.nombre, perfiles.id_usuario, imagenes_perfil.url FROM perfiles JOIN imagenes_perfil ON imagenes_perfil.id = perfiles.id_imagen WHERE id = ?', [req.params.id])
+
+    res.send(result)
 })
 
 app.get('/perfiles/usuario/:id', async(req,res)=>{
