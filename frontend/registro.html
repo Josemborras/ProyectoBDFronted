@@ -25,6 +25,40 @@
             </div>
             <div>
                 <div id="container-panel">
+                    <div id="responsive-planes">
+                        <div id="cabeceras">
+
+                        </div>
+                        <div class="inner-panel">
+                            <p>Precio al mes</p>
+                            <p id="responsive-precio"><b>PRECIO</b></p>
+                        </div>
+                        <hr>
+                        <div class="inner-panel">
+                            <p>Resolución</p>
+                            <p id="responsive-resolucion"><b>RESOLUCIÓN</b></p>
+                        </div>
+                        <hr>
+                        <div class="inner-panel">
+                            <p>Anuncios</p>
+                            <p id="responsive-anuncios"><b>ANUNCIOS</b></p>
+                        </div>
+                        <hr>
+                        <div class="inner-panel">
+                            <p>Número de perfiles</p>
+                            <p id="responsive-perfiles"><b>Nº PERFILES</b></p>
+                        </div>
+                        <hr>
+                        <div class="inner-panel">
+                            <p>Pantallas simultáneas</p>
+                            <p id="responsive-pantallas"><b>Nº PANTALLAS</b></p>
+                        </div>
+                        <hr>
+                        <div class="inner-panel">
+                            <p>Descargas</p>
+                            <p id="responsive-descargas"><b>DESCARGAS</b></p>
+                        </div>
+                    </div>
                 </div>
     
                 <div id="container-inputs">
@@ -124,67 +158,75 @@
                 const descargas = document.querySelector('.descargas-plan')
 
                 if(window.innerWidth < 1024 && window.innerWidth >= 768){
+                    const cabeceras = document.querySelector('#cabeceras')
                     for(let i = 2; i>=0 ; --i){
-                    contenedorPanel.innerHTML += `
-                <div onClick="ingresarDatos(${json[i].id}); getId(${json[i].id})" id="id${i}">
-                    <div class="cabecera" id="cabecera${i}">
-                        <h3>${json[i].nombre}</h3>
-                        <div style="display:flex;flex-direction:row;width:100%;justify-content:space-between; max-height: 18px">
-                            <p class="cabecera-calidad-plan">${calidadesCabecera(json[i].calidad)}</p>
-                            <img class="display-img" src="  ./img/tick.png" style="height: 24px; width: 24px">
+                        cabeceras.innerHTML += `
+                    <div onClick="ingresarDatos(${json[i].id}); getId(${json[i].id}); setDatos(${i})" id="id${i}">
+                        <div class="cabecera" id="cabecera${i}">
+                            <h3>${json[i].nombre}</h3>
+                            <div style="display:flex;flex-direction:row;width:100%;justify-content:space-between; max-height: 18px">
+                                <p class="cabecera-calidad-plan">${calidadesCabecera(json[i].calidad)}</p>
+                                <img class="display-img" src="  ./img/tick.png" style="height: 24px; width: 24px; position:relative; top: 30px">
+                            </div>
                         </div>
                     </div>
-                </div>
-                `
-                }
+                    `
+                    }
+
+                    cons = setDatos = (i) =>{
+                        document.querySelector('#responsive-precio').innerHTML = `<b>${json[i].precio}€</b>`
+                        document.querySelector('#responsive-resolucion').innerHTML = `<b>${calidadResolucion(json[i].calidad)}</b>`
+                        document.querySelector('#responsive-pantallas').innerHTML = `<b>${json[i].num_pantalla}</b>`
+                        document.querySelector('#responsive-perfiles').innerHTML = `<b>${json[i].numero_perfiles}</b>`
+                        document.querySelector('#responsive-descargas').innerHTML = `<b>${checkBooleanos(json[i].descargas)}</b>`
+                        document.querySelector('#responsive-anuncios').innerHTML = `<b>${checkBooleanos(json[i].anuncios)}</b>`
+                    }
                 }
 
                 if(window.innerWidth >= 1024){
+                    console.log(window.innerWidth)
                     for(let i = 2; i>=0 ; --i){
                     contenedorPanel.innerHTML += `
-                <div class="panel" onClick="ingresarDatos(${json[i].id}); getId(${json[i].id})" id="id${i}">
-                <div class="cabecera" id="cabecera${i}">
-                    <h3>${json[i].nombre}</h3>
-                    <div style="display:flex;flex-direction:row;width:100%;justify-content:space-between; max-height: 18px">
-                        <p class="cabecera-calidad-plan">${calidadesCabecera(json[i].calidad)}</p>
-                        <img class="display-img" src="  ./img/tick.png" style="height: 24px; width: 24px">
+                    <div class="panel" onClick="ingresarDatos(${json[i].id}); getId(${json[i].id})" id="id${i}">
+                        <div class="cabecera" id="cabecera${i}">
+                            <h3>${json[i].nombre}</h3>
+                            <div style="display:flex;flex-direction:row;width:100%;justify-content:space-between; max-height: 18px">
+                                <p class="cabecera-calidad-plan">${calidadesCabecera(json[i].calidad)}</p>
+                                <img class="display-img" src="  ./img/tick.png" style="height: 24px; width: 24px">
+                            </div>
+                        </div>
+                        <div class="inner-panel">
+                            <p>Precio al mes</p>
+                            <p>${json[i].precio}€</p>
+                            <hr>
+                        </div>
+                        <div class="inner-panel">
+                            <p>Resolución</p>
+                            <p class="resolucion-plan">${calidadResolucion(json[i].calidad)}</p>
+                            <hr>
+                        </div>
+                        <div class="inner-panel">
+                            <p>Anuncios</p>
+                            <p class="anuncios-plan">${checkBooleanos(json[i].anuncios)}</p>
+                            <hr>
+                        </div>
+                        <div class="inner-panel">
+                            <p>Número de perfiles</p>
+                            <p class="perfiles-plan">${json[i].numero_perfiles}</p>
+                            <hr>
+                        </div>
+                        <div class="inner-panel">
+                            <p>Pantallas simultáneas</p>
+                            <p class="pantallas-plan">${json[i].num_pantalla}</p>
+                            <hr>
+                        </div>
+                        <div class="inner-panel">
+                            <p>Descargas</p>
+                            <p class="descargas-plan">${checkBooleanos(json[i].descargas)}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="inner-panel">
-                    <p>Precio al mes</p>
-                    <p>${json[i].precio}€</p>
-                    <hr>
-                </div>
-                <div class="inner-panel">
-                    <p>Resolución</p>
-                    <p class="resolucion-plan">${calidadResolucion(json[i].calidad)}</p>
-                    <hr>
-                </div>
-                <div class="inner-panel">
-                    <p>Anuncios</p>
-                    <p class="anuncios-plan">${checkBooleanos(json[i].anuncios)}</p>
-                    <hr>
-                </div>
-                <div class="inner-panel">
-                    <p>Número de perfiles</p>
-                    <p class="perfiles-plan">${json[i].numero_perfiles}</p>
-                    <hr>
-                </div>
-                <div class="inner-panel">
-                    <p>Pantallas simultáneas</p>
-                    <p class="pantallas-plan">${json[i].num_pantalla}</p>
-                    <hr>
-                </div>
-                <div class="inner-panel">
-                    <p>Descargas</p>
-                    <p class="descargas-plan">${checkBooleanos(json[i].descargas)}</p>
-                </div>
-
-            </div>
                 `
                 }
-
-                
 
                 }
 
