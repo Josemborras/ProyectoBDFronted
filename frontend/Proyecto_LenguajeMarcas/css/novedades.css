@@ -4,7 +4,7 @@
 }
 
 body{
-    background-color: #494949;
+    background-color: #191919;
 }
 
 .img_menu{
@@ -54,4 +54,11 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+
+.footer{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #494949;
 }

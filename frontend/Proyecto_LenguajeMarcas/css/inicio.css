@@ -4,7 +4,7 @@
 }
 
 body{
-    background-color: #494949 !important;
+    background-color: #191919 !important;
 }
 
 .cabecera{
@@ -64,6 +64,11 @@ body{
     align-items: center;
 }
 
+.botones{
+    margin-top:600px;
+    margin-left: 150px;
+}
+
 .botones a{
     font-size: 27px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -75,10 +80,19 @@ body{
     border-radius: 10px;
 }
 
+.botones a:hover{
+    background-color: #F2E4B6;
+    color: black;
+}
+
 #scrollPelis img{
     width: 500px;
     height: 250px;
 }
 
+.footer{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #494949;
+}
 
 

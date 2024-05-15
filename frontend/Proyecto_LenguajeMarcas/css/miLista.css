@@ -4,7 +4,7 @@
 }
 
 body{
-    background-color: #494949 !important; 
+    background-color: #191919 !important; 
 }
 
 .menu{
@@ -107,4 +107,18 @@ body{
 
 .btn-group{
     left: 80px;
+}
+
+
+
+
+
+
+
+
+
+
+.footer{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #494949;
 }
