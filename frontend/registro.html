@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="main-container">
-        <a href="./login.html"><img src="./img/logo-homecinema.png" alt=""></a>
+        <a href="./login.html"><img id="logo-register" src="./img/logo-homecinema.png" alt=""></a>
         <div id="general-container">
             <div id="nav-container">
                 <a id="arrow-back" href="./login.html"><img src="./img/flecha-atras.png" alt=""></a>
@@ -65,12 +65,22 @@
                     <form>
                         <div class="inner-input">
                             <div class="inputs">
+                                <label for="nombre">Nombre *</label>
+                                <input type="text" name="nombre" id="nombre" placeholder="Introduce tu nombre" autocomplete="off">
+                            </div>
+                            <div class="inputs">
                                 <label for="correo">Correo electrónico *</label>
                                 <input type="email" name="correo" id="correo" placeholder="Introduce tu correo electrónico" autocomplete="off">
                             </div>
+                        </div>
+                        <div class="inner-input">
                             <div class="inputs">
-                                <label for="nombre">Nombre *</label>
-                                <input type="text" name="nombre" id="nombre" placeholder="Introduce tu nombre" autocomplete="off">
+                                <label for="apellido_uno">Primer apellido *</label>
+                                <input type="text" name="apellido_uno" id="apellido_uno" placeholder="Introduce tu primer apellido" autocomplete="off">
+                            </div>
+                            <div class="inputs">
+                                <label for="apellido_dos">Segundo apellido</label>
+                                <input type="text" name="apellido_dos" id="apellido_dos" placeholder="Introduce tu segundo apellido" autocomplete="off">
                             </div>
                         </div>
                         <div class="inner-input">
@@ -79,18 +89,8 @@
                                 <input type="password" name="password" id="password" placeholder="Introduce tu contraseña" autocomplete="off">
                             </div>
                             <div class="inputs">
-                                <label for="apellido_uno">Primer apellido *</label>
-                                <input type="text" name="apellido_uno" id="apellido_uno" placeholder="Introduce tu primer apellido" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="inner-input">
-                            <div class="inputs">
                                 <label for="repeat-password">Confirmar contraseña *</label>
                                 <input type="password" name="repeat-password" id="repeat-password" placeholder="Vuelve a introducir tu contraseña" autocomplete="off">
-                            </div>
-                            <div class="inputs">
-                                <label for="apellido_dos">Segundo apellido</label>
-                                <input type="text" name="apellido_dos" id="apellido_dos" placeholder="Introduce tu segundo apellido" autocomplete="off">
                             </div>
                         </div>
                         <!-- <button id="boton-form" type="submit">Siguiente</button> -->
@@ -157,7 +157,7 @@
                 const anuncios = document.querySelector('.anuncios-plan')
                 const descargas = document.querySelector('.descargas-plan')
 
-                if(window.innerWidth < 1024 && window.innerWidth >= 768){
+                if(window.innerWidth < 1024){
                     const cabeceras = document.querySelector('#cabeceras')
                     for(let i = 2; i>=0 ; --i){
                         cabeceras.innerHTML += `
@@ -303,7 +303,7 @@
             }
 
             const getId = (id) =>{
-                if(window.innerWidth < 1024 && window.innerWidth >= 768){
+                if(window.innerWidth < 1024){
                     id = 3-id
                 let planes = document.getElementsByClassName('cabecera')
                 let imagen = planes[id].querySelector('img')
@@ -311,6 +311,9 @@
                     if(i == id){
                         planes[i].style.boxShadow = "0px 0px 8px #00000080"
                         planes[i].querySelector('img').classList.remove("display-img")
+                        if(window.innerWidth < 768){
+                            
+                        }
                     }else{
                         planes[i].style.boxShadow = "none"
                         planes[i].querySelector('img').classList.add("display-img")

@@ -235,7 +235,6 @@ body{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-
     }
     .inner-panel{
         flex-direction: row;
@@ -243,14 +242,108 @@ body{
     }
     .inner-input{
         flex-direction: column;
+        height: 190px;
+        width: 100%;
     }
     #container-inputs form{
         height: 100%;
+        width: 540px;
         align-items: center;
     }
     #container-inputs{
         flex-direction: column;
-        height: 540px;
+        height: 600px;
         align-items: center;
+    }
+    #nav-container{
+        width: 558px;
+    }
+    #progress-container{
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #logo-register{
+        width: 100%;
+        height: 81.4572796855px;
+    }
+    #general-container{
+        width: 350px;
+        align-items: center;
+    }
+    #main-container{
+        height: 100%;
+    }
+    #container-panel{
+        width: 320px;
+    }
+    #cabeceras{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .cabecera{
+        width: 100px;
+        height: 80px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        justify-content: flex-start;
+        padding-top: 10px;
+        padding-left: 10px;
+        box-sizing: border-box;
+    }
+    .cabecera h3{
+        margin-bottom: 3px;
+    }
+    #container-panel{
+        flex-direction: column-reverse;
+    }
+    #responsive-planes{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 320px;
+    }
+    .inner-panel{
+        flex-direction: row;
+        align-items: center;
+    }
+    .inner-input{
+        flex-direction: column;
+        height: 190px;
+        width: 100%;
+    }
+    #container-inputs form{
+        height: 100%;
+        width: 540px;
+        align-items: center;
+    }
+    #container-inputs{
+        flex-direction: column;
+        height: 600px;
+        align-items: center;
+    }
+    #container-progreso{
+        width: 100%;
+    }
+    #arrow-back{
+        position: absolute;
+        top: 165px;
+    }
+    #frase-navigator{
+        font-size: 16px;
+    }
+    .progreso{
+        width: 87px;
+    }
+    #nav-container{
+        width: 320px;
+    }
+    #progress-container{
+        width: 100%;
+        text-align: center;
     }
 }

@@ -87,8 +87,7 @@
 #lineasO hr{
     width: 247px;
 }
-
-@media screen and (min-width: 768px) and (max-width: 1023px){
+@media screen and (max-width: 1023px){
     #pantallalogin{
         background-image: url(../img/fondo-login-2.png);
         flex-direction: column;
@@ -96,5 +95,33 @@
     }
     #datoslogin{
         width: auto;
+    }
+}
+@media screen and (max-width: 767px) {
+    #pantallalogin{
+        background-image: url(../img/fondo-login-2.png);
+        flex-direction: column;
+        justify-content: center;
+    }
+    #datoslogin{
+        width: 350px;
+    }
+    #datoslogin img{
+        width: 100%;
+        height: 81.4572796855px;
+    }
+    #lineasO{
+        width: 100%;
+    }
+    #lineasO hr{
+        width: 150px;
+    }
+    #datoslogin p{
+        max-width: 247px;
+        text-align: center;
+    }
+    .grupoinput input{
+        width: 350px;
+        font-size: 18px;
     }
 }
