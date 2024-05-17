@@ -158,29 +158,46 @@
                 const descargas = document.querySelector('.descargas-plan')
 
                 if(window.innerWidth < 1024){
-                    const cabeceras = document.querySelector('#cabeceras')
-                    for(let i = 2; i>=0 ; --i){
-                        cabeceras.innerHTML += `
-                    <div onClick="ingresarDatos(${json[i].id}); getId(${json[i].id}); setDatos(${i})" id="id${i}">
-                        <div class="cabecera" id="cabecera${i}">
-                            <h3>${json[i].nombre}</h3>
-                            <div style="display:flex;flex-direction:row;width:100%;justify-content:space-between; max-height: 18px">
-                                <p class="cabecera-calidad-plan">${calidadesCabecera(json[i].calidad)}</p>
-                                <img class="display-img" src="  ./img/tick.png" style="height: 24px; width: 24px; position:relative; top: 30px">
+                    if(window.innerWidth < 768){
+                        const cabeceras = document.querySelector('#cabeceras')
+                        for(let i = 2; i>=0 ; --i){
+                            cabeceras.innerHTML += `
+                        <div onClick="ingresarDatos(${json[i].id}); getId(${json[i].id}); setDatos(${i})" id="id${i}">
+                            <div class="cabecera" id="cabecera${i}">
+                                <h3>${json[i].nombre}</h3>
+                                <div style="display:flex;flex-direction:row;width:100%;justify-content:space-between; max-height: 18px">
+                                    <p class="cabecera-calidad-plan">${calidadesCabecera(json[i].calidad)}</p>
+                                    <img class="display-img" src="  ./img/tick.png" style="height: 24px; width: 24px; position:relative; top: 25px; left: 5px">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    `
+                        `
+                        }
+                    }else{  
+                        const cabeceras = document.querySelector('#cabeceras')
+                        for(let i = 2; i>=0 ; --i){
+                            cabeceras.innerHTML += `
+                        <div onClick="ingresarDatos(${json[i].id}); getId(${json[i].id}); setDatos(${i})" id="id${i}">
+                            <div class="cabecera" id="cabecera${i}">
+                                <h3>${json[i].nombre}</h3>
+                                <div style="display:flex;flex-direction:row;width:100%;justify-content:space-between; max-height: 18px">
+                                    <p class="cabecera-calidad-plan">${calidadesCabecera(json[i].calidad)}</p>
+                                    <img class="display-img" src="  ./img/tick.png" style="height: 24px; width: 24px; position:relative; top: 35px; left: 5px">
+                                </div>
+                            </div>
+                        </div>
+                        `
+                        }
                     }
 
-                    cons = setDatos = (i) =>{
-                        document.querySelector('#responsive-precio').innerHTML = `<b>${json[i].precio}€</b>`
-                        document.querySelector('#responsive-resolucion').innerHTML = `<b>${calidadResolucion(json[i].calidad)}</b>`
-                        document.querySelector('#responsive-pantallas').innerHTML = `<b>${json[i].num_pantalla}</b>`
-                        document.querySelector('#responsive-perfiles').innerHTML = `<b>${json[i].numero_perfiles}</b>`
-                        document.querySelector('#responsive-descargas').innerHTML = `<b>${checkBooleanos(json[i].descargas)}</b>`
-                        document.querySelector('#responsive-anuncios').innerHTML = `<b>${checkBooleanos(json[i].anuncios)}</b>`
-                    }
+                        cons = setDatos = (i) =>{
+                            document.querySelector('#responsive-precio').innerHTML = `<b>${json[i].precio}€</b>`
+                            document.querySelector('#responsive-resolucion').innerHTML = `<b>${calidadResolucion(json[i].calidad)}</b>`
+                            document.querySelector('#responsive-pantallas').innerHTML = `<b>${json[i].num_pantalla}</b>`
+                            document.querySelector('#responsive-perfiles').innerHTML = `<b>${json[i].numero_perfiles}</b>`
+                            document.querySelector('#responsive-descargas').innerHTML = `<b>${checkBooleanos(json[i].descargas)}</b>`
+                            document.querySelector('#responsive-anuncios').innerHTML = `<b>${checkBooleanos(json[i].anuncios)}</b>`
+                        }
                 }
 
                 if(window.innerWidth >= 1024){

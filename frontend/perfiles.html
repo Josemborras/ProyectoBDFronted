@@ -55,13 +55,29 @@
             }
         })
 
+        function displayImagenes(){
+            fetch('http://localhost:3000/imagenes/perfil')
+                .then(res => res.json())
+                .then(json =>{
+                    console.log(json)
+                    for(let i of json){
+                        containerGlobal.innerHTML += `
+                        <div style="width: 35vw; height: 75vh; background-color: rgba(25, 25, 25, 0.8); position: absolute; border-radius: 8px">
+                            <img src="${json[0][i].url}">
+                        </div>
+                        `
+                    }
+                })
+            }
+
         addDiv.addEventListener('click', () =>{
+
             const atras = document.querySelector('#atras')
             containerGeneral.style.display = 'none'
 
             containerGlobal.innerHTML += `
             <div style="witdh: 360px; height: 440px; display: flex; flex-direction: column; justify-content: space-between; align-items: center">
-                <img id="img-perfil-guardar" class="cursor: point" src="./img/img-camara.png">
+                <img id="img-perfil-guardar" class="cursor: point" src="./img/img-camara.png" onClick=displayImagenes()>
                 <p class="titular-guardar-perfil">Nombre del perfil</p>
                 <input type="text" id="nombre-guardar" placeholder="Introduce el nombre del perfil" autocomplete="off">
                 <button>Guardar</button>
@@ -79,8 +95,6 @@
             if(nombre == ''){
                 window.location.reload()
             }
-
-
 
             datos = {nombre, id_usuario, id_imagen}
 

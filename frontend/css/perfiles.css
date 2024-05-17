@@ -76,3 +76,6 @@ input{
 #img-perfil-guardar:hover{
     cursor: pointer;
 }
+.ocultar{
+    display: none;
+}
