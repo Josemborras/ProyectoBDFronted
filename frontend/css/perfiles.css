@@ -4,6 +4,7 @@
     background-color: #191919;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,7 +20,8 @@
 }
 #container-group{
     display: flex;
-    float: row;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 #container-perfiles{
     display: flex;
@@ -73,9 +75,29 @@ input{
     font-weight: 600;
     color: white;
 }
+#img-perfil-guardar{
+    width: 156px;
+    height: 156px;
+    border-radius: 8px;
+}
 #img-perfil-guardar:hover{
     cursor: pointer;
 }
 .ocultar{
     display: none;
+}
+
+
+/*
+    Tablet
+*/
+@media screen and (min-width: 768px) and (max-width: 1023px){
+    #container
+}
+
+/*
+    Móvil
+*/
+@media screen and (max-width: 767px) {
+
 }

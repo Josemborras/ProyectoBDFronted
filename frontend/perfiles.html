@@ -26,6 +26,7 @@
     </div>
 
     <script>
+        let contador = 0
         const id_usuario = sessionStorage.getItem('userID')
         const addDiv = document.querySelector('#add-btn')
         const containerPerfiles = document.querySelector('#container-perfiles')
@@ -50,24 +51,41 @@
         .then(json =>{
             const data = json[0]
             console.log(data)
-            if(data.cantidad_perfiles == data.maximo_perfiles){
+            if(data.cantidad_perfiles >= data.maximo_perfiles){
                 addDiv.style.display = 'none'
             }
         })
 
         function displayImagenes(){
+
+            if(contador == 0){
+                containerGlobal.innerHTML += `
+                                    <div style="width: 900px; height: 700px; background-color: rgba(25, 25, 25, 0.8); position: absolute; border-radius: 8px; display: flex; flex-direction: row; justify-content: space-evenly; flex-wrap: wrap; box-sizing: border-box; padding: 20px" id="recolector-fotos">
+                                    </div>
+                                    `
+
             fetch('http://localhost:3000/imagenes/perfil')
                 .then(res => res.json())
                 .then(json =>{
                     console.log(json)
-                    for(let i of json){
-                        containerGlobal.innerHTML += `
-                        <div style="width: 35vw; height: 75vh; background-color: rgba(25, 25, 25, 0.8); position: absolute; border-radius: 8px">
-                            <img src="${json[0][i].url}">
-                        </div>
-                        `
+                    for(let i of json[0]){
+                        let patata =
+                        document.querySelector('#recolector-fotos').innerHTML += `
+                                        <img src="${i.url}" width="125" height="125" style="border-radius: 8px; margin: 10px; cursor: pointer;" onClick="setFoto(${i.id}, '${i.url}')">
+                                    `
                     }
                 })
+            }else{
+                document.querySelector('#recolector-fotos').style.display = 'flex'
+            }
+            contador++
+        }
+
+            function setFoto(id, url){
+                const fotoNueva = document.querySelector('#img-perfil-guardar')
+                console.log(fotoNueva.src = url)
+                document.querySelector('#recolector-fotos').style.display = 'none'
+                sessionStorage.setItem('imageId', id)
             }
 
         addDiv.addEventListener('click', () =>{
@@ -76,21 +94,20 @@
             containerGeneral.style.display = 'none'
 
             containerGlobal.innerHTML += `
-            <div style="witdh: 360px; height: 440px; display: flex; flex-direction: column; justify-content: space-between; align-items: center">
-                <img id="img-perfil-guardar" class="cursor: point" src="./img/img-camara.png" onClick=displayImagenes()>
+            <div style="witdh: 360px; height: 440px; display: flex; flex-direction: column; justify-content: space-between; align-items: center;">
+                <img id="img-perfil-guardar" src="./img/img-camara.png" onClick="displayImagenes()">
                 <p class="titular-guardar-perfil">Nombre del perfil</p>
                 <input type="text" id="nombre-guardar" placeholder="Introduce el nombre del perfil" autocomplete="off">
-                <button>Guardar</button>
+                <button onClick="addPerfil()">Guardar</button>
             </div>
             `
             atras.setAttribute('href', './perfiles.html')
-            const boton = document.querySelector('button')
+        })
 
-
-            boton.addEventListener('click', () =>{
-
+        function addPerfil(){
             const nombre = document.querySelector('#nombre-guardar').value
             const foto = document.querySelector('#img-perfil-guardar')
+            const id_imagen = sessionStorage.getItem('imageId')
 
             if(nombre == ''){
                 window.location.reload()
@@ -117,8 +134,7 @@
 
                     window.location = './perfiles.html'
                     window.location.reload()
-            })
-        })
+        }
     </script>
 </body>
 </html>
