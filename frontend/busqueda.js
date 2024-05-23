@@ -16,7 +16,7 @@ async function buscar() {
 }
 
 async function agregarAFavoritos(id, tipo) {
-    const id_perfil = 3;  
+    const id_perfil = 3;
     const terminada = false;
     const guardado = true;
     const minuto = 0;
@@ -54,7 +54,7 @@ async function agregarAFavoritos(id, tipo) {
 }
 
 async function agregarAFavoritosPelicula(id_pelicula) {
-    const id_perfil = 3;  
+    const id_perfil = 3;
     const terminada = false;
     const guardado = true;
     const minuto = 0;
@@ -82,7 +82,7 @@ async function agregarAFavoritosPelicula(id_pelicula) {
 }
 
 async function agregarAFavoritosSerie(id_serie, id_capitulo) {
-    const id_perfil = 3;  
+    const id_perfil = 3;
     const terminada = false;
     const guardado = true;
     const minuto = 0;
