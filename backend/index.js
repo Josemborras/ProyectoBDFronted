@@ -78,13 +78,13 @@ app.get('/busqueda', async (req, res) => {
 app.post('/perfil_peliculas', async (req, res) => {
     const { id_perfil, id_pelicula, terminada, guardado, minuto } = req.body;
 
-    const [existing] = await pool.query('SELECT * FROM perfil_peliculas WHERE id_perfil = ? AND id_pelicula = ?', [id_perfil, id_pelicula]);
+    const [existing] = await pool.query('SELECT * FROM perfil_pelicula WHERE id_perfil = ? AND id_pelicula = ?', [id_perfil, id_pelicula]);
 
     if (existing.length > 0) {
         return res.status(400).send({ message: "La película ya está en la lista del usuario." });
     }
 
-    const [result] = await pool.query('INSERT INTO perfil_peliculas (id_perfil, id_pelicula, terminada, guardado, minuto) VALUES (?, ?, ?, ?, ?)', [id_perfil, id_pelicula, terminada, guardado, minuto]);
+    const [result] = await pool.query('INSERT INTO perfil_pelicula (id_perfil, id_pelicula, terminada, guardado, minuto) VALUES (?, ?, ?, ?, ?)', [id_perfil, id_pelicula, terminada, guardado, minuto]);
     
     res.send({
         id: result.insertId,
