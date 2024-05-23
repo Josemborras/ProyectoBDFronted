@@ -28,6 +28,8 @@ app.get('/usuarios' , async(req,res) => {
 
 app.get('/busqueda', async (req, res) => {
     const searchTerm = req.query.searchTerm;
+    const searchParam = `%${searchTerm}%`;
+
     const peliculasQuery = `
         SELECT p.id, p.nombre, 'pelicula' AS tipo
         FROM peliculas p
@@ -36,13 +38,14 @@ app.get('/busqueda', async (req, res) => {
         LEFT JOIN actores a ON ap.id_actor = a.id
         LEFT JOIN categorias_peliculas cp ON p.id = cp.id_pelicula
         LEFT JOIN categorias c ON cp.id_categoria = c.id
-        WHERE p.nombre LIKE ? 
-        OR d.nombre LIKE ? 
-        OR a.nombre LIKE ? 
-        OR c.genero LIKE ? 
-        OR CONCAT(d.nombre, ' ', d.apellido_uno) LIKE ? 
+        WHERE p.nombre LIKE ?
+        OR d.nombre LIKE ?
+        OR a.nombre LIKE ?
+        OR c.genero LIKE ?
+        OR CONCAT(d.nombre, ' ', d.apellido_uno) LIKE ?
         OR CONCAT(a.nombre, ' ', a.apellido_uno) LIKE ?
     `;
+
     const seriesQuery = `
         SELECT s.id, s.nombre, 'serie' AS tipo
         FROM series s
@@ -52,45 +55,54 @@ app.get('/busqueda', async (req, res) => {
         LEFT JOIN actores a ON ap.id_actor = a.id
         LEFT JOIN categorias_series cp ON s.id = cp.id_serie
         LEFT JOIN categorias c ON cp.id_categoria = c.id
-        WHERE s.nombre LIKE ? 
-        OR d.nombre LIKE ? 
-        OR a.nombre LIKE ? 
-        OR c.genero LIKE ? 
-        OR CONCAT(d.nombre, ' ', d.apellido_uno) LIKE ? 
+        WHERE s.nombre LIKE ?
+        OR d.nombre LIKE ?
+        OR a.nombre LIKE ?
+        OR c.genero LIKE ?
+        OR CONCAT(d.nombre, ' ', d.apellido_uno) LIKE ?
         OR CONCAT(a.nombre, ' ', a.apellido_uno) LIKE ?
     `;
 
-    const searchParam = `%${searchTerm}%`;
-    const peliculas = await pool.query(peliculasQuery, [searchParam, searchParam, searchParam, searchParam, searchParam, searchParam]);
-    const series = await pool.query(seriesQuery, [searchParam, searchParam, searchParam, searchParam, searchParam, searchParam]);
+    try {
+        const [peliculas] = await pool.query(peliculasQuery, [searchParam, searchParam, searchParam, searchParam, searchParam, searchParam]);
+        const [series] = await pool.query(seriesQuery, [searchParam, searchParam, searchParam, searchParam, searchParam, searchParam]);
 
-    const results = [...peliculas[0], ...series[0]];
+        const results = [...peliculas, ...series];
 
-    const uniqueResults = Array.from(new Set(results.map(result => result.id)))
-        .map(id => results.find(result => result.id === id));
+        const uniqueResults = Array.from(new Set(results.map(result => result.id)))
+            .map(id => results.find(result => result.id === id));
 
-    res.send(uniqueResults);
+        res.send(uniqueResults);
+    } catch (error) {
+        res.status(500).send({ message: "Error en la búsqueda" });
+    }
 });
-
-
 
 
 app.post('/perfil_peliculas', async (req, res) => {
     const { id_perfil, id_pelicula, terminada, guardado, minuto } = req.body;
 
     const [existing] = await pool.query('SELECT * FROM perfil_pelicula WHERE id_perfil = ? AND id_pelicula = ?', [id_perfil, id_pelicula]);
+    try {
+        const [existing] = await pool.query('SELECT * FROM perfil_pelicula WHERE id_perfil = ? AND id_pelicula = ?', [id_perfil, id_pelicula]);
 
-    if (existing.length > 0) {
-        return res.status(400).send({ message: "La película ya está en la lista del usuario." });
+        if (existing.length > 0) {
+            return res.status(400).send({ message: "La película ya está en la lista del usuario." });
+        }
+
+        const [result] = await pool.query('INSERT INTO perfil_pelicula (id_perfil, id_pelicula, terminada, guardado, minuto) VALUES (?, ?, ?, ?, ?)', [id_perfil, id_pelicula, terminada, guardado, minuto]);
+
+        res.send({
+            id: result.insertId,
+            message: "Película agregada a la lista del usuario."
+        });
+    } catch (error) {
+        console.error("Error al agregar la película a la lista del usuario:", error);
+        res.status(500).send({ message: "Error al agregar la película a la lista del usuario." });
     }
-
-    const [result] = await pool.query('INSERT INTO perfil_pelicula (id_perfil, id_pelicula, terminada, guardado, minuto) VALUES (?, ?, ?, ?, ?)', [id_perfil, id_pelicula, terminada, guardado, minuto]);
-    
-    res.send({
-        id: result.insertId,
-        message: "Película agregada a la lista del usuario."
-    });
 });
+
+
 
 app.post('/perfil_series', async (req, res) => {
     const { id_perfil, id_serie, id_capitulo, terminada, guardado, minuto } = req.body;
