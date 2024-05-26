@@ -52,7 +52,7 @@
                     for(let i of json){
                         if(correo == i.correo){
                             if(password == i.password){
-                                sessionStorage.setItem('userID', i.id)
+                                sessionStorage.setItem('userId', i.id)
                                 encontrado = true
                                 window.location = './perfiles.html'
                                 break

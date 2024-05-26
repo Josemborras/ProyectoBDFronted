@@ -13,7 +13,7 @@
     </div>
     <div id="container-global">
         <div id="container-general">
-            <p style="font-weight: 600; font-size: 36px;">¿Quién eres? Elige tú perfil</p>
+            <p id="container-general-p">¿Quién eres? Elige tú perfil</p>
             <div id="container-group">
                 <div id="container-perfiles">
 
@@ -26,8 +26,11 @@
     </div>
 
     <script>
+        if(sessionStorage.getItem('userId') == null){
+            window.location = './login.html'
+        }
         let contador = 0
-        const id_usuario = sessionStorage.getItem('userID')
+        const id_usuario = sessionStorage.getItem('userId')
         const addDiv = document.querySelector('#add-btn')
         const containerPerfiles = document.querySelector('#container-perfiles')
         const containerGeneral = document.querySelector('#container-general')
