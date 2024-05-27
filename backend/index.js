@@ -1,15 +1,19 @@
+
 import cors from "cors";
-import express from "express";
+import express, { json } from "express";
 import busquedaRoute from './routes/busqueda.js';
 import favRoute from './routes/favoritos.js';
 import listaSeriesRoute from './routes/listaSeries.js';
-import listaPeliculasRoute from './routes/listaPeliculas.js';
-import usuarioRoute from './routes/usuario.js';
+import listaPeliculasRoute from './routes/peliculas.routes.js';
+import usuarioRoute from './routes/usuario.routes.js';
+
+
 
 const app = express()
 
 app.use(cors())
-app.use(express.json())
+app.use(json())
+
 app.use(busquedaRoute)
 app.use(favRoute)
 app.use(listaSeriesRoute)
