@@ -1,4 +1,9 @@
-app.get('/busqueda', async (req, res) => {
+import { Router } from "express";
+import { pool } from "../config/db.js";
+
+const router = Router()
+
+router.get('/busqueda', async (req, res) => {
     const searchTerm = req.query.searchTerm;
     const searchParam = `%${searchTerm}%`;
 
@@ -49,3 +54,5 @@ app.get('/busqueda', async (req, res) => {
         res.status(500).send({ message: "Error en la búsqueda" });
     }
 });
+
+export default router

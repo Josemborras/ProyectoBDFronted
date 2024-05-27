@@ -1,4 +1,9 @@
-app.post('/perfil_peliculas', async (req, res) => {
+import { Router } from "express";
+import { pool } from "../config/db.js";
+
+const router = Router()
+
+router.post('/perfil_peliculas', async (req, res) => {
     const { id_perfil, id_pelicula, terminada, guardado, minuto } = req.body;
 
     const [existing] = await pool.query('SELECT * FROM perfil_pelicula WHERE id_perfil = ? AND id_pelicula = ?', [id_perfil, id_pelicula]);
@@ -23,7 +28,7 @@ app.post('/perfil_peliculas', async (req, res) => {
 
 
 
-app.post('/perfil_series', async (req, res) => {
+router.post('/perfil_series', async (req, res) => {
     const { id_perfil, id_serie, id_capitulo, terminada, guardado, minuto } = req.body;
 
     const [existing] = await pool.query('SELECT * FROM perfil_serie WHERE id_perfil = ? AND id_serie = ?', [id_perfil, id_serie]);
@@ -39,3 +44,5 @@ app.post('/perfil_series', async (req, res) => {
         message: "Serie agregada a la lista del usuario."
     });
 });
+
+export default router
