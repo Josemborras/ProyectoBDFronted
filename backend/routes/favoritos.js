@@ -45,4 +45,6 @@ router.post('/perfil_series', async (req, res) => {
     });
 });
 
+router.get('favoritos')
+
 export default router

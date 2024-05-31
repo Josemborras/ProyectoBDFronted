@@ -12,17 +12,17 @@ export const ListPeliculas = async(req,res) => {
 }
 
 export const SelectPeliculasByGenero = async(req,res) => {
-    const [result] = await pool.query('SELECT peliculas.nombre, peliculas.duracion, peliculas.valoracion, peliculas.rango_edad, peliculas.descripcion FROM categorias JOIN categorias_peliculas ON categorias.id = categorias_peliculas.id_categoria JOIN peliculas ON categorias_peliculas.id_pelicula = peliculas.id WHERE categorias.id = ? ', [req.params.id])
+    const [result] = await pool.query('SELECT peliculas.* , imagenes_pelicula.url_foto AS imagen FROM categorias JOIN categorias_peliculas ON categorias.id = categorias_peliculas.id_categoria JOIN peliculas ON categorias_peliculas.id_pelicula = peliculas.id JOIN imagenes_pelicula ON imagenes_pelicula.id_pelicula = peliculas.id WHERE categorias.id = ?', [req.params.id])
     res.send(result)
 }
 
 export const SelectPeliculasByActor = async(req,res) => {
-    const [result] = await pool.query('SELECT peliculas.nombre, peliculas.duracion, peliculas.valoracion, peliculas.rango_edad, peliculas.descripcion FROM actores JOIN actores_peliculas ON actores.id = actores_peliculas.id_actor JOIN peliculas ON actores_peliculas.id_pelicula = peliculas.id WHERE actores.id = ? ', [req.params.id])
+    const [result] = await pool.query('SELECT peliculas.* , imagenes_pelicula.url_foto AS imagen FROM actores JOIN actores_peliculas ON actores.id = actores_peliculas.id_actor JOIN peliculas ON actores_peliculas.id_pelicula = peliculas.id JOIN imagenes_pelicula ON imagenes_pelicula.id_pelicula = peliculas.id WHERE actores.id = ?', [req.params.id])
     res.send(result)
 }
 
 export const SelectPeliculasByDirector = async(req,res) => {
-    const [result] = await pool.query('SELECT peliculas.nombre, peliculas.duracion, peliculas.valoracion, peliculas.rango_edad, peliculas.descripcion FROM directores JOIN peliculas ON directores.id = peliculas.id_director WHERE directores.id=? ', [req.params.id])
+    const [result] = await pool.query('SELECT peliculas.* , imagenes_pelicula.url_foto AS imagen FROM directores JOIN peliculas ON directores.id = peliculas.id_director JOIN imagenes_pelicula ON imagenes_pelicula.id_pelicula = peliculas.id WHERE directores.id=? ', [req.params.id])
     res.send(result)
 }
 
