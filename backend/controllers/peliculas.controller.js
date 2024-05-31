@@ -1,13 +1,13 @@
 import { pool } from "../config/db.js"
 
 export const ListPeliculas = async(req,res) => {
-    const [result] = await pool.query('SELECT * FROM peliculas')
+    const [result] = await pool.query('SELECT peliculas.*, imagenes_pelicula.url_foto AS imagen FROM peliculas JOIN imagenes_pelicula ON imagenes_pelicula.id_pelicula = peliculas.id')
     res.send(result)
 }
 
 
  export const SelectPeliculasById = async(req,res) => {
-    const [result] = await pool.query('SELECT * FROM peliculas where id = ?', [req.params.id])
+    const [result] = await pool.query('SELECT peliculas.*, imagenes_pelicula.url_foto AS imagen FROM peliculas JOIN imagenes_pelicula ON imagenes_pelicula.id_pelicula = peliculas.idwhere id = ?', [req.params.id])
     res.send(result)
 }
 
@@ -27,12 +27,12 @@ export const SelectPeliculasByDirector = async(req,res) => {
 }
 
 export const SelectPeliculasRecomendadas = async(req,res) => {
-    const [result] = await pool.query('SELECT * FROM peliculas WHERE valoracion >75 ORDER BY RAND()')
+    const [result] = await pool.query('SELECT peliculas.*, imagenes_pelicula.url_foto AS imagen FROM peliculas JOIN imagenes_pelicula ON imagenes_pelicula.id_pelicula = peliculas.id WHERE valoracion >75 ORDER BY RAND()')
     res.send(result)
 }
 
 export const SelectPeliculasNovedades = async(req,res)=>{
-    const [result] = await pool.query('SELECT * FROM peliculas ORDER BY fecha DESC')
+    const [result] = await pool.query('SELECT peliculas.*, imagenes_pelicula.url_foto AS imagen FROM peliculas JOIN imagenes_pelicula ON imagenes_pelicula.id_pelicula = peliculas.id ORDER BY fecha DESC')
     res.send(result)
 }
 
