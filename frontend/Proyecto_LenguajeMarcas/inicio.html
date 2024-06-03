@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="./css/inicio.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #191919 !important;
+        }
+
+        .cabecera {
+            background-image: url();
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 1100px;
+        }
+
+        .img_menu {
+            margin-left: 50px;
+        }
+
+        .menu {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(black, transparent);
+        }
+
+        .menu_enlaces {
+            margin-left: -1000px;
+        }
+
+        .menu_enlaces a {
+            text-decoration: none;
+            color: white !important;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 18px;
+            margin: 30px;
+            background-color: transparent;
+            padding: 5px 20px;
+        }
+
+        .menu_enlaces a:hover {
+            background-color: #4F4F4F;
+            padding: 5px 20px;
+            border-radius: 20px;
+        }
+
+        .menu_busquedaPerfil {
+            margin-right: 50px;
+        }
+
+        .menu_busquedaPerfil img {
+            margin: 30px;
+        }
+
+        .menu_busquedaPerfil {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .botones {
+            margin-top: 600px;
+            margin-left: 150px;
+        }
+
+        .botones a {
+            font-size: 27px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-decoration: none;
+            color: black;
+            background-color: #F0C53B;
+            padding: 10px 20px;
+            margin: 15px;
+            border-radius: 10px;
+        }
+
+        .botones a:hover {
+            background-color: #F2E4B6;
+            color: black;
+        }
+
+        #scrollPelis img {
+            width: 500px;
+            height: 250px;
+        }
+
+        .footer {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #494949;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #results-container {
+            padding: 20px;
+            width: 40%;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+            position: absolute;
+            top: 100px;
+            right: 50px;
+        }
+
+        #results-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .result-item {
+            background-color: #333;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 100%;
+            text-align: center;
+        }
+
+        .result-item img {
+            width: 100%;
+            height: auto;
+            border-bottom: 2px solid #444;
+        }
+
+        .result-item h3 {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .result-item button {
+            padding: 10px;
+            background-color: #e50914;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .result-item button:hover {
+            background-color: #f40612;
+        }
+    </style>
+</head>
+<body>
+    <div class="cabecera">
+        <div class="menu">
+            <div class="img_menu">
+                <img src="./img/Inicio/Logo (1).png" alt="">
+            </div>
+            <div class="menu_enlaces">
+                <a href="./inicio.html">Inicio</a>
+                <a href="./series.html">Series</a>
+                <a href="./peliculas.html">Películas</a>
+                <a href="./novedades.html">Novedades</a>
+                <a href="./miLista.html">Mi Lista</a>
+                <a href="./filtros.html">Filtros</a>
+            </div>
+            <div class="menu_busquedaPerfil">
+                <div class="contenedorBuscador">
+                    <img src="./img/Inicio/lupa 3.png" alt="" width="" height="">
+                    <input type="text" id="search-input" placeholder="Buscar...">
+                </div>
+                <section id="results-container">
+                    <div id="results-list"></div>
+                </section>
+                <img src="./img/Inicio/FotoPerfilInicio.png" alt="" width="" height="">
+            </div>
+        </div>
+        <div>
+            <div class="descripcion_serie"></div>
+            <div class="botones">
+                <a class="btn_MasInfo" href="#">Más Información</a>
+                <a class="btn_VerAhora" href="#">Ver Ahora</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="d-flex align-items-center*">
+            <div class="flex-shrink-0">
+                <a href="#" class="btn-left btn-link p-2 toggle text-dark"><i class="fa fa-arrow-left"></i></a>
+            </div>
+            <div class="flex-grow-1 w-100 o-hidden" id="">
+                <ul class="nav nav-fill text-uppercase small position-relative flex-nowrap" id="scrollPelis">
+                    <li class="nav-item">
+                        <img src="/img/scrollPeliculas/Group 8.png" alt="Image" class="nav-link">
+                    </li>
+                    <li class="nav-item">
+                        <img src="/img/scrollPeliculas/Group 13.png" alt="Image" class="nav-link">
+                    </li>
+                    <li class="nav-item">
+                        <img src="/img/scrollPeliculas/Group 14.png" alt="Image" class="nav-link">
+                    </li>
+                    <li class="nav-item">
+                        <img src="/img/scrollPeliculas/Group 15.png" alt="Image" class="nav-link">
+                    </li>
+                    <li class="nav-item">
+                        <img src="/img/scrollPeliculas/Group 16.png" alt="Image" class="nav-link">
+                    </li>
+                </ul>
+            </div>
+            <div class="flex-shrink-0">
+                <a href="#" class="btn-right btn-link toggle p-2 text-dark"><i class="fa fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Política de privacidad | Condiciones de uso | Tratamiento de datos</p>
+        <p>© 1997-2024 HomeCinema, Inc.</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="../busqueda.js"></script>
+</body>
+</html>
