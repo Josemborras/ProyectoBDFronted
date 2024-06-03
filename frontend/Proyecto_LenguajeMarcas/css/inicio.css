@@ -1,13 +1,13 @@
-*{
-    margin: 0px;
-    padding: 0px;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-body{
+body {
     background-color: #191919 !important;
 }
 
-.cabecera{
+.cabecera {
     background-image: url();
     background-repeat: no-repeat;
     background-size: cover;
@@ -15,82 +15,80 @@ body{
     height: 1100px;
 }
 
-.img_menu{
+.img_menu {
     margin-left: 50px;
 }
 
-.menu{
+.menu {
     width: 100%;
     height: 100px;
-    display:flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(black, transparent)
+    background: linear-gradient(black, transparent);
 }
 
-.menu_enlaces{
+.menu_enlaces {
     margin-left: -1000px;
 }
 
-.menu_enlaces a{
+.menu_enlaces a {
     text-decoration: none;
     color: white !important;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 18px;
     margin: 30px;
     background-color: transparent;
-    padding:  5px 20px 5px 20px;
-    
+    padding: 5px 20px;
 }
 
-.menu_enlaces a:hover{
+.menu_enlaces a:hover {
     background-color: #4F4F4F;
-    padding:  5px 20px 5px 20px;
+    padding: 5px 20px;
     border-radius: 20px;
 }
 
-.menu_busquedaPerfil{
-    margin-right:50px;
+.menu_busquedaPerfil {
+    margin-right: 50px;
 }
 
 .menu_busquedaPerfil img {
     margin: 30px;
-    
 }
 
-.menu_busquedaPerfil{
+.menu_busquedaPerfil {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.botones{
-    margin-top:600px;
+.botones {
+    margin-top: 600px;
     margin-left: 150px;
 }
 
-.botones a{
+.botones a {
     font-size: 27px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-decoration: none;
     color: black;
     background-color: #F0C53B;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 20px;
     margin: 15px;
     border-radius: 10px;
 }
 
-.botones a:hover{
+.botones a:hover {
     background-color: #F2E4B6;
     color: black;
 }
 
-#scrollPelis img{
+#scrollPelis img {
     width: 500px;
     height: 250px;
 }
 
-.footer{
+.footer {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #494949;
     display: flex;
@@ -102,10 +100,14 @@ body{
 #results-container {
     padding: 20px;
     width: 300px;
-    background-color: #f0f0f0;
+    background-color: #f0c53c;
     border-radius: 8px;
     margin-top: 20px;
     display: none;
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    z-index: 9999;
 }
 
 #results-list {
@@ -121,7 +123,7 @@ body{
     overflow: hidden;
     width: 100%;
     text-align: center;
-    color: #f0f0f0;
+    color: #f0c53c;
 }
 
 .result-item img {
@@ -134,5 +136,4 @@ body{
     margin: 10px 0;
     font-size: 16px;
 }
-
 
