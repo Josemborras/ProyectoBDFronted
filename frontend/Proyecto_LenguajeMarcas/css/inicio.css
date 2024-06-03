@@ -110,6 +110,14 @@ body{
     margin-right: 15px;
 }
 
+.scrollPeliculas{
+    margin-left: 50px;
+}
+
+.imagePosition{
+    margin-top: 30px;
+}
+
 .footer{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #494949;
