@@ -68,48 +68,40 @@
       
     </div>
 
+    
+    <div class="scrollPeliculas">
 
-
-
-
-    <div class="container">
-
-        <div class="d-flex align-items-center*">
-
-            <div class="flex-shrink-0">
-                <a href="#" class="btn-left btn-link p-2 toggle text-dark"><i class="fa fa-arrow-left"></i></a>
+            <div>
+                <a href="#">Películas</a>
             </div>
 
-            <div class="flex-grow-1 w-100 o-hidden" id="">
-
-                <ul class="nav nav-fill text-uppercase small position-relative flex-nowrap" id="scrollPelis">
-                    <li class="nav-item">
-                        <img src="/img/scrollPeliculas/Group 8.png" alt="Image" class="nav-link">
-                    </li>
-
-                    <li class="nav-item">
-                        <img src="/img/scrollPeliculas/Group 13.png" alt="Image" class="nav-link">
-                    </li>
-
-                    <li class="nav-item">
-                        <img src="/img/scrollPeliculas/Group 14.png" alt="Image" class="nav-link">
-                    </li>
-
-                    <li class="nav-item">
-                        <img src="/img/scrollPeliculas/Group 15.png" alt="Image" class="nav-link">
-                    </li>
-
-                    <li class="nav-item">
-                        <img src="/img/scrollPeliculas/Group 16.png" alt="Image" class="nav-link">
-                    </li>
-
-                </ul>
+            <div class="imagePosition" id="divImagePeliculas">
 
             </div>
 
-            <div class="flex-shrink-0">
-                <a href="#" class="btn-right btn-link toggle p-2 text-dark"><i class="fa fa-arrow-right"></i></a>
-            </div>
+    </div>
+
+
+    <div class="scrollRecomendaciones">
+
+        <div>
+            <a href="#">Recomendaciones</a>
+        </div>
+
+        <div class="imagePosition" id="divImageRecomendaciones">
+
+        </div>
+
+    </div>
+
+    
+    <div class="scrollSeries">
+
+        <div>
+            <a href="#">Series</a>
+        </div>
+
+        <div class="imagePosition" id="divImageSeries">
 
         </div>
 
@@ -119,35 +111,7 @@
 
 
 
-
-
-
-
-
-
-
-    <!-- <div class="scrollPeliculas">
-
-        <div class="title">
-            <h3>
-                Películas
-            </h3>
-        </div>
-
-
-        <div class="imgPeliculas">
-            <img src="/img/scrollPeliculas/Group 8.png" alt="Image">
-            <img src="/img/scrollPeliculas/Group 13.png" alt="Image">
-            <img src="/img/scrollPeliculas/Group 14.png" alt="Image">
-            <img src="/img/scrollPeliculas/Group 15.png" alt="Image">
-            <img src="/img/scrollPeliculas/Group 16.png" alt="Image">
-        </div>
-
-    </div> -->
-
-
-
-
+    
 
 
     <!--
@@ -166,7 +130,30 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+
+
+        fetch("https://localhost:3000/peliculas")
+        .then(res => res.json)
+        .then(json =>{
+
+            let j = 0
+
+            const divImage = document.querySelector("#divImagePeliculas")
+
+            for(i of json){
+                if (j >= 7){
+                    break
+                }
+                divImage.innerHTML+=`<div><img src="${i.imagen}" alt="" class = "imagenes"></div>`
+                j++
+
+            }
+
+        })
+
+
+    </script>
     
 </body>
 </html>

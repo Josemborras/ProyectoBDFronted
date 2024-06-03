@@ -61,32 +61,11 @@
     
 
     <!--  -->
-    <div class="images">
-        <img src="/img/SeriesGeneral/Component 51.png" alt="">
-        <img src="/img/SeriesGeneral/Component 52.png" alt="">
-        <img src="/img/SeriesGeneral/Component 53.png" alt="">
-        <img src="/img/SeriesGeneral/Component 54.png" alt="">
-        <img src="/img/SeriesGeneral/Component 55.png" alt="">
-        <img src="/img/SeriesGeneral/Component 56.png" alt="">
-        <img src="/img/SeriesGeneral/Component 57.png" alt="">
-        <img src="/img/SeriesGeneral/Component 58.png" alt="">
-        <img src="/img/SeriesGeneral/Component 59.png" alt="">
-        <img src="/img/SeriesGeneral/Component 60.png" alt="">
-        <img src="/img/SeriesGeneral/Component 61.png" alt="">
-        <img src="/img/SeriesGeneral/Component 62.png" alt="">
-        <img src="/img/SeriesGeneral/Component 63.png" alt="">
-        <img src="/img/SeriesGeneral/Component 64.png" alt="">
-        <img src="/img/SeriesGeneral/Component 65.png" alt="">
-        <img src="/img/SeriesGeneral/Component 66.png" alt="">
-        <img src="/img/SeriesGeneral/Component 83.png" alt="">
-        <img src="/img/SeriesGeneral/Component 84.png" alt="">
-        <img src="/img/SeriesGeneral/Component 86.png" alt="">
-        <img src="/img/SeriesGeneral/Component 87.png" alt="">
-        <img src="/img/SeriesGeneral/Component 88.png" alt="">
-        <img src="/img/SeriesGeneral/Component 89.png" alt="">
-        
-    </div>
+   
 
+    <div class="imagenesSeries" id="divImageSeries">
+
+    </div>
 
 
 
@@ -104,6 +83,24 @@
         - Al hacer hover sobre una imagen de una serie que se accione un video modo "trailer"
      -->
     
+
+     <script>
+
+        fetch("https://localhost:3000/peliculas")
+        .then(res => res.json)
+        .then(json =>{
+
+            const divImage = document.querySelector("#divImageSeries")
+
+            for(i of json){
+                divImage.innerHTML+=`<div><img src="${i.imagen}" alt="" class = "imagenes"></div>`
+
+            }
+
+        })
+
+     </script>
+
 
 </body>
 </html>

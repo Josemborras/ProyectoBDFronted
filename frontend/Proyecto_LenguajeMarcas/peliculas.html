@@ -59,6 +59,12 @@
 
     </div>
 
+
+
+    <div class="imagenesPeliculas" id="divImagePeliculas">
+
+    </div>
+
     <!--
         - Si no hace scroll añadir más peliculas, solo imagen
         - Al hacer hover por encima que se accione un video con una previsualizacion de pelicula
@@ -71,6 +77,25 @@
         <p>© 1997-2024 HomeCinema, Inc.</p>
 
     </div>
+
+
+    <script>
+
+fetch("https://localhost:3000/peliculas")
+        .then(res => res.json)
+        .then(json =>{
+
+            const divImage = document.querySelector("#divImagePeliculas")
+
+            for(i of json){
+                divImage.innerHTML+=`<div><img src="${i.imagen}" alt="" class = "imagenes"></div>`
+
+            }
+
+        })
+
+    </script>
+
 
 </body>
 </html>
