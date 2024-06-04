@@ -21,14 +21,16 @@ async function buscar() {
         resultsContainer.style.display = 'none';
     }
 
-    data.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'result-item';
-        itemDiv.innerHTML = `
-            <img src="${item.imagen}" alt="${item.nombre}">
-            <h3>${item.nombre}</h3>
-        `;
-        resultsDiv.appendChild(itemDiv);
+    data.forEach((item, index) => {
+        if (index < 5) { 
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'result-item';
+            itemDiv.innerHTML = `
+                <img src="${item.imagen}" alt="${item.nombre}">
+                <h3>${item.nombre}</h3>
+            `;
+            resultsDiv.appendChild(itemDiv);
+        }
     });
 }
 

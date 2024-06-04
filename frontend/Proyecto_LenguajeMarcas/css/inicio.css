@@ -117,19 +117,20 @@ body {
     justify-content: center;
 }
 
+.result-item img {
+    width: 80%;
+    height: auto;
+    border-bottom: 2px solid #444;
+    object-fit: cover;
+}
+
 .result-item {
     background-color: #333;
     border-radius: 8px;
     overflow: hidden;
-    width: 100%;
+    width: 300px;
     text-align: center;
     color: #f0c53c;
-}
-
-.result-item img {
-    width: 100%;
-    height: auto;
-    border-bottom: 2px solid #444;
 }
 
 .result-item h3 {
