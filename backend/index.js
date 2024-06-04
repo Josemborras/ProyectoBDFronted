@@ -7,8 +7,6 @@ import listaSeriesRoute from './routes/listaSeries.js';
 import listaPeliculasRoute from './routes/peliculas.routes.js';
 import usuarioRoute from './routes/usuario.routes.js';
 
-
-
 const app = express()
 
 app.use(cors())
@@ -21,6 +19,3 @@ app.use(listaPeliculasRoute)
 app.use(usuarioRoute)
 
 app.listen(3000)
-
-
-
