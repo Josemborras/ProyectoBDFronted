@@ -155,7 +155,6 @@
                     break
                 }
                 divImage.innerHTML+=`<div><img src="${i.imagen}" ></div>`
-
                 j++
 
                 console.log(i)
@@ -163,6 +162,44 @@
             }
 
         })
+
+
+    
+    fetch("http://localhost:3000/recomendados")
+    .then(res => res.json())
+    .then(json =>{
+        let j = 0
+
+        const divImage = document.querySelector("#divImageRecomendaciones")
+
+        for(i of json){
+            if (j >= 7){
+                break
+            }
+
+            divImage.innerHTML+= `<div><img src= "${i.imagen}"></div>`
+            j++
+        }
+    })
+
+
+
+    fetch("http://localhost:3000/series")
+    .then(res => res.json)
+    .then(json =>{
+        let j = 0
+
+        const divImage = document.querySelector("#divImageSeries")
+
+        for(i of json){
+            if (j >= 7){
+                break
+            }
+
+            divImage.innerHTML += `<div><img src="${i.imagen}"></div>`
+            j++
+        }
+    })
 
     </script>
     

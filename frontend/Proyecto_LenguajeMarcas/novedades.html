@@ -98,5 +98,64 @@
 
     </div>
 
+
+
+    <script>
+
+        fetch("http://localhost:3000/recomendados")
+            .then(res => res.json())
+            .then(json =>{
+                let j = 0
+
+                const divImage = document.querySelector("#divImageNovedadesPelis")
+
+                for(i of json){
+                    if (j >= 7){
+                        break
+                    }
+
+                    divImage.innerHTML+= `<div><img src= "${i.imagen}"></div>`
+                    j++
+                }
+        })
+
+        fetch("http://localhost:3000/recomendados")
+            .then(res => res.json())
+            .then(json =>{
+                let j = 0
+
+                const divImage = document.querySelector("#divImageNovedadesPelis")
+
+                for(i of json){
+                    if (j >= 7){
+                        break
+                    }
+
+                    divImage.innerHTML+= `<div><img src= "${i.imagen}"></div>`
+                    j++
+                }
+        })
+
+        fetch("http://localhost:3000/recomendados")
+            .then(res => res.json())
+            .then(json =>{
+                let j = 0
+
+                const divImage = document.querySelector("#divImageNovedadesPelis")
+
+                for(i of json){
+                    if (j >= 7){
+                        break
+                    }
+
+                    divImage.innerHTML+= `<div><img src= "${i.imagen}"></div>`
+                    j++
+                }
+        })
+
+
+    </script>
+
+
 </body>
 </html>
