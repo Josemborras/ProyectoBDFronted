@@ -35,6 +35,7 @@
         const containerPerfiles = document.querySelector('#container-perfiles')
         const containerGeneral = document.querySelector('#container-general')
         const containerGlobal = document.querySelector('#container-global')
+        const cajaPerfil = document.querySelector('.caja-perfil')
 
         fetch('http://localhost:3000/perfiles/usuario/' + id_usuario)
         .then(res => res.json())
@@ -56,7 +57,11 @@
             console.log(data)
             if(data.cantidad_perfiles >= data.maximo_perfiles){
                 addDiv.style.display = 'none'
+                containerPerfiles.style.flexWrap = "wrap"
+                containerPerfiles.style.maxWidth = "500px"
+                containerPerfiles.style.justifyContent = "space-between"
             }
+            
         })
 
         function displayImagenes(){
