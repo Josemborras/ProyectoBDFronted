@@ -85,38 +85,25 @@ body{
     color: black;
 }
 
-
-.scrollPeliculas a{
-    text-decoration: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
-    color: white;
-    margin-right: 15px;
-}
-
-.scrollRecomendaciones a{
-    text-decoration: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
-    color: white;
-    margin-right: 15px;
-}
-
-.scrollSeries a{
-    text-decoration: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
-    color: white;
-    margin-right: 15px;
-}
-
-.scrollPeliculas{
-    margin-left: 50px;
-}
-
 .imagePosition{
     margin-top: 30px;
+    max-height: 120px;
+    border: 1px solid white;
+    display: flex;
+    overflow-x: auto ;
 }
+
+.imagePosition::-webkit-scrollbar{
+     width: 0px ;
+}
+
+.scrollLateral{
+    min-width: 110px;
+    height: 110px;
+    line-height: 110px;
+    margin-right: 10px;
+}
+
 
 .footer{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -125,6 +112,13 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
 }
+
+/*
+- Hay que poner los enlaces de, Series, Peliculas y Recomendaciones sin text decoration y con tiopgrafía igual, letra en blanco.
+- En las novedades también */
+
+
 
 

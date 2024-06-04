@@ -56,6 +56,22 @@ body{
     align-items: center;
 }
 
+.imageCheckBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin: 20px;
+}
+
+.vanImages{
+    margin-right: 20px;
+    margin-left: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
 .footer{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #494949;
@@ -63,4 +79,5 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
 }

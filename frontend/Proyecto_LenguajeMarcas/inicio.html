@@ -9,6 +9,10 @@
 </head>
 <body>
 
+
+
+
+    <!-- Carruser con las imagenes de inicio /imagenes/carrusel, haz un bucle, con el if, para que no se muestren mas de 3-4 imagenes    -->
     <div class="cabecera">
 
 
@@ -51,6 +55,8 @@
 
 
         <div>
+
+            <!-- Sinopsis de la película/serie que aparece -->
             <div class="descripcion_serie">
 
 
@@ -69,10 +75,15 @@
     </div>
 
     
+
+    <!--
+        Las imagenes están en /peliculas
+        En el segundo div, de la clase imagePosition, en el fetch, el div de la imagen tiene una clase para el scroll lateral
+     -->
     <div class="scrollPeliculas">
 
             <div>
-                <a href="#">Películas</a>
+                <a href="#" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Películas</a>
             </div>
 
             <div class="imagePosition" id="divImagePeliculas">
@@ -82,10 +93,15 @@
     </div>
 
 
+    
+    <!--
+        Las imagene están en /recomendados
+        En el segundo div, de la clase imagePosition, en el fetch, el div de la imagen tiene una clase para el scroll lateral
+    -->
     <div class="scrollRecomendaciones">
 
         <div>
-            <a href="#">Recomendaciones</a>
+            <a href="#" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Recomendaciones</a>
         </div>
 
         <div class="imagePosition" id="divImageRecomendaciones">
@@ -95,10 +111,15 @@
     </div>
 
     
+
+    <!--
+        Las imagenes están en /series
+        En el segundo div, de la clase imagePosition, en el fetch, el div de la imagen tiene una clase para el scroll lateral
+    -->
     <div class="scrollSeries">
 
         <div>
-            <a href="#">Series</a>
+            <a href="#" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" >Series</a>
         </div>
 
         <div class="imagePosition" id="divImageSeries">
@@ -115,9 +136,10 @@
 
 
     <!--
-        - hacer el scroll de los  distintos frames (peliculas, recomendaciones, series)
         - en los enlaces de los botones(Más Información , Ver Ahora), tienen que llevar el MasInfo a la descripción de la serie, y el VerAhora directamente al inicio de la misma
     -->
+
+
 
 
     <div class="footer">
@@ -154,7 +176,7 @@
                 if (j >= 7){
                     break
                 }
-                divImage.innerHTML+=`<div><img src="${i.imagen}" ></div>`
+                divImage.innerHTML+=`<div class="scrollLateral"><img src="${i.imagen}" ></div>`
                 j++
 
                 console.log(i)
@@ -177,7 +199,7 @@
                 break
             }
 
-            divImage.innerHTML+= `<div><img src= "${i.imagen}"></div>`
+            divImage.innerHTML+= `<div class="scrollLateral"><img src= "${i.imagen}"></div>`
             j++
         }
     })
@@ -196,7 +218,7 @@
                 break
             }
 
-            divImage.innerHTML += `<div><img src="${i.imagen}"></div>`
+            divImage.innerHTML += `<div class="scrollLateral"><img src="${i.imagen}"></div>`
             j++
         }
     })

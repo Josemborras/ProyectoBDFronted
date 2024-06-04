@@ -7,6 +7,14 @@ body{
     background-color: #191919;
 }
 
+.cabecera{
+    background-image: url();
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 1100px;
+}
+
 .img_menu{
     margin-left: 50px;
 }
@@ -56,28 +64,44 @@ body{
     align-items: center;
 }
 
-.scrollNovedadesPelis a{
-    text-decoration: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
-    color: white;
-    margin-right: 15px;
+.botones{
+    margin-top: 600px;
+    margin-left: 150px;
 }
 
-.scrollNovedadesSeries a{
-    text-decoration: none;
+.botones a{
+    font-size: 27px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
-    color: white;
-    margin-right: 15px;
+    text-decoration: none;
+    color: black;
+    background-color: #f0c53b;
+    padding: 10px 20px 10px 20px;
+    margin: 15px;
+    border-radius: 10px;
 }
 
-.scrollProximamente a{
-    text-decoration: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 20px;
-    color: white;
-    margin-right: 15px;
+.botones a:hover{
+    background-color: #f2e4b6;
+    color: black;
+}
+
+.imagePosition{
+    margin-top: 30px;
+    max-height: 120px;
+    border: 1px solid white;
+    display: flex;
+    overflow-x: auto ;
+}
+
+.imagePosition::-webkit-scrollbar{
+     width: 0px ;
+}
+
+.scrollLateral{
+    min-width: 110px;
+    height: 110px;
+    line-height: 110px;
+    margin-right: 10px;
 }
 
 .footer{
@@ -87,4 +111,5 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
 }

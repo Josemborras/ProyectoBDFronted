@@ -8,6 +8,8 @@
 </head>
 <body>
     
+
+    <!-- Carruser con las imagenes en este div -->
     <div class="menu">
 
 
@@ -60,9 +62,8 @@
     </div>
     
 
-    <!--  -->
-   
 
+    <!-- En este div van a las imagenes de /series de la base de datos  -->
     <div class="imagenesSeries" id="divImageSeries">
 
     </div>
@@ -79,14 +80,13 @@
 
 
     <!--
-        - Si no hace scroll hacia abajo añadir más series, solo imagen
         - Al hacer hover sobre una imagen de una serie que se accione un video modo "trailer"
      -->
     
 
      <script>
 
-        fetch("https://localhost:3000/peliculas")
+        fetch("https://localhost:3000/series")
         .then(res => res.json)
         .then(json =>{
 

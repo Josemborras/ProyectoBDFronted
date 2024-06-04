@@ -75,6 +75,13 @@ body{
     margin-bottom: -1px;
 }
 
+.imagenesPeliculas{
+    margin-right: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
 
 .footer{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -83,4 +90,5 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
 }

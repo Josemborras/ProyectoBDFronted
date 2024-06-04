@@ -8,37 +8,61 @@
 </head>
 <body>
     
-    <div class="menu">
+
+    <!-- Carrusel con las imagenes de novedades /imagenes/carrusel, es la misma terminacion que las de inicio, coge las otras imagenes que no ha cogido el bucle de las de inicio, para que no sean las mismas las de novedades e inicio -->
+    <div class="cabecera">
+
+        <div class="menu">
 
 
-        <div class="img_menu">
-            <img src="./img/Inicio/Logo (1).png" alt="">
-        </div>
-
-
-        <div class="menu_enlaces">
-
-            <a href="./inicio.html">Inicio</a>
-
-            <a href="./series.html">Series</a>
-
-            <a href="./peliculas.html">Películas</a>
-
-            <a href="./novedades.html">Novedades</a>
-
-            <a href="./miLista.html">Mi Lista</a>
-
-            <a href="./filtros.html">Filtros</a>
-
-        </div>
-
-        <div class="menu_busquedaPerfil">
-
-            <div class="contenedorBuscador">
-                <img src="./img/Inicio/lupa 3.png" alt="" width="" height="">
+            <div class="img_menu">
+                <img src="./img/Inicio/Logo (1).png" alt="">
             </div>
 
-            <img src="./img/Inicio/FotoPerfilInicio.png" alt="" width="" height="">
+
+            <div class="menu_enlaces">
+
+                <a href="./inicio.html">Inicio</a>
+
+                <a href="./series.html">Series</a>
+
+                <a href="./peliculas.html">Películas</a>
+
+                <a href="./novedades.html">Novedades</a>
+
+                <a href="./miLista.html">Mi Lista</a>
+
+                <a href="./filtros.html">Filtros</a>
+
+            </div>
+
+            <div class="menu_busquedaPerfil">
+
+                <div class="contenedorBuscador">
+                    <img src="./img/Inicio/lupa 3.png" alt="" width="" height="">
+                </div>
+
+                <img src="./img/Inicio/FotoPerfilInicio.png" alt="" width="" height="">
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <!-- Sinopsis de la película/serie que aparece -->
+            <div class="descripcion">
+
+
+            </div>
+
+            <div class="botones">
+
+                <a class="btn_MasInfo" href="#">Más Información</a>
+
+                <a class="btn_VerAhora" href="#">Ver Ahora</a>
+
+            </div>
 
         </div>
 
@@ -46,6 +70,10 @@
     </div>
 
 
+    <!--
+        En este div van las novedades de películas /novedades en la lista de peliculas, todas las novedades independientemente de si son series o peliculas están en peliculas 
+        En el segundo div, de la clase imagePosition, en el fetch, el div de la imagen tiene una clase para el scroll lateral
+    -->
     <div class="scrollNovedadesPelis">
 
         <div>
@@ -59,6 +87,11 @@
     </div>
 
 
+
+    <!--
+        En este div van las novedades de películas /novedades en la lista de peliculas
+        En el segundo div, de la clase imagePosition, en el fetch, el div de la imagen tiene una clase para el scroll lateral
+    -->
     <div class="scrollNovedadesSeries">
 
         <div>
@@ -72,6 +105,10 @@
     </div>
 
 
+    <!--
+        En este div van las novedades de películas /novedades en la lista de peliculas
+        En el segundo div, de la clase imagePosition, en el fetch, el div de la imagen tiene una clase para el scroll lateral
+    -->
     <div class="scrollProximamente">
 
         <div>
@@ -84,10 +121,13 @@
 
     </div>
 
+
+
+
     <!--
         - en los enlaces de los botones(Más Información , Ver Ahora), tienen que llevar el MasInfo a la descripción de la serie, y el VerAhora directamente al inicio de la misma
-        - hacer scroll en los distintos frames(novedades y próximamente)
      -->
+
 
 
      <div class="footer">
@@ -114,7 +154,7 @@
                         break
                     }
 
-                    divImage.innerHTML+= `<div><img src= "${i.imagen}"></div>`
+                    divImage.innerHTML+= `<div class="scrollLateral><img src= "${i.imagen}"></div>`
                     j++
                 }
         })
@@ -131,7 +171,7 @@
                         break
                     }
 
-                    divImage.innerHTML+= `<div><img src= "${i.imagen}"></div>`
+                    divImage.innerHTML+= `<div class="scrollLateral><img src= "${i.imagen}"></div>`
                     j++
                 }
         })
@@ -148,7 +188,7 @@
                         break
                     }
 
-                    divImage.innerHTML+= `<div><img src= "${i.imagen}"></div>`
+                    divImage.innerHTML+= `<div class="scrollLateral"><img src= "${i.imagen}"></div>`
                     j++
                 }
         })
