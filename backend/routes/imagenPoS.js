@@ -21,7 +21,7 @@ router.get('/imagen', async (req, res) => {
     } else if (tipo === 'serie') {
         query = `
             SELECT url_foto AS imagen
-            FROM imagenes_series
+            FROM imagenes_serie
             WHERE id_serie = ?
         `;
     } else {
