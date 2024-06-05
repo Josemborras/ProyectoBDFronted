@@ -45,7 +45,7 @@
             for(let i of json){
                 containerPerfiles.innerHTML += `
                 <div class="caja-perfil" id="${i.id}">
-                    <div class="btn-perfil" style="background-image: url(${i.url}); background-size: contain; background-position: center; background-repeat: no-repeat"></div>
+                    <div onclick="entrarPerfil(${i.id})" class="btn-perfil" style="background-image: url(${i.url}); background-size: contain; background-position: center; background-repeat: no-repeat"></div>
                     <p>${i.nombre}<p>
                 </div>
             `
@@ -185,7 +185,11 @@
                 .then(json =>{
                     window.location.reload()
                 })
-            }
+        }
+
+        function entrarPerfil(id){
+            window.location = './Proyecto_LenguajeMarcas/inicio.html'
+        }
     </script>
 </body>
 </html>
