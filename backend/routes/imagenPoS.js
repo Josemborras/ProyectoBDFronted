@@ -87,31 +87,40 @@ router.get('/estrenos', async (req, res) => {
 });
 
 router.get('/filtros', async (req, res) => {
-    const genero = req.query.genero || '';
+    const generos = req.query.genero ? req.query.genero.split(',') : [];
+
+    let generoQuery = '';
+    let generoValues = [];
+    if (generos.length > 0) {
+        generoQuery = ' AND c.genero IN (?)';
+        generoValues = [generos];
+    }
+
     try {
         const [peliculas] = await pool.query(`
-            SELECT p.id, p.nombre, ip.url_foto AS imagen, c.genero
+            SELECT DISTINCT p.id, p.nombre, ip.url_foto AS imagen
             FROM peliculas p
             JOIN imagenes_pelicula ip ON p.id = ip.id_pelicula
             JOIN categorias_peliculas cp ON p.id = cp.id_pelicula
             JOIN categorias c ON cp.id_categoria = c.id
-            WHERE c.genero LIKE ?
-        `, [`%${genero}%`]);
+            WHERE 1=1${generoQuery}
+        `, generoValues);
 
         const [series] = await pool.query(`
-            SELECT s.id, s.nombre, iser.url_foto AS imagen, c.genero
+            SELECT DISTINCT s.id, s.nombre, iser.url_foto AS imagen
             FROM series s
             JOIN imagenes_serie iser ON s.id = iser.id_serie
             JOIN categorias_series cs ON s.id = cs.id_serie
             JOIN categorias c ON cs.id_categoria = c.id
-            WHERE c.genero LIKE ?
-        `, [`%${genero}%`]);
+            WHERE 1=1${generoQuery}
+        `, generoValues);
 
         res.json({ peliculas, series });
     } catch (error) {
         res.status(500).send({ message: "Error en la búsqueda" });
     }
 });
+
 
 router.get('/novedadesImagen', async (req, res) => {
     try {
