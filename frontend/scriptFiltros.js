@@ -11,7 +11,7 @@ async function loadAllContent() {
         if (!response.ok) throw new Error('Error en la solicitud');
 
         const data = await response.json();
-        console.log('Datos cargados:', data); // Debug
+        console.log('Datos cargados:', data);
         displayResults(data);
     } catch (error) {
         console.error('Error en loadAllContent:', error);
@@ -27,7 +27,7 @@ async function filterContent() {
         if (!response.ok) throw new Error('Error en la solicitud');
 
         const data = await response.json();
-        console.log('Datos filtrados:', data); // Debug
+        console.log('Datos filtrados:', data);
         displayResults(data);
     } catch (error) {
         console.error('Error en filterContent:', error);
@@ -40,7 +40,6 @@ function displayResults(data) {
 
     const { peliculas, series } = data;
 
-    // Crear conjuntos para eliminar duplicados
     const uniquePeliculas = new Map();
     const uniqueSeries = new Map();
 
@@ -56,7 +55,6 @@ function displayResults(data) {
         }
     });
 
-    // Intercalar resultados únicos
     const alternatedResults = [];
     const peliculasArray = Array.from(uniquePeliculas.values());
     const seriesArray = Array.from(uniqueSeries.values());

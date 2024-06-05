@@ -1,32 +1,30 @@
-async function loadFavorites(type) {
-
+async function loadFavorites() {
     const id_perfil = sessionStorage.getItem('perfilId'); 
-    let url;
-    if (type === 'peliculas' || type === 'all') {
-        url = `http://localhost:3000/perfil_peliculas/${id_perfil}`;
+    const url = `http://localhost:3000/favoritos/${id_perfil}`;
+    
+    try {
         const response = await fetch(url);
-        const peliculas = await response.json();
+        if (!response.ok) throw new Error('Error en la solicitud');
+        
+        const { peliculas, series } = await response.json();
+        
         displayFavorites(peliculas, 'pelicula');
-    }
-    if (type === 'series' || type === 'all') {
-        url = `http://localhost:3000/perfil_series/${id_perfil}`;
-        const response = await fetch(url);
-        const series = await response.json();
         displayFavorites(series, 'serie');
+    } catch (error) {
+        console.error('Error al cargar los favoritos:', error);
     }
 }
 
 function displayFavorites(items, type) {
     const container = document.getElementById('favorites-container');
-    container.innerHTML = '';
     items.forEach(item => {
         const div = document.createElement('div');
         div.className = type;
         div.innerHTML = `
-            <p>${type === 'pelicula' ? 'Película' : 'Serie'}: ${item.nombre || item.id_serie}</p>
+            <p>${type === 'pelicula' ? 'Película' : 'Serie'}: ${item.nombre || item.id_multi}</p>
         `;
         container.appendChild(div);
     });
 }
 
-loadFavorites('all');
+

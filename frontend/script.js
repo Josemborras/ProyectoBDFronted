@@ -60,7 +60,7 @@ async function getPeliculas() {
 
         const data = await response.json();
         const divImagePeliculas = document.getElementById('divImagePeliculas');
-
+            console.log(data)
         data.forEach(item => {
             const gridItem = document.createElement('div');
             gridItem.className = 'grid-item';
@@ -103,8 +103,50 @@ async function getSeries() {
     }
 }
 
+async function getRecomendados() {
+    try {
+        const response = await fetch('http://localhost:3000/recomendados');
+        if (!response.ok) throw new Error('Error en la solicitud');
+
+        const data = await response.json();
+        const divImageRecomendaciones = document.getElementById('divImageRecomendaciones');
+
+        data.forEach(pelicula => {
+
+            const peliculaContainer = document.createElement('div');
+            const img = document.createElement('img');
+            const title = document.createElement('h3');
+            peliculaContainer.addEventListener('click', () => showInfo('pelicula', pelicula.id));
+
+            img.src = pelicula.imagen;
+            img.style.maxHeight = '200px';
+            img.style.borderRadius = '5px';
+            img.style.marginRight = '10px';
+            img.style.transition = 'transform 0.3s';
+            img.style.cursor = 'pointer';
+
+            img.addEventListener('mouseover', () => {
+                img.style.transform = 'scale(1.1)';
+            });
+
+            img.addEventListener('mouseout', () => {
+                img.style.transform = 'scale(1)';
+            });
+
+            title.style.color = 'white';
+            title.style.textDecoration = 'none';
+            title.style.fontFamily = "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif";
+
+            peliculaContainer.appendChild(img);
+            divImageRecomendaciones.appendChild(peliculaContainer);
+        });
+    } catch (error) {
+        console.error('Error en getRecomendados:', error);
+    }
+}
+
 async function showInfo(type, id) {
-    let url = type === 'pelicula' ? `http://localhost:3000/pelicula/${id}` : `http://localhost:3000/serie/${id}`;
+    let url = type === 'pelicula' ? `http://localhost:3000/peliculas/${id}` : `http://localhost:3000/series/${id}`;
     
     try {
         const response = await fetch(url);
@@ -113,13 +155,14 @@ async function showInfo(type, id) {
         const data = await response.json();
         document.getElementById('infoModalLabel').innerText = data.nombre;
         document.getElementById('modal-description').innerText = data.descripcion;
-        document.getElementById('modal-image').src = data.imagen; // Asume que 'imagen' es la URL de la imagen
+        document.getElementById('modal-image').src = data[0].imagen;
 
         const playButton = document.getElementById('play-button');
         playButton.onclick = () => window.location.href = data.url_video;
 
         const favoriteButton = document.getElementById('favorite-button');
-        favoriteButton.onclick = () => agregarAFavoritos(data.id, type);
+        favoriteButton.onclick = () => agregarAFavoritos(data[0].id, type);
+
 
         new bootstrap.Modal(document.getElementById('infoModal')).show();
     } catch (error) {
@@ -148,49 +191,6 @@ async function getPaginaSeries() {
         });
     } catch (error) {
         console.error('Error en getSeries:', error);
-    }
-}
-
-async function getRecomendados() {
-    try {
-        const response = await fetch('http://localhost:3000/recomendados');
-        if (!response.ok) throw new Error('Error en la solicitud');
-
-        const data = await response.json();
-        const divImageRecomendaciones = document.getElementById('divImageRecomendaciones');
-
-        console.log('Películas recomendadas:', data);
-
-        data.forEach(pelicula => {
-
-            const peliculaContainer = document.createElement('div');
-            const img = document.createElement('img');
-            const title = document.createElement('h3');
-
-            img.src = pelicula.imagen;
-            img.style.maxHeight = '200px';
-            img.style.borderRadius = '5px';
-            img.style.marginRight = '10px';
-            img.style.transition = 'transform 0.3s';
-            img.style.cursor = 'pointer';
-
-            img.addEventListener('mouseover', () => {
-                img.style.transform = 'scale(1.1)';
-            });
-
-            img.addEventListener('mouseout', () => {
-                img.style.transform = 'scale(1)';
-            });
-
-            title.style.color = 'white';
-            title.style.textDecoration = 'none';
-            title.style.fontFamily = "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif";
-
-            peliculaContainer.appendChild(img);
-            divImageRecomendaciones.appendChild(peliculaContainer);
-        });
-    } catch (error) {
-        console.error('Error en getRecomendados:', error);
     }
 }
 
@@ -243,12 +243,10 @@ async function buscar() {
 }
 
 
-async function agregarAFavoritos(id, tipo) {
-    const id_perfil = 3;
-    const terminada = false;
+async function agregarAFavoritos(id_multi, tipo) {
+    const id_perfil = sessionStorage.getItem('perfilId');
     const guardado = true;
-    const minuto = 0;
-
+   
     let url;
     if (tipo === 'pelicula') {
         url = 'http://localhost:3000/perfil_peliculas';
@@ -266,10 +264,8 @@ async function agregarAFavoritos(id, tipo) {
         },
         body: JSON.stringify({
             id_perfil,
-            id,
-            terminada,
-            guardado,
-            minuto
+            id_multi,
+            guardado
         })
     });
 
