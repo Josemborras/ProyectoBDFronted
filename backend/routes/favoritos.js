@@ -7,8 +7,8 @@ router.get('/favoritos/:id_perfil', async (req, res) => {
     const { id_perfil } = req.params;
 
     try {
-        const [peliculas] = await pool.query('SELECT * FROM perfil_pelicula WHERE id_perfil = ?', [id_perfil]);
-        const [series] = await pool.query('SELECT * FROM perfil_serie WHERE id_perfil = ?', [id_perfil]);
+        const [peliculas] = await pool.query('SELECT series.*, imagenes_serie.url_foto FROM perfil_serie JOIN series ON series.id = perfil_serie.id_multi JOIN perfiles ON perfil_serie.id_perfil = perfiles.id JOIN imagenes_serie ON imagenes_serie.id_serie = series.id WHERE perfiles.id = 3 GROUP BY series.id', [id_perfil]);
+        const [series] = await pool.query('SELECT peliculas.*, imagenes_pelicula.url_foto FROM perfil_pelicula JOIN peliculas ON peliculas.id = perfil_pelicula.id_multi JOIN perfiles ON perfil_pelicula.id_perfil = perfiles.id JOIN imagenes_pelicula ON imagenes_pelicula.id_pelicula = peliculas.id WHERE perfiles.id = ?', [id_perfil]);
 
         res.send({ peliculas, series });
     } catch (error) {
