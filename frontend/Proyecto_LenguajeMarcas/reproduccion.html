@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeCinema</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon2.png">
+</head>
+<body>
+    <script>
+        const video = document.querySelector('iframe')
+        const url = sessionStorage.getItem('urlContenido')
+        const body = document.querySelector('body')
+        let urlCompleta = "https://www.youtube.com/embed/" + url.split("/").pop() + "?autoplay=1"
+        console.log(url)
+        body.innerHTML += `
+        <iframe width="100%" height="100%" frameborder="0" style="position:absolute;  overflow-y: auto; overflow-x: hidden;" src="${urlCompleta}" allow="autoplay" allowfullscreen></iframe>
+        `
+    </script>
+</body>
+</html>

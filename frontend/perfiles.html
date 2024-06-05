@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeCinema: Perfiles</title>
+    <link rel="stylesheet" href="./css/perfiles.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon2.png">
+</head>
+<body>
+    <div id="go-back">
+        <a id="atras" href="./login.html"><img src="./img/flecha-atras-blanca.png" alt=""></a>
+    </div>
+    <div id="container-global">
+        <div id="container-general">
+            <p id="container-general-p">¿Quién eres? Elige tú perfil</p>
+            <div id="container-group">
+                <div id="container-perfiles">
+
+                </div>
+            </div>
+            <div id="administrar-perfil">
+                <p>Administrar perfiles</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        sessionStorage.removeItem("imageId")
+        if(sessionStorage.getItem('userId') == null){
+            window.location = './login.html'
+        }
+        let contador = 0
+        const administrar = document.querySelector("#administrar-perfil")
+        const id_usuario = sessionStorage.getItem('userId')
+        const addDiv = document.querySelector('#add-btn')
+        const containerPerfiles = document.querySelector('#container-perfiles')
+        const containerGeneral = document.querySelector('#container-general')
+        const containerGlobal = document.querySelector('#container-global')
+        const cajaPerfil = document.querySelector('.caja-perfil')
+
+        fetch('http://localhost:3000/perfiles/usuario/' + id_usuario)
+        .then(res => res.json())
+        .then(json =>{
+            for(let i of json){
+                containerPerfiles.innerHTML += `
+                <div class="caja-perfil" id="${i.id}">
+                    <div onclick="entrarPerfil(${i.id})" class="btn-perfil" style="background-image: url(${i.url}); background-size: contain; background-position: center; background-repeat: no-repeat"></div>
+                    <p>${i.nombre}<p>
+                </div>
+            `
+            }
+            containerPerfiles.innerHTML += `
+                <div class="btn-perfil hide-btn" id="add-btn" onclick="clickMas()">
+                    <img src="./img/icon-add.png" alt="">
+                </div>
+            `
+            
+            fetch(`http://localhost:3000/perfiles/usuario/${id_usuario}/cantidad`)
+                .then(res => res.json())
+                .then(json =>{
+                    const data = json[0]
+                    console.log(data)
+                    if(data.cantidad_perfiles < data.maximo_perfiles){
+                        document.querySelector(".hide-btn").style.display = 'flex'
+                    }
+                    if(data.cantidad_perfiles == 0){
+                        administrar.style.marginTop = "30px"
+                    }
+            })
+
+            const perfiles = document.getElementsByClassName("caja-perfil")
+            let cont = 0
+            administrar.addEventListener('click', () =>{
+                console.log(cont)
+                let longitud = perfiles.length
+                if(cont % 2 == 0){
+                    for(let i of perfiles){
+                    i.innerHTML += `
+                        <p id="deleteTag" onclick="deletePerfil(${i.id})" style="padding: 5px 10px; background-color:#cb3234; border-radius: 2px; font-size: 20px; cursor:pointer; margin-top: 0px; margin-bottom: 10px">Eliminar</p>
+                    `
+                    }
+                    ++cont
+                }else{
+                    for(let i of perfiles){
+                        const deleteTag = document.querySelector('#deleteTag')
+                        deleteTag.remove()
+                    }
+                    ++cont
+                }
+            })
+        })
+
+        function displayImagenes(){
+            const input = document.querySelector("#nombre-guardar")
+            input.value = input.value
+            if(contador == 0){
+                containerGlobal.innerHTML += `
+                                    <div style="width: content; height: content; background-color: rgba(25, 25, 25, 0.8); position: absolute; border-radius: 8px; display: flex; flex-direction: row; justify-content: space-evenly; flex-wrap: wrap; box-sizing: border-box; padding: 20px; max-width:700px" id="recolector-fotos">
+                                    </div>
+                                    `
+
+            fetch('http://localhost:3000/imagenes/perfil')
+                .then(res => res.json())
+                .then(json =>{
+                    console.log(json)
+                    for(let i of json){
+                        if(i != json[0]){
+                        let patata =
+                        document.querySelector('#recolector-fotos').innerHTML += `
+                                        <img src="${i.url}" class="imagenes-select" onClick="setFoto(${i.id}, '${i.url}')">
+                                    `
+                        }
+                    }
+                })
+            }else{
+                document.querySelector('#recolector-fotos').style.display = 'flex'
+            }
+            contador++
+        }
+
+            function setFoto(id, url){
+                const fotoNueva = document.querySelector('#img-perfil-guardar')
+                console.log(fotoNueva.src = url)
+                document.querySelector('#recolector-fotos').style.display = 'none'
+                sessionStorage.setItem('imageId', id)
+            }
+
+        function clickMas(){
+            const atras = document.querySelector('#atras')
+            containerGeneral.style.display = 'none'
+
+            containerGlobal.innerHTML += `
+            <div style="witdh: 360px; height: 440px; display: flex; flex-direction: column; justify-content: space-between; align-items: center;">
+                <img id="img-perfil-guardar" src="./img/img-camara.png" onClick="displayImagenes()">
+                <p class="titular-guardar-perfil">Nombre del perfil</p>
+                <input type="text" id="nombre-guardar" placeholder="Introduce el nombre del perfil" autocomplete="off">
+                <button onClick="addPerfil()">Guardar</button>
+            </div>
+            `
+            atras.setAttribute('href', './perfiles.html')
+        }
+
+        function addPerfil(){
+            const nombre = document.querySelector('#nombre-guardar').value
+            const foto = document.querySelector('#img-perfil-guardar')
+            let id_imagen = 1
+            if(sessionStorage.getItem('imageId') != null){
+                id_imagen = sessionStorage.getItem('imageId')
+            }
+
+            if(nombre == ''){
+                alert("Introduce un nombre en tu perfil")
+            }else{
+
+                datos = {nombre, id_usuario, id_imagen}
+
+                    fetch('http://localhost:3000/perfiles/', {
+                        method : 'POST',
+                        headers :{
+                            'Content-Type' : 'application/json'
+                        },
+                        body : JSON.stringify(datos)
+
+                    })
+                        .then( res => {
+                            if(res.ok){
+                                return res.json()
+                            }else{
+                                throw new Error('Error en la petición')
+                            }
+                        })
+                        .then(json => console.log('Empleado registrado'))
+
+                        window.location = './perfiles.html'
+                        window.location.reload()
+            }
+        }
+
+        function deletePerfil(id){
+                fetch(`http://localhost:3000/perfiles/` + id,{
+                    method : 'DELETE'
+                })
+                .then(res => res.json())
+                .then(json =>{
+                    window.location.reload()
+                })
+        }
+
+        function entrarPerfil(id){
+            sessionStorage.setItem('perfilId', id)
+            window.location = './Proyecto_LenguajeMarcas/inicio.html'
+        }
+    </script>
+</body>
+</html>

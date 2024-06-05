@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeCinema</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon2.png">
+</head>
+<body>
+    <div id="pantallalogin">
+        <div id="datoslogin">
+            <img src="./img/logo-homecinema.png" id="logo" alt="">
+            <form action="">
+                <div class="grupoinput">
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" class="inputs" name="" id="correo" placeholder="Introduce tu correo electrónico" autocomplete="off">
+                </div>
+                <div class="forgot-password">
+                    <div class="grupoinput">
+                        <img class="pass-show" id="show1" src="./img/mostrar.png" alt=""><img class="pass-hide" id="hide1" src="./img/esconder.png">
+                        <label for="password">Contraseña</label>
+                        <input type="password" class="inputs" name="" id="password" placeholder="Introduce tu contraseña" autocomplete="off">
+                    </div>
+                    <a href="" id="forgotten">He olvidado mi contraseña</a>
+                </div>
+                <button><h1>Iniciar sesión</h1></button>
+            </form>
+            <div id="lineasO">
+                <hr>
+                <span>ó</span>
+                <hr>
+            </div>
+            <p>Si todavía no tienes cuenta, <a href="./registro.html">¡Regístrate ahora!</a></p>
+        </div>
+    </div>
+
+    <script>
+        sessionStorage.clear()
+        const datosLogin = document.querySelector('#datoslogin')
+        const boton = document.querySelector('button')
+        const forgotten = document.querySelector('#forgotten')
+        boton.addEventListener('click', (e) =>{
+            e.preventDefault()
+            const correo = document.querySelector('#correo').value
+            const password = document.querySelector('#password').value
+            fetch('http://localhost:3000/usuarios')
+                .then(res => res.json())
+                .then(json =>{
+                    console.log(json)
+                    let encontrado = false
+                    for(let i of json){
+                        if(correo == i.correo){
+                            if(password == i.password){
+                                sessionStorage.setItem('userId', i.id)
+                                encontrado = true
+                                window.location = './perfiles.html'
+                                break
+                            }
+                        }
+                    }
+                    if(encontrado == false){
+                        alert('Correo o contraseña incorrecto(s)')
+                    }
+                })
+        })
+
+        show1.addEventListener('click', () =>{
+                show1.style.display = 'none'
+                hide1.style.display = 'block'
+                password.type = "text"
+            })
+        hide1.addEventListener('click', () =>{
+            hide1.style.display = 'none'
+            show1.style.display = 'block'
+            password.type = "password"
+        })
+
+        forgotten.addEventListener('click', (e) =>{
+            e.preventDefault()
+
+            datosLogin.innerHTML += `
+            <div id="divForgotten">
+                <h2 id="h2Forgotten">Introduce tu email para recuperar la contraseña</h2>
+                <input type="email" id="inputForgotten" placeholder="Introduce tu email" class="inputs">
+                <button id="recoverForgotten" onclick="recoverPassword()">Recuperar contraseña</button>
+                <button id="copiarForgotten" style="display:none">Copiar contraseña</button>
+                <a id="cerrarForgotten" onclick="cerrarForgottenFun()">Cerrar</a>
+            </div>
+            `
+        })
+
+        function recoverPassword(){
+            const correo = document.querySelector('#inputForgotten')
+            const h2Forgotten = document.querySelector('#h2Forgotten')
+            const botonForgotten = document.querySelector('#recoverForgotten')
+            const copiarForgotten = document.querySelector('#copiarForgotten')
+            const divForgotten = document.querySelector('#divForgotten')
+
+            if(validarEmail(correo.value)){
+                let encontrado = false
+                fetch('http://localhost:3000/usuarios')
+                    .then(res => res.json())
+                    .then(json =>{
+                        for(let i of json){
+                            if(i.correo == correo.value){
+                                encontrado = true
+                                correo.style.display = 'none'
+                                h2Forgotten.innerHTML = 'Tu contraseña es: " ' + i.password + ' "'
+                                botonForgotten.style.display = 'none'
+                                copiarForgotten.style.display = 'inline-block'
+                                copiarForgotten.addEventListener('click', () =>{
+                                    divForgotten.remove()
+                                    navigator.clipboard.writeText(i.password)
+                                    alert('Contraseña copiada al portapapeles')
+                                    window.location.reload()
+                                })
+                            }
+                        }
+                        if(!encontrado){
+                            correo.style.display = 'none'
+                                h2Forgotten.innerHTML = 'No hemos encontrado ninguna cuenta asociada a este correo'
+                                botonForgotten.style.display = 'none'
+                                cerrarForgotten.style.display = 'inline-block'
+                                cerrarForgotten.addEventListener('click', () =>{
+                                    divForgotten.remove()
+                                    window.location.reload()
+                                })
+                        }
+                    })
+            }else{
+                alert('Dirección de correo no válida')
+            }
+        }
+
+        function validarEmail(email){
+                // Expresión regular para validar un email
+                var patron = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+                return patron.test(email)
+            }
+
+        function cerrarForgottenFun(){
+            divForgotten.remove()
+        }
+    </script>
+</body>
+</html>

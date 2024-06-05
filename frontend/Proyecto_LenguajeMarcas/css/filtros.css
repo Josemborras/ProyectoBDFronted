@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #191919;
+}
+
+.img_menu {
+    margin-left: 50px;
+}
+
+.menu {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(rgba(240, 197, 59, 0.25), rgba(240, 197, 59, 0));
+}
+
+
+.menu_enlaces a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    margin: 30px;
+    background-color: transparent;
+    padding: 5px 20px;
+}
+
+.menu_enlaces a:hover {
+    background-color: #4F4F4F;
+    padding: 5px 20px;
+    border-radius: 20px;
+}
+
+.menu_busquedaPerfil {
+    margin-right: 50px;
+}
+
+.menu_busquedaPerfil img {
+    margin: 30px;
+}
+
+.menu_busquedaPerfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #494949;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #191919;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.filters {
+    width: 10%;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.filters h3 {
+    margin-bottom: 10px;
+}
+
+.results {
+    width: 75%;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.grid-item {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background-color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.grid-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.grid-item:hover img {
+    transform: scale(1.05);
+}
+
+
+@media(max-width: 768px){
+    .menu{
+        flex-direction: column;
+    }
+
+    .menu_enlaces{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu_enlaces a{
+        margin: 5px 0;
+    }
+
+    .menu_busquedaPerfil{
+        margin-top: 10px;
+    }
+
+    .imageCheckBox{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .vanImages{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media(max-width: 480px){
+    .menu img{
+        max-width: 80px;
+    }
+
+    .menu_busquedaPerfil img{
+        max-width: 40px;
+    }
+
+    .contenedorBuscador img{
+        max-width: 15px;
+    }
+
+    .contenedorBuscador input{
+        width: 100px;
+    }
+
+    .footer{
+        font-size: 14px;
+    }
+}
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeCinema</title>
+</head>
+<body>
+    <h1>Buscar Películas</h1>
+    <input type="text" id="searchTerm" placeholder="Ingrese término de búsqueda">
+    <button onclick="buscar()">Buscar</button>
+    <div id="results"></div>
+
+    <script>
+        async function buscar() {
+            const searchTerm = document.getElementById('searchTerm').value;
+            const response = await fetch(`http://localhost:3000/busqueda?searchTerm=${searchTerm}`);
+            const data = await response.json();
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            data.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.innerHTML = `
+                    <p>${item.nombre} (ID: ${item.id}, Tipo: ${item.tipo})</p>
+                    <button onclick="agregarAFavoritos(${item.id}, '${item.tipo}')">Añadir a Favoritos</button>
+                `;
+                resultsDiv.appendChild(itemDiv);
+            });
+        }
+
+        async function agregarAFavoritos(id, tipo) {
+            const id_perfil = 3;  
+            const terminada = false;
+            const guardado = true;
+            const minuto = 0;
+
+            let url;
+            let body = { id_perfil, terminada, guardado, minuto };
+
+            if (tipo === 'pelicula') {
+                url = 'http://localhost:3000/perfil_peliculas';
+                body.id_pelicula = id;
+            } else if (tipo === 'serie') {
+                url = 'http://localhost:3000/perfil_series';
+                body.id_serie = id;
+                body.id_capitulo = 1;
+            } else {
+                console.error('Tipo desconocido:', tipo);
+                return;
+            }
+
+            console.log("Valores que se envían al método POST:", body);
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert(result.message);
+            } else {
+                alert('Error: ' + result.message);
+            }
+        }
+    </script>
+</body>
+</html>
+
