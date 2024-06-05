@@ -38,6 +38,14 @@ router.get('/series/director/:id' , async(req,res) => {
     res.send(result)
 })
 
+router.get('/novedades/series', async(req,res)=>{
+
+    const [result] = await pool.query('SELECT series.*, imagenes_serie.url_foto AS imagen FROM series JOIN imagenes_serie ON imagenes_serie.id_serie = series.id GROUP BY series.id ORDER BY fecha DESC')
+
+    res.send(result)
+
+})
+
 router.get('/imagenes/carrusel', async(req, res)=>{
     const [result] = await pool.query('SELECT series.*, imagenes_serie.url_foto FROM series JOIN imagenes_serie ON imagenes_serie.id_serie=series.id WHERE imagenes_serie.nombre LIKE "%banner%";')
 

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function getImagesNovedades() {
     try {
-        const response = await fetch('http://localhost:3000/carruselNovedades?tipo=novedades');
+        const response = await fetch('http://localhost:3000/imagenes/carrusel');
         const data = await response.json();
         const carouselInner = document.getElementById('carousel-inner');
         
@@ -56,7 +56,7 @@ async function getImagesNovedades() {
 
 async function getNovedadesPeliculas() {
     try {
-        const response = await fetch('http://localhost:3000/novedadesImagen');
+        const response = await fetch('http://localhost:3000/novedades');
         if (!response.ok) throw new Error('Error en la solicitud');
 
         const data = await response.json();
@@ -80,7 +80,7 @@ async function getNovedadesPeliculas() {
 
 async function getNovedadesSeries() {
     try {
-        const response = await fetch('http://localhost:3000/novedadesImagenSeries');
+        const response = await fetch('http://localhost:3000/novedades/series');
         if (!response.ok) throw new Error('Error en la solicitud');
 
         const data = await response.json();

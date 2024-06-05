@@ -317,6 +317,11 @@ body {
     display: none;
 }
 
+.btn-success, .btn-warning {
+    margin: 5px;
+}
+
+
 @media(max-width: 1200px){
 
     .menu{
