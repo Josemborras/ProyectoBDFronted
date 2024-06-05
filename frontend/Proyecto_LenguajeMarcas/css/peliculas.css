@@ -21,10 +21,6 @@ body {
     background: linear-gradient(rgba(240, 197, 59, 0.25), rgba(240, 197, 59, 0));
 }
 
-.menu_enlaces {
-    margin-left: -1000px;
-}
-
 .menu_enlaces a {
     text-decoration: none;
     color: white;

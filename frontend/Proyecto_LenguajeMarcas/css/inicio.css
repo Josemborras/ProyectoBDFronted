@@ -31,11 +31,7 @@ body {
     align-items: center;
     background: linear-gradient(black, transparent);
 }
-/*
-.menu_enlaces {
-    margin-left: -1000px;
-}
-*/
+
 .menu_enlaces a {
     text-decoration: none;
     color: white !important;
@@ -318,4 +314,99 @@ body {
 .scrollRecomendaciones::-webkit-scrollbar {
     display: none;
 }
+
+@media(max-width: 1200px){
+
+    .menu{
+        /* flex-direction: column; */
+        /* align-items: flex-start; */
+        align-items: center;
+    }
+
+    .menu_enlaces a{
+        margin: 5px 0;
+    }
+
+    .menu_busquedaPerfil{
+        margin-top: 10px;
+    }
+
+    .footer{
+        text-size-adjust: 20px;
+    }
+}
+
+
+
+@media(max-width: 768px){
+
+    .menu{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu_enlaces{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .menu_enlaces a{
+        margin: 10px 0;
+
+    }
+
+    .botones{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 40%;
+    }
+
+    .botones a{
+        width: 80%;
+        text-align: center;
+
+    }
+
+}
+
+@media(max-width: 480px){
+
+    .img_menu img{
+        width: 100px;
+    }
+
+    .menu_busquedaPerfil img{
+        width: 30px;
+        height: 30px;
+    }
+
+    .contenedorBuscador img{
+        width: 20px;
+        height: 20px;
+    }
+
+    .botones a{
+        padding: 10px;
+        margin: 5px 0;
+        width: 100%; 
+    }
+
+    .scrollPeliculas{
+        padding: 10px;
+    }
+
+    .scrollRecomendaciones{
+        padding: 10px;
+    }
+
+    .scrollSeries{
+        padding: 10px;
+    }
+}
+
+
+
   

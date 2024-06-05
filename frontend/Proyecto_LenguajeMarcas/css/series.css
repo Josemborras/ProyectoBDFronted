@@ -20,10 +20,6 @@ body {
     background: linear-gradient(rgba(240, 197, 59, 0.25), rgba(240, 197, 59, 0));
 }
 
-.menu_enlaces {
-    margin-left: -1000px;
-}
-
 .menu_enlaces a {
     text-decoration: none;
     color: white;
@@ -114,4 +110,58 @@ body {
     align-items: center;
     padding: 20px;
     background-color: #191919;
+}
+
+@media(max-width: 768px){
+    .menu{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu_enlaces{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu_enlaces a{
+        margin: 5px;
+    }
+
+    .menu_busquedaPerfil{
+        margin-top: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .titleSeries h2{
+        font-size: 1.5rem;
+    }
+
+    .titleSeries img{
+        max-width: 30px;
+    }
+
+}
+
+@media(max-width: 480px){
+    .menu img{
+        max-width: 80px;
+    }
+
+    .menu_busquedaPerfil img{
+        max-width: 40px;
+    }
+
+    .contenedorBuscador img{
+        max-width: 15px;
+    }
+
+    .footer{
+        font-size: 14px;
+    }
+
+    .imagenesSeries img{
+        max-width: 150px;
+        margin: 5px;
+    }
 }
