@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function getImages() {
     try {
-        const response = await fetch('http://localhost:3000/carrusel?tipo=mejorValoradas');
+        const response = await fetch('http://localhost:3000/imagenes/carrusel');
         const data = await response.json();
         const carouselInner = document.getElementById('carousel-inner');
         
@@ -55,7 +55,7 @@ async function getImages() {
 
 async function getPeliculas() {
     try {
-        const response = await fetch('http://localhost:3000/imagenes_pelicula');
+        const response = await fetch('http://localhost:3000/peliculas');
         if (!response.ok) throw new Error('Error en la solicitud');
 
         const data = await response.json();
@@ -79,7 +79,7 @@ async function getPeliculas() {
 
 async function getSeries() {
     try {
-        const response = await fetch('http://localhost:3000/imagenes_serie');
+        const response = await fetch('http://localhost:3000/series');
         if (!response.ok) throw new Error('Error en la solicitud');
 
         const data = await response.json();
@@ -98,7 +98,7 @@ async function getSeries() {
 
 async function getPaginaSeries() {
     try {
-        const response = await fetch('http://localhost:3000/imagenes_serie');
+        const response = await fetch('http://localhost:3000/series');
         if (!response.ok) throw new Error('Error en la solicitud');
 
         const data = await response.json();
@@ -122,7 +122,7 @@ async function getPaginaSeries() {
 
 async function getRecomendados() {
     try {
-        const response = await fetch('http://localhost:3000/recomendaciones');
+        const response = await fetch('http://localhost:3000/recomendados');
         if (!response.ok) throw new Error('Error en la solicitud');
 
         const data = await response.json();
@@ -306,4 +306,6 @@ async function agregarAFavoritosSerie(id_serie, id_capitulo) {
         alert('Error: ' + result.message);
     }
 }
+
+
 
