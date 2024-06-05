@@ -64,12 +64,10 @@ router.get('/recomendaciones', async (req, res) => {
 
         const peliculasConImagenes = await Promise.all(peliculas.map(async (pelicula) => {
             const [imagenes] = await pool.query('SELECT url_foto AS imagen FROM imagenes_pelicula WHERE id_pelicula = ?', [pelicula.id]);
-            console.log('Imágenes para película ID', pelicula.id, ':', imagenes);
             const peliculaConImagen = {
                 ...pelicula,
                 imagen: imagenes.length > 0 ? imagenes[0].imagen : 'http://127.0.0.1:5501/frontend/Proyecto_LenguajeMarcas/img/Inicio/Logo%20(1).png'
             };
-            console.log('Película con imagen:', peliculaConImagen);
             return peliculaConImagen;
         }));
 
@@ -82,28 +80,30 @@ router.get('/recomendaciones', async (req, res) => {
 
 router.get('/filtros', async (req, res) => {
     const genero = req.query.genero || '';
-    const searchTerm = req.query.search || '';
     try {
         const [peliculas] = await pool.query(`
-            SELECT p.id, p.nombre, ip.url_foto AS imagen, p.genero 
+            SELECT p.id, p.nombre, ip.url_foto AS imagen, c.genero 
             FROM peliculas p 
             JOIN imagenes_pelicula ip ON p.id = ip.id_pelicula 
-            WHERE p.genero LIKE ? AND p.nombre LIKE ?
-        `, [`%${genero}%`, `%${searchTerm}%`]);
+            JOIN categorias_peliculas cp ON p.id = cp.id_pelicula
+            JOIN categorias c ON cp.id_categoria = c.id
+            WHERE c.genero LIKE ?
+        `, [`%${genero}%`]);
 
         const [series] = await pool.query(`
-            SELECT s.id, s.nombre, iser.url_foto AS imagen, s.genero 
+            SELECT s.id, s.nombre, iser.url_foto AS imagen, c.genero 
             FROM series s 
             JOIN imagenes_serie iser ON s.id = iser.id_serie 
-            WHERE s.genero LIKE ? AND s.nombre LIKE ?
-        `, [`%${genero}%`, `%${searchTerm}%`]);
+            JOIN categorias_series cs ON s.id = cs.id_serie
+            JOIN categorias c ON cs.id_categoria = c.id
+            WHERE c.genero LIKE ?
+        `, [`%${genero}%`]);
 
         res.json({ peliculas, series });
     } catch (error) {
         res.status(500).send({ message: "Error en la búsqueda" });
     }
 });
-
 
 export default router;
 
