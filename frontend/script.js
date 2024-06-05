@@ -306,3 +306,4 @@ async function agregarAFavoritosSerie(id_serie, id_capitulo) {
         alert('Error: ' + result.message);
     }
 }
+
