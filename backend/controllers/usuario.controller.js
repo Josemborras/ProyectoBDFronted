@@ -5,6 +5,11 @@ export const SelectUsuarios = async(req,res) => {
     res.send(result)
 }
 
+export const SelectUsuarioById = async(req,res) => {
+    const [result] = await pool.query('SELECT usuarios.* FROM usuarios where id = ?', [req.params.id])
+    res.send(result)
+}
+
 export const SelectPerfilesByUsuario = async(req,res)=>{
     const [result] = await pool.query('SELECT perfiles.id, perfiles.nombre, perfiles.id_usuario, imagenes_perfil.url FROM perfiles JOIN imagenes_perfil ON imagenes_perfil.id = perfiles.id_imagen WHERE id_usuario = ?', [req.params.id])
     res.send(result)

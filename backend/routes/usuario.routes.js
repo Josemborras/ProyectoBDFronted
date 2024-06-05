@@ -1,9 +1,11 @@
 import { Router } from "express"
-import { SelectUsuarios , SelectPerfilesByUsuario , SelectPerfilById , SelectNumeroPerfiles , SelectPlanes , SelectImagenesPerfil , RegistroUsuario , CrearPerfil, DeletePerfil , EditPerfil} from "../controllers/usuario.controller.js"
+import { SelectUsuarios, SelectUsuarioById, SelectPerfilesByUsuario , SelectPerfilById , SelectNumeroPerfiles , SelectPlanes , SelectImagenesPerfil , RegistroUsuario , CrearPerfil, DeletePerfil , EditPerfil, SelectUsuarioById} from "../controllers/usuario.controller.js"
 
 const router = Router ()
 
 router.get('/usuarios' , SelectUsuarios)
+
+router.get('/usuarios/:id' , SelectUsuarioById)
 
 router.get('/perfiles/usuario/:id' , SelectPerfilesByUsuario)
 
