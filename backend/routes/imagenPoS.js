@@ -124,6 +124,26 @@ router.get('/novedadesImagen', async (req, res) => {
     }
 });
 
+router.get('/novedadesImagenSeries', async (req, res) => {
+    try {
+        const [series] = await pool.query('SELECT * FROM series ORDER BY fecha DESC');
+
+        const seriesConImagenes = await Promise.all(series.map(async (serie) => {
+            const [imagenes] = await pool.query('SELECT url_foto AS imagen FROM imagenes_serie WHERE id_serie = ?', [serie.id]);
+            const serieConImagen = {
+                ...serie,
+                imagen: imagenes.length > 0 ? imagenes[0].imagen : 'http://127.0.0.1:5501/frontend/Proyecto_LenguajeMarcas/img/Inicio/Logo%20(1).png'
+            };
+            return serieConImagen;
+        }));
+
+        res.send(seriesConImagenes);
+    } catch (error) {
+        console.error('Error en la consulta:', error);
+        res.status(500).send({ message: "Error en la búsqueda" });
+    }
+});
+
 
 router.get('/carruselNovedades', async (req, res) => {
     const tipo = req.query.tipo;

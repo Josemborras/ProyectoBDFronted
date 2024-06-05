@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { SelectUsuarios, SelectUsuarioById, SelectPerfilesByUsuario , SelectPerfilById , SelectNumeroPerfiles , SelectPlanes , SelectImagenesPerfil , RegistroUsuario , CrearPerfil, DeletePerfil , EditPerfil, SelectUsuarioById} from "../controllers/usuario.controller.js"
+import { SelectUsuarios, SelectPerfilesByUsuario , SelectPerfilById , SelectNumeroPerfiles , SelectPlanes , SelectImagenesPerfil , RegistroUsuario , CrearPerfil, DeletePerfil , EditPerfil, SelectUsuarioById} from "../controllers/usuario.controller.js"
 
 const router = Router ()
 
