@@ -1,0 +1,12 @@
+.fotoPerfilUser{
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+}
+#lupa{
+    cursor: pointer;
+}
+#search-input{
+    position: inherit;
+    display: none;
+}

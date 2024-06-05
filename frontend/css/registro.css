@@ -412,5 +412,8 @@ body{
     .desplegables{
         width: 290px;
     }
-    
+    #show1, #hide1, #show2, #hide2{
+        right: 10px;
+        top: 34px;
+    }
 }
