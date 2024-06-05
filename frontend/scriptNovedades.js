@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     getImagesNovedades();
     getNovedadesPeliculas();
     getNovedadesSeries();
+    getNovedadesEstrenos();
     getNovedades();
     setupSearchInput();
 });
@@ -140,6 +141,31 @@ async function getNovedades() {
         console.error('Error en getNovedades:', error);
     }
 }
+
+async function getNovedadesEstrenos() {
+    try {
+        const response = await fetch('http://localhost:3000/estrenos');
+        if (!response.ok) throw new Error('Error en la solicitud');
+
+        const data = await response.json();
+        const divImageEstrenos = document.getElementById('divImageEstrenos');
+
+        data.forEach(item => {
+            const gridItem = document.createElement('div');
+            gridItem.className = 'grid-item';
+
+            const img = document.createElement('img');
+            img.src = item.imagen;
+            img.alt = "Imagen de estreno";
+
+            gridItem.appendChild(img);
+            divImageEstrenos.appendChild(gridItem);
+        });
+    } catch (error) {
+        console.error('Error en getNovedadesEstrenos:', error);
+    }
+}
+
 
 
 function setupSearchInput() {

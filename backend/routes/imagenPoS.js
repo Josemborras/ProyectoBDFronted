@@ -77,6 +77,15 @@ router.get('/recomendaciones', async (req, res) => {
     }
 });
 
+router.get('/estrenos', async (req, res) => {
+    try {
+        const [results] = await pool.query('SELECT url_foto AS imagen FROM estrenos');
+        res.send(results);
+    } catch (error) {
+        res.status(500).send({ message: "Error en la búsqueda" });
+    }
+});
+
 router.get('/filtros', async (req, res) => {
     const genero = req.query.genero || '';
     try {

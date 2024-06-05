@@ -278,7 +278,7 @@ body {
     display: none;
 }
 
-.scrollNovedades {
+.scrollEstrenos {
     display: flex;
     flex-wrap: wrap;
     text-decoration: none; 
@@ -290,14 +290,14 @@ body {
     background-color: #000;
 }
 
-.scrollNovedades > div:first-child {
+.scrollEstrenos > div:first-child {
     margin-right: 20px;
     align-self: center;
     font-size: 1.5em;
     color: white;
 }
 
-.scrollNovedades img {
+.scrollEstrenos img {
     display: inline-block;
     margin-right: 10px;
     max-height: 200px;
@@ -306,11 +306,11 @@ body {
     cursor: pointer;
 }
 
-.scrollNovedades img:hover {
+.scrollEstrenos img:hover {
     transform: scale(1.1);
 }
 
-.scrollNovedades::-webkit-scrollbar {
+.scrollEstrenos::-webkit-scrollbar {
     display: none;
 }
 
