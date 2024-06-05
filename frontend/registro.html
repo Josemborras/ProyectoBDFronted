@@ -85,12 +85,13 @@
                         </div>
                         <div class="inner-input">
                             <div class="inputs">
+                                <img class="pass-show" id="show1" src="./img/mostrar.png" alt=""><img class="pass-hide" id="hide1" src="./img/esconder.png">
                                 <label for="password">Contraseña *</label>
                                 <input type="password" name="password" id="password" placeholder="Introduce tu contraseña" autocomplete="off">
                             </div>
                             <div class="inputs">
                                 <label for="repeat-password">Confirmar contraseña *</label>
-                                <input type="password" name="repeat-password" id="repeat-password" placeholder="Vuelve a introducir tu contraseña" autocomplete="off">
+                                <input type="password" name="repeat-password" id="repeat-password" placeholder="Vuelve a introducir tu contraseña" autocomplete="off"><img class="pass-show" id="show2" src="./img/mostrar.png" alt=""><img class="pass-hide" id="hide2" src="./img/esconder.png"></input>
                             </div>
                         </div>
                         <!-- <button id="boton-form" type="submit">Siguiente</button> -->
@@ -147,6 +148,11 @@
         const repeatPassword = document.querySelector('#repeat-password')
         const frase = document.querySelector('#frase-navigator')
         const form = document.querySelector('form')
+        const show1 = document.querySelector('#show1')
+        const show2 = document.querySelector('#show2')
+        const hide1 = document.querySelector('#hide1')
+        const hide2 = document.querySelector('#hide2')
+
 
 
         fetch('http://localhost:3000/planes')
@@ -528,6 +534,27 @@
                 e.preventDefault()
 
                 retrocederPaso()
+            })
+
+            show1.addEventListener('click', () =>{
+                show1.style.display = 'none'
+                hide1.style.display = 'block'
+                password.type = "text"
+            })
+            hide1.addEventListener('click', () =>{
+                hide1.style.display = 'none'
+                show1.style.display = 'block'
+                password.type = "password"
+            })
+            show2.addEventListener('click', () =>{
+                show2.style.display = 'none'
+                hide2.style.display = 'block'
+                repeatPassword.type = "text"
+            })
+            hide2.addEventListener('click', () =>{
+                hide2.style.display = 'none'
+                show2.style.display = 'block'
+                repeatPassword.type = "password"
             })
     </script>
 </body>
