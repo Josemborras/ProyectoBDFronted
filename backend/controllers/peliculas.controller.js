@@ -6,7 +6,7 @@ export const ListPeliculas = async(req,res) => {
 }
 
 export const SelectPeliculasById = async(req,res) => {
-    const [result] = await pool.query('SELECT peliculas.*, imagenes_pelicula.url_foto AS imagen FROM peliculas JOIN imagenes_pelicula ON imagenes_pelicula.id_pelicula = peliculas.id where id = ?', [req.params.id])
+    const [result] = await pool.query('SELECT peliculas.*, imagenes_pelicula.url_foto AS imagen FROM peliculas JOIN imagenes_pelicula ON imagenes_pelicula.id_pelicula = peliculas.id where peliculas.id = ?', [req.params.id])
     res.send(result)
 }
 

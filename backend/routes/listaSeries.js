@@ -12,7 +12,7 @@ router.get('/series' , async(req,res) => {
 
 router.get('/series/:id' , async(req,res) => {
 
-    const [result] = await pool.query('SELECT series.*, imagenes_serie.url_foto AS imagen FROM series JOIN imagenes_serie ON imagenes_serie.id_serie = series.id where id = ? GROUP BY series.id', [req.params.id])
+    const [result] = await pool.query('SELECT series.*, imagenes_serie.url_foto AS imagen FROM series JOIN imagenes_serie ON imagenes_serie.id_serie = series.id where series.id = ? GROUP BY series.id', [req.params.id])
 
     res.send(result)
 })
