@@ -79,7 +79,6 @@ function displayResults(data) {
     });
 }
 
-// Inicializa la carga de favoritos al cargar la página
 loadAllContent();
 
 
