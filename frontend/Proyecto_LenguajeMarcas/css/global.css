@@ -2,6 +2,7 @@
     width: 46px;
     height: 46px;
     border-radius: 8px;
+    cursor: pointer;
 }
 #lupa{
     cursor: pointer;

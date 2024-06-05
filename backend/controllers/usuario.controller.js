@@ -22,7 +22,7 @@ export const SelectPerfilById = async(req,res)=>{
 }
 
 export const SelectNumeroPerfiles = async(req,res)=>{
-    const [result] = await pool.query('SELECT usuarios.correo, usuarios.id_plan, COUNT(perfiles.id) AS cantidad_perfiles, planes.num_pantalla AS "maximo_perfiles" FROM usuarios JOIN perfiles ON usuarios.id = perfiles.id_usuario JOIN planes ON planes.id = usuarios.id_plan WHERE usuarios.id = ?', [req.params.id])
+    const [result] = await pool.query('SELECT usuarios.correo, usuarios.id_plan, COUNT(perfiles.id) AS cantidad_perfiles, planes.numero_perfiles AS "maximo_perfiles" FROM usuarios JOIN perfiles ON usuarios.id = perfiles.id_usuario JOIN planes ON planes.id = usuarios.id_plan WHERE usuarios.id = ?', [req.params.id])
 
     res.send(result)
 }

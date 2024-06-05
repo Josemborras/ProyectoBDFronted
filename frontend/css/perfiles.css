@@ -109,6 +109,13 @@ input{
 #administrar-perfil:hover{
 
 }
+.imagenes-select{
+    width: 90px;
+    height: 90px;
+    border-radius: 8px; 
+    margin: 10px; 
+    cursor: pointer;
+}
 
 /*
     Tablet

@@ -167,16 +167,18 @@ body {
     padding: 40px;
     border-radius: 10px;
     text-align: left;
-    max-width: 30%;
+    width: 600px;
     height: 350px;
   }
   .carousel-caption h3 {
+    font-weight: 600;
     color: white;
     margin-bottom: 15px;
   }
   .carousel-caption p {
     color: white;
     margin-bottom: 20px;
+    font-weight: 200;
   }
   .carousel-caption .btn {
     font-size: 27px;

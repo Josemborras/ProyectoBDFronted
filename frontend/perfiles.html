@@ -6,6 +6,7 @@
     <title>HomeCinema: Perfiles</title>
     <link rel="stylesheet" href="./css/perfiles.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon2.png">
 </head>
 <body>
     <div id="go-back">
@@ -104,11 +105,11 @@
                 .then(res => res.json())
                 .then(json =>{
                     console.log(json)
-                    for(let i of json[0]){
+                    for(let i of json){
                         if(i != json[0][0]){
                         let patata =
                         document.querySelector('#recolector-fotos').innerHTML += `
-                                        <img src="${i.url}" width="125" height="125" style="border-radius: 8px; margin: 10px; cursor: pointer;" onClick="setFoto(${i.id}, '${i.url}')">
+                                        <img src="${i.url}" class="imagenes-select" onClick="setFoto(${i.id}, '${i.url}')">
                                     `
                         }
                     }
