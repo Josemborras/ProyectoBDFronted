@@ -5,6 +5,7 @@
 
 body {
     background-color: #191919;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .img_menu {
@@ -27,7 +28,6 @@ body {
 .menu_enlaces a {
     text-decoration: none;
     color: white;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 18px;
     margin: 30px;
     background-color: transparent;
@@ -63,7 +63,6 @@ body {
 
 .titlePeliculas a {
     text-decoration: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 20px;
     color: white;
     margin-right: 15px;
@@ -75,7 +74,7 @@ body {
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
     margin: 20px;
@@ -84,7 +83,7 @@ body {
 .grid-item {
     position: relative;
     width: 100%;
-    padding-bottom: 150%; /* Aspect ratio of 2:3 (width:height) */
+    padding-bottom: 56.25%;
     background-color: #333;
     border-radius: 8px;
     overflow: hidden;
@@ -106,7 +105,7 @@ body {
 }
 
 .footer {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 14px;
     color: #494949;
     display: flex;
     flex-direction: column;
@@ -114,4 +113,5 @@ body {
     align-items: center;
     padding: 20px;
     background-color: #191919;
+    text-align: center;
 }

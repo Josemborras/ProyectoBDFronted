@@ -75,7 +75,7 @@ body {
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
     margin: 20px;
@@ -84,7 +84,7 @@ body {
 .grid-item {
     position: relative;
     width: 100%;
-    padding-bottom: 150%; /* Aspect ratio of 2:3 (width:height) */
+    padding-bottom: 56.25%;
     background-color: #333;
     border-radius: 8px;
     overflow: hidden;

@@ -13,6 +13,10 @@ body {
     background-size: cover;
     width: 100%;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
 }
 
 .img_menu {
@@ -27,11 +31,11 @@ body {
     align-items: center;
     background: linear-gradient(black, transparent);
 }
-
+/*
 .menu_enlaces {
     margin-left: -1000px;
 }
-
+*/
 .menu_enlaces a {
     text-decoration: none;
     color: white !important;
@@ -156,7 +160,7 @@ body {
     width: 100%;
     height: auto;
     object-fit: cover;
-    max-height: 700px; /* Ajusta la altura máxima según tus necesidades */
+    max-height: 700px;
   }
   .carousel-caption {
     position: absolute;
@@ -172,11 +176,11 @@ body {
   }
   .carousel-caption h3 {
     color: white;
-    margin-bottom: 15px; /* Añade espacio debajo del título */
+    margin-bottom: 15px;
   }
   .carousel-caption p {
     color: white;
-    margin-bottom: 20px; /* Añade espacio debajo de la descripción */
+    margin-bottom: 20px;
   }
   .carousel-caption .btn {
     font-size: 27px;
@@ -203,27 +207,27 @@ body {
     overflow-x: auto;
     white-space: nowrap;
     padding: 20px;
-    background-color: #000; /* Color de fondo opcional */
+    background-color: #000; 
 }
 
 .scrollPeliculas > div:first-child {
     margin-right: 20px;
     align-self: center;
     font-size: 1.5em;
-    color: white; /* Color de texto del título */
+    color: white;
 }
 
 .scrollPeliculas img {
     display: inline-block;
     margin-right: 10px;
-    max-height: 200px; /* Ajusta la altura según sea necesario */
-    border-radius: 5px; /* Bordes redondeados opcionales */
+    max-height: 200px;
+    border-radius: 5px; 
     transition: transform 0.3s;
     cursor: pointer;
 }
 
 .scrollPeliculas img:hover {
-    transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
+    transform: scale(1.1);
 }
 
 .imagePosition {
@@ -243,27 +247,27 @@ body {
     overflow-x: auto;
     white-space: nowrap;
     padding: 20px;
-    background-color: #000; /* Color de fondo opcional */
+    background-color: #000;
 }
 
 .scrollSeries > div:first-child {
     margin-right: 20px;
     align-self: center;
     font-size: 1.5em;
-    color: white; /* Color de texto del título */
+    color: white;
 }
 
 .scrollSeries img {
     display: inline-block;
     margin-right: 10px;
-    max-height: 200px; /* Ajusta la altura según sea necesario */
-    border-radius: 5px; /* Bordes redondeados opcionales */
+    max-height: 200px;
+    border-radius: 5px;
     transition: transform 0.3s;
     cursor: pointer;
 }
 
 .scrollSeries img:hover {
-    transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
+    transform: scale(1.1);
 }
 
 .scrollSeries::-webkit-scrollbar {
@@ -279,27 +283,27 @@ body {
     overflow-x: auto;
     white-space: nowrap;
     padding: 20px;
-    background-color: #000; /* Color de fondo opcional */
+    background-color: #000;
 }
 
 .scrollRecomendaciones > div:first-child {
     margin-right: 20px;
     align-self: center;
     font-size: 1.5em;
-    color: white; /* Color de texto del título */
+    color: white;
 }
 
 .scrollRecomendaciones img {
     display: inline-block;
     margin-right: 10px;
-    max-height: 200px; /* Ajusta la altura según sea necesario */
-    border-radius: 5px; /* Bordes redondeados opcionales */
+    max-height: 200px;
+    border-radius: 5px;
     transition: transform 0.3s;
     cursor: pointer;
 }
 
 .scrollRecomendaciones img:hover {
-    transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
+    transform: scale(1.1);
 }
 
 .scrollRecomendaciones::-webkit-scrollbar {

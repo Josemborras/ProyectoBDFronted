@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('input[name="genero"]').forEach(checkbox => {
         checkbox.addEventListener('change', filterContent);
     });
-    document.getElementById('searchTerm').addEventListener('input', filterContent);
 });
 
 async function loadAllContent() {
@@ -20,12 +19,11 @@ async function loadAllContent() {
 }
 
 async function filterContent() {
-    const searchTerm = document.getElementById('searchTerm').value;
     const checkboxes = document.querySelectorAll('input[name="genero"]:checked');
     const generos = Array.from(checkboxes).map(cb => cb.value);
 
     try {
-        const response = await fetch(`http://localhost:3000/filtros?genero=${generos.join(',')}&search=${searchTerm}`);
+        const response = await fetch(`http://localhost:3000/filtros?genero=${encodeURIComponent(generos.join(','))}`);
         if (!response.ok) throw new Error('Error en la solicitud');
 
         const data = await response.json();
@@ -41,11 +39,31 @@ function displayResults(data) {
     resultsDiv.innerHTML = '';
 
     const { peliculas, series } = data;
-    const alternatedResults = [];
 
-    for (let i = 0; i < Math.max(peliculas.length, series.length); i++) {
-        if (peliculas[i]) alternatedResults.push(peliculas[i]);
-        if (series[i]) alternatedResults.push(series[i]);
+    // Crear conjuntos para eliminar duplicados
+    const uniquePeliculas = new Map();
+    const uniqueSeries = new Map();
+
+    peliculas.forEach(pelicula => {
+        if (!uniquePeliculas.has(pelicula.id)) {
+            uniquePeliculas.set(pelicula.id, pelicula);
+        }
+    });
+
+    series.forEach(serie => {
+        if (!uniqueSeries.has(serie.id)) {
+            uniqueSeries.set(serie.id, serie);
+        }
+    });
+
+    // Intercalar resultados únicos
+    const alternatedResults = [];
+    const peliculasArray = Array.from(uniquePeliculas.values());
+    const seriesArray = Array.from(uniqueSeries.values());
+
+    for (let i = 0; i < Math.max(peliculasArray.length, seriesArray.length); i++) {
+        if (peliculasArray[i]) alternatedResults.push(peliculasArray[i]);
+        if (seriesArray[i]) alternatedResults.push(seriesArray[i]);
     }
 
     alternatedResults.forEach(item => {
@@ -60,3 +78,4 @@ function displayResults(data) {
         resultsDiv.appendChild(gridItem);
     });
 }
+

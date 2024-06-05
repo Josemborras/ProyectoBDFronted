@@ -61,16 +61,18 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    background-color: #191919;
 }
 
 .content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 20px;
 }
 
 .filters {
-    width: 20%;
+    width: 10%;
     color: white;
 }
 
@@ -80,15 +82,16 @@ body {
 
 .results {
     width: 75%;
+    text-align: center;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 }
 
 .grid-item {
     position: relative;
     width: 100%;
-    padding-bottom: 150%;
+    padding-bottom: 56.25%;
     background-color: #333;
     border-radius: 8px;
     overflow: hidden;
