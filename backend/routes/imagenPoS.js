@@ -59,8 +59,7 @@ router.get('/imagenes_serie', async (req, res) => {
 
 router.get('/recomendaciones', async (req, res) => {
     try {
-        const [peliculas] = await pool.query('SELECT * FROM peliculas WHERE valoracion > 75 ORDER BY RAND()');
-
+        const [peliculas] = await pool.query('SELECT * FROM peliculas ORDER BY valoracion DESC');
 
         const peliculasConImagenes = await Promise.all(peliculas.map(async (pelicula) => {
             const [imagenes] = await pool.query('SELECT url_foto AS imagen FROM imagenes_pelicula WHERE id_pelicula = ?', [pelicula.id]);
@@ -82,18 +81,18 @@ router.get('/filtros', async (req, res) => {
     const genero = req.query.genero || '';
     try {
         const [peliculas] = await pool.query(`
-            SELECT p.id, p.nombre, ip.url_foto AS imagen, c.genero 
-            FROM peliculas p 
-            JOIN imagenes_pelicula ip ON p.id = ip.id_pelicula 
+            SELECT p.id, p.nombre, ip.url_foto AS imagen, c.genero
+            FROM peliculas p
+            JOIN imagenes_pelicula ip ON p.id = ip.id_pelicula
             JOIN categorias_peliculas cp ON p.id = cp.id_pelicula
             JOIN categorias c ON cp.id_categoria = c.id
             WHERE c.genero LIKE ?
         `, [`%${genero}%`]);
 
         const [series] = await pool.query(`
-            SELECT s.id, s.nombre, iser.url_foto AS imagen, c.genero 
-            FROM series s 
-            JOIN imagenes_serie iser ON s.id = iser.id_serie 
+            SELECT s.id, s.nombre, iser.url_foto AS imagen, c.genero
+            FROM series s
+            JOIN imagenes_serie iser ON s.id = iser.id_serie
             JOIN categorias_series cs ON s.id = cs.id_serie
             JOIN categorias c ON cs.id_categoria = c.id
             WHERE c.genero LIKE ?
@@ -104,6 +103,55 @@ router.get('/filtros', async (req, res) => {
         res.status(500).send({ message: "Error en la búsqueda" });
     }
 });
+
+router.get('/novedadesImagen', async (req, res) => {
+    try {
+        const [peliculas] = await pool.query('SELECT * FROM peliculas ORDER BY fecha DESC');
+
+        const peliculasConImagenes = await Promise.all(peliculas.map(async (pelicula) => {
+            const [imagenes] = await pool.query('SELECT url_foto AS imagen FROM imagenes_pelicula WHERE id_pelicula = ?', [pelicula.id]);
+            const peliculaConImagen = {
+                ...pelicula,
+                imagen: imagenes.length > 0 ? imagenes[0].imagen : 'http://127.0.0.1:5501/frontend/Proyecto_LenguajeMarcas/img/Inicio/Logo%20(1).png'
+            };
+            return peliculaConImagen;
+        }));
+
+        res.send(peliculasConImagenes);
+    } catch (error) {
+        console.error('Error en la consulta:', error);
+        res.status(500).send({ message: "Error en la búsqueda" });
+    }
+});
+
+
+router.get('/carruselNovedades', async (req, res) => {
+    const tipo = req.query.tipo;
+    
+    if (tipo === 'novedades') {
+        try {
+            const query = `
+            SELECT ip.url_foto, p.descripcion, p.nombre
+            FROM imagenes_pelicula ip
+            INNER JOIN peliculas p ON ip.id_pelicula = p.id
+            ORDER BY p.fecha DESC;
+            `;
+            
+            const [results] = await pool.query(query);
+    
+            if (results.length === 0) {
+                return res.status(404).send({ message: "No encontrado" });
+            }
+    
+            res.send(results);
+        } catch (error) {
+            res.status(500).send({ message: "Error en la búsqueda" });
+        }
+    } else {
+        return res.status(400).send({ message: "Tipo no válido" });
+    }
+});
+
 
 export default router;
 

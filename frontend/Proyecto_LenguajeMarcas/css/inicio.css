@@ -109,9 +109,9 @@ body {
     border-radius: 8px;
     display: none;
     position: absolute;
-    top: 100px; /* Ajusta este valor para alinear el contenedor correctamente */
-    right: -3%; /* Centrará el contenedor horizontalmente */
-    transform: translateX(-50%); /* Ajustará el contenedor para que esté centrado */
+    top: 100px;
+    right: -3%;
+    transform: translateX(-50%);
     z-index: 9999;
     opacity: 0;
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
@@ -208,6 +208,15 @@ body {
     white-space: nowrap;
     padding: 20px;
     background-color: #000; 
+}
+
+.tituloScroll{
+    margin-right: 20px;
+    align-self: center;
+    font-size: 1.5em;
+    color: white;
+    padding: 20px;
+    background-color: #000
 }
 
 .scrollPeliculas > div:first-child {

@@ -68,8 +68,7 @@ router.get('/carrusel', async (req, res) => {
             SELECT ip.url_foto, p.descripcion, p.nombre
             FROM imagenes_pelicula ip
             INNER JOIN peliculas p ON ip.id_pelicula = p.id
-            ORDER BY p.valoracion ASC, p.fecha ASC
-            LIMIT 5;
+            ORDER BY p.valoracion DESC;
             `;
             
             const [results] = await pool.query(query);
@@ -86,5 +85,7 @@ router.get('/carrusel', async (req, res) => {
         return res.status(400).send({ message: "Tipo no válido" });
     }
 });
+
+
 
 export default router
