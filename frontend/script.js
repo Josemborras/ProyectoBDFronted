@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function getImages() {
     try {
-        const response = await fetch('http://localhost:3000/carrusel?tipo=mejorValoradas');
+        const response = await fetch('http://localhost:3000/imagenes/carrusel');
         const data = await response.json();
         const carouselInner = document.getElementById('carousel-inner');
         
@@ -55,7 +55,7 @@ async function getImages() {
 
 async function getPeliculas() {
     try {
-        const response = await fetch('http://localhost:3000/imagenes_pelicula');
+        const response = await fetch('http://localhost:3000/peliculas');
         if (!response.ok) throw new Error('Error en la solicitud');
 
         const data = await response.json();
@@ -64,6 +64,7 @@ async function getPeliculas() {
         data.forEach(item => {
             const gridItem = document.createElement('div');
             gridItem.className = 'grid-item';
+            gridItem.addEventListener('click', () => showInfo('pelicula', item.id));
 
             const img = document.createElement('img');
             img.src = item.imagen;
@@ -79,26 +80,56 @@ async function getPeliculas() {
 
 async function getSeries() {
     try {
-        const response = await fetch('http://localhost:3000/imagenes_serie');
+        const response = await fetch('http://localhost:3000/series');
         if (!response.ok) throw new Error('Error en la solicitud');
 
         const data = await response.json();
         const divImageSeries = document.getElementById('divImageSeries');
 
         data.forEach(item => {
+            const gridItem = document.createElement('div');
+            gridItem.className = 'grid-item';
+            gridItem.addEventListener('click', () => showInfo('serie', item.id));
+
             const img = document.createElement('img');
             img.src = item.imagen;
             img.alt = "Imagen de serie";
-            divImageSeries.appendChild(img);
+
+            gridItem.appendChild(img);
+            divImageSeries.appendChild(gridItem);
         });
     } catch (error) {
         console.error('Error en getSeries:', error);
     }
 }
 
+async function showInfo(type, id) {
+    let url = type === 'pelicula' ? `http://localhost:3000/pelicula/${id}` : `http://localhost:3000/serie/${id}`;
+    
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Error al obtener la información');
+
+        const data = await response.json();
+        document.getElementById('infoModalLabel').innerText = data.nombre;
+        document.getElementById('modal-description').innerText = data.descripcion;
+        document.getElementById('modal-image').src = data.imagen; // Asume que 'imagen' es la URL de la imagen
+
+        const playButton = document.getElementById('play-button');
+        playButton.onclick = () => window.location.href = data.url_video;
+
+        const favoriteButton = document.getElementById('favorite-button');
+        favoriteButton.onclick = () => agregarAFavoritos(data.id, type);
+
+        new bootstrap.Modal(document.getElementById('infoModal')).show();
+    } catch (error) {
+        console.error('Error en showInfo:', error);
+    }
+}
+
 async function getPaginaSeries() {
     try {
-        const response = await fetch('http://localhost:3000/imagenes_serie');
+        const response = await fetch('http://localhost:3000/series');
         if (!response.ok) throw new Error('Error en la solicitud');
 
         const data = await response.json();
@@ -122,7 +153,7 @@ async function getPaginaSeries() {
 
 async function getRecomendados() {
     try {
-        const response = await fetch('http://localhost:3000/recomendaciones');
+        const response = await fetch('http://localhost:3000/recomendados');
         if (!response.ok) throw new Error('Error en la solicitud');
 
         const data = await response.json();
@@ -306,4 +337,6 @@ async function agregarAFavoritosSerie(id_serie, id_capitulo) {
         alert('Error: ' + result.message);
     }
 }
+
+
 
