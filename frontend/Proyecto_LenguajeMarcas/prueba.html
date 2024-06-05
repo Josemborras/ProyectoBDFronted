@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carousel</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+  <style>
+    .carousel-item img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      max-height: 700px; /* Ajusta la altura máxima según tus necesidades */
+    }
+    .carousel-caption {
+      position: absolute;
+      top: 60%;
+      left: 10%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 40px;
+      border-radius: 10px;
+      text-align: left;
+      max-width: 30%;
+      height: 350px;
+    }
+    .carousel-caption h3 {
+      color: white;
+      margin-bottom: 15px; /* Añade espacio debajo del título */
+    }
+    .carousel-caption p {
+      color: white;
+      margin-bottom: 20px; /* Añade espacio debajo de la descripción */
+    }
+    .carousel-caption .btn {
+      margin-top: 10px;
+    }
+    .carousel-caption .btn + .btn {
+      margin-left: 10px; /* Añade espacio entre los botones */
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid p-0">
+    <div id="carousel-example" class="carousel slide" data-bs-ride="carousel" data-bs-interval="7000">
+      <div class="carousel-inner" id="carousel-inner">
+        <!-- imágenes aquí -->
+      </div>
+      <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carousel-example" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel-example" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button> -->
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      getImages();
+    });
+
+    async function getImages() {
+      try {
+        const response = await fetch('http://localhost:3000/carrusel?tipo=mejorValoradas');
+        const data = await response.json();
+        const carouselInner = document.getElementById('carousel-inner');
+        
+        data.forEach((item, index) => {
+          const div = document.createElement('div');
+          div.className = 'carousel-item';
+          if (index === 0) div.classList.add('active');
+
+          const img = document.createElement('img');
+          img.src = item.url_foto;
+          img.className = 'd-block w-100';
+          
+          const caption = document.createElement('div');
+          caption.className = 'carousel-caption';
+          
+          const title = document.createElement('h3');
+          title.innerText = item.nombre;
+          
+          const description = document.createElement('p');
+          description.innerText = item.descripcion; 
+
+          const moreInfoButton = document.createElement('button');
+          moreInfoButton.className = 'btn btn-warning';
+          moreInfoButton.innerText = 'Más información';
+
+          const watchNowButton = document.createElement('button');
+          watchNowButton.className = 'btn btn-success';
+          watchNowButton.innerText = 'Ver ahora';
+
+          caption.appendChild(title);
+          caption.appendChild(description);
+          caption.appendChild(moreInfoButton);
+          caption.appendChild(watchNowButton);
+
+          div.appendChild(img);
+          div.appendChild(caption);
+          
+          carouselInner.appendChild(div);
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
