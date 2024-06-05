@@ -23,18 +23,13 @@
     height: 754px;
     justify-content: space-between;
 }
-#datoslogin img{
+#logo{
     height: 104px;
     width: 446.86px;
 }
 #datoslogin label{
     font-size: 27px;
     font-weight: 700;
-}
-#datoslogin input{
-    border: 0px;
-    font-size: 20px;
-    font-weight: 300;
 }
 #datoslogin p{
     font-size: 18px;
@@ -61,14 +56,22 @@
 .forgot-password a{
     text-align: right;
     font-weight: 400;
+    display: block;
+    align-self: flex-end;
+    width: fit-content;
+    text-align: right;
 }
 .grupoinput{
     display: flex;
     flex-direction: column;
     height: 97px;
+    position: relative;
     justify-content: space-between;
 }
-.grupoinput input{
+.inputs{
+    border: 0px;
+    font-size: 20px;
+    font-weight: 300;
     box-sizing: border-box;
     width: 542px;
     height: 55px;
@@ -86,6 +89,17 @@
 }
 #lineasO hr{
     width: 247px;
+}
+#show1, #hide1{
+    position: absolute;
+    right: 20px;
+    top: 58px;
+    height: 25px;
+    opacity: 0.3;
+    cursor: pointer;
+}
+.pass-hide{
+    display: none;
 }
 @media screen and (max-width: 1023px){
     #pantallalogin{
