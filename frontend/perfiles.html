@@ -106,7 +106,7 @@
                 .then(json =>{
                     console.log(json)
                     for(let i of json){
-                        if(i != json[0][0]){
+                        if(i != json[0]){
                         let patata =
                         document.querySelector('#recolector-fotos').innerHTML += `
                                         <img src="${i.url}" class="imagenes-select" onClick="setFoto(${i.id}, '${i.url}')">

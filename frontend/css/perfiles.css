@@ -107,7 +107,7 @@ input{
     border: 2px solid grey;
 }
 #administrar-perfil:hover{
-
+    background-color: grey;
 }
 .imagenes-select{
     width: 90px;

@@ -24,9 +24,19 @@
         </div>
         <div class="menu_busquedaPerfil">
             <div class="contenedorBuscador">
-                <img src="./img/Inicio/lupa 3.png" alt="" width="" height="">
+                <input type="text" id="search-input" placeholder="Buscar...">
+                <img id="lupa" src="./img/Inicio/lupa 3.png" alt="" width="" height="">
             </div>
-            <img src="./img/Inicio/FotoPerfilInicio.png" class="fotoPerfilUser">
+            <section id="results-container">
+                <div id="results-list"></div>
+            </section>
+            <div class="dropdown">
+                <img class="fotoPerfilUser" src="../img/placeholder.png">
+                <div class="dropdown-content">
+                  <a href="../perfiles.html">Cambiar perfil</a>
+                  <a href="../login.html">Cerrar sesión</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -49,5 +59,6 @@
 
     <script src="../scriptSeries.js"></script>
     <script src="../datosUser.js"></script>
+    <script src="../lupa.js"></script>
 </body>
 </html>
