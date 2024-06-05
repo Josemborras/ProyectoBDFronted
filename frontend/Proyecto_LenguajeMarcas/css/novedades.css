@@ -166,7 +166,7 @@ body {
     padding: 40px;
     border-radius: 10px;
     text-align: left;
-    max-width: 30%;
+    width: 600px;
     height: 350px;
   }
   .carousel-caption h3 {
