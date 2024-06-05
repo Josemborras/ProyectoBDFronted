@@ -64,6 +64,7 @@ async function getPeliculas() {
         data.forEach(item => {
             const gridItem = document.createElement('div');
             gridItem.className = 'grid-item';
+            gridItem.addEventListener('click', () => showInfo('pelicula', item.id));
 
             const img = document.createElement('img');
             img.src = item.imagen;
@@ -86,13 +87,43 @@ async function getSeries() {
         const divImageSeries = document.getElementById('divImageSeries');
 
         data.forEach(item => {
+            const gridItem = document.createElement('div');
+            gridItem.className = 'grid-item';
+            gridItem.addEventListener('click', () => showInfo('serie', item.id));
+
             const img = document.createElement('img');
             img.src = item.imagen;
             img.alt = "Imagen de serie";
-            divImageSeries.appendChild(img);
+
+            gridItem.appendChild(img);
+            divImageSeries.appendChild(gridItem);
         });
     } catch (error) {
         console.error('Error en getSeries:', error);
+    }
+}
+
+async function showInfo(type, id) {
+    let url = type === 'pelicula' ? `http://localhost:3000/pelicula/${id}` : `http://localhost:3000/serie/${id}`;
+    
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Error al obtener la información');
+
+        const data = await response.json();
+        document.getElementById('infoModalLabel').innerText = data.nombre;
+        document.getElementById('modal-description').innerText = data.descripcion;
+        document.getElementById('modal-image').src = data.imagen; // Asume que 'imagen' es la URL de la imagen
+
+        const playButton = document.getElementById('play-button');
+        playButton.onclick = () => window.location.href = data.url_video;
+
+        const favoriteButton = document.getElementById('favorite-button');
+        favoriteButton.onclick = () => agregarAFavoritos(data.id, type);
+
+        new bootstrap.Modal(document.getElementById('infoModal')).show();
+    } catch (error) {
+        console.error('Error en showInfo:', error);
     }
 }
 
