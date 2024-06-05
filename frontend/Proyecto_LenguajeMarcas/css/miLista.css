@@ -20,10 +20,6 @@ body{
     margin-left: 50px;
 }
 
-.menu_enlaces{
-    margin-left: -1000px;
-}
-
 .menu_enlaces a{
     text-decoration: none;
     color: white;
@@ -77,4 +73,44 @@ body{
     justify-content: center;
     align-items: center;
     margin-top: 30px;
+}
+
+@media(max-width: 768px) {
+    .menu{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu_enlaces{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu_enlaces a{
+        margin: 5px 0;
+    }
+
+    .menu_busquedaPerfil{
+        margin-top: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media(max-width: 480){
+    .menu img{
+        max-width: 80px;
+    }
+
+    .menu_busquedaPerfil img{
+        max-width: 40px;
+    }
+
+    .contenedorBuscador img{
+        max-width: 15px;
+    }
+
+    .footer{
+        font-size: 14px;
+    }
 }

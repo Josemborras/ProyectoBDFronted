@@ -28,9 +28,6 @@ body{
     background: linear-gradient(black, transparent)
 }
 
-.menu_enlaces{
-    margin-left: -1000px;
-}
 
 .menu_enlaces a{
     text-decoration: none;
@@ -97,11 +94,40 @@ body{
      width: 0px ;
 }
 
-.scrollLateral{
+.scrollNovedadesPelis{
     min-width: 110px;
     height: 110px;
     line-height: 110px;
     margin-right: 10px;
+}
+
+.scrollNovedadesSeries{
+    min-width: 110px;
+    height: 110px;
+    line-height: 110px;
+    margin-right: 10px;
+}
+
+.scrollProximamente{
+    min-width: 110px;
+    height: 110px;
+    line-height: 110px;
+    margin-right: 10px;
+}
+
+.scrollNovedadesPelis{
+    text-decoration: none;
+    color: white;
+}
+
+.scrollNovedadesSeries{
+    text-decoration: none;
+    color: white;
+}
+
+.scrollProximamente{
+    text-decoration: none;
+    color: white;
 }
 
 .footer{
@@ -112,4 +138,57 @@ body{
     justify-content: center;
     align-items: center;
     margin-top: 30px;
+}
+
+@media(max-width: 768px){
+    .menu{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu_enlaces{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu_enlaces a{
+        margin: 5px;
+    }
+
+    .menu_busquedaPerfil{
+        margin-top: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cabecera{
+        padding: 30px 10px;
+    }
+
+    .botones a{
+        margin: 5px;
+    }
+}
+
+@media(max-width: 480px){
+    .menu img{
+        max-width: 80px;
+    }
+
+    .menu_busquedaPerfil img{
+        max-width: 40px;
+    }
+
+    .contenedorBuscador img{
+        max-width: 15px;
+    }
+
+    .footer{
+        font-size: 14px;
+    }
+
+    .imagePosition img{
+        max-width: 150px;
+        margin: 5px;
+    }
 }

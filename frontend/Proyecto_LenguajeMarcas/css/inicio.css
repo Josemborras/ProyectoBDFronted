@@ -28,9 +28,6 @@ body{
     background: linear-gradient(black, transparent)
 }
 
-.menu_enlaces{
-    margin-left: -1000px;
-}
 
 .menu_enlaces a{
     text-decoration: none;
@@ -65,8 +62,8 @@ body{
 }
 
 .botones{
-    margin-top:600px;
-    margin-left: 150px;
+    margin-top:500px;
+    /* margin-left: 150px; */
 }
 
 .botones a{
@@ -97,11 +94,54 @@ body{
      width: 0px ;
 }
 
-.scrollLateral{
+.scrollPeliculas{
     min-width: 110px;
     height: 110px;
     line-height: 110px;
     margin-right: 10px;
+}
+
+.scrollSeries{
+    min-width: 110px;
+    height: 110px;
+    line-height: 110px;
+    margin-right: 10px;
+}
+
+.scrollRecomendaciones{
+    min-width: 110px;
+    height: 110px;
+    line-height: 110px;
+    margin-right: 10px;
+}
+
+.scrollPeliculas{
+    margin-left: 60px;
+}
+
+.scrollRecomendaciones{
+    margin-top: 50px;
+    margin-left: 60px;
+}
+
+.scrollSeries{
+    margin-top: 50px;
+    margin-left: 60px;
+}
+
+.scrollPeliculas a{
+    text-decoration: none;
+    color: white;
+}
+
+.scrollRecomendaciones a{
+    text-decoration: none;
+    color: white;
+}
+
+.scrollSeries a{
+    text-decoration: none;
+    color: white;
 }
 
 
@@ -114,6 +154,105 @@ body{
     align-items: center;
     margin-top: 30px;
 }
+
+
+
+@media(max-width: 1200px){
+
+    .menu{
+        /* flex-direction: column; */
+        /* align-items: flex-start; */
+        align-items: center;
+    }
+
+    .menu_enlaces a{
+        margin: 5px 0;
+    }
+
+    .menu_busquedaPerfil{
+        margin-top: 10px;
+    }
+
+    .footer{
+        text-size-adjust: 20px;
+    }
+}
+
+
+
+@media(max-width: 768px){
+
+    .menu{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu_enlaces{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .menu_enlaces a{
+        margin: 10px 0;
+
+    }
+
+    .botones{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 40%;
+    }
+
+    .botones a{
+        width: 80%;
+        text-align: center;
+        
+    }
+
+}
+
+@media(max-width: 480px){
+    
+    .img_menu img{
+        width: 100px;
+    }
+
+    .menu_busquedaPerfil img{
+        width: 30px;
+        height: 30px;
+    }
+
+    .contenedorBuscador img{
+        width: 20px;
+        height: 20px;
+    }
+
+    .botones a{
+        padding: 10px;
+        margin: 5px 0;
+        width: 100%; 
+    }
+
+    .scrollPeliculas{
+        padding: 10px;
+    }
+
+    .scrollRecomendaciones{
+        padding: 10px;
+    }
+
+    .scrollSeries{
+        padding: 10px;
+    }
+}
+
+
+
+
+
 
 /*
 - Hay que poner los enlaces de, Series, Peliculas y Recomendaciones sin text decoration y con tiopgrafía igual, letra en blanco.

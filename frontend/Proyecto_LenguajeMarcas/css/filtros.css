@@ -20,9 +20,6 @@ body{
     background: linear-gradient(rgba(240, 197, 59, 0.25), rgba(240, 197, 59, 0));
 }
 
-.menu_enlaces{
-    margin-left: -1000px;
-}
 
 .menu_enlaces a{
     text-decoration: none;
@@ -80,4 +77,62 @@ body{
     justify-content: center;
     align-items: center;
     margin-top: 30px;
+}
+
+.input p{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+}
+
+
+
+@media(max-width: 768px){
+    .menu{
+        flex-direction: column;
+    }
+
+    .menu_enlaces{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu_enlaces a{
+        margin: 5px 0;
+    }
+
+    .menu_busquedaPerfil{
+        margin-top: 10px;
+    }
+
+    .imageCheckBox{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .vanImages{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media(max-width: 480px){
+    .menu img{
+        max-width: 80px;
+    }
+
+    .menu_busquedaPerfil img{
+        max-width: 40px;
+    }
+
+    .contenedorBuscador img{
+        max-width: 15px;
+    }
+
+    .contenedorBuscador input{
+        width: 100px;
+    }
+
+    .footer{
+        font-size: 14px;
+    }
 }
