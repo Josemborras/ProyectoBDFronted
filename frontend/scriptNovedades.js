@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     getImagesNovedades();
     getNovedadesPeliculas();
-    getSeries();
+    getNovedadesSeries();
     getNovedades();
     setupSearchInput();
 });
@@ -73,32 +73,13 @@ async function getNovedadesPeliculas() {
             divImagePeliculas.appendChild(gridItem);
         });
     } catch (error) {
-        console.error('Error en getPeliculas:', error);
+        console.error('Error en getNovedadesPeliculas:', error);
     }
 }
 
-async function getSeries() {
+async function getNovedadesSeries() {
     try {
-        const response = await fetch('http://localhost:3000/imagenes_serie');
-        if (!response.ok) throw new Error('Error en la solicitud');
-
-        const data = await response.json();
-        const divImageSeries = document.getElementById('divImageSeries');
-
-        data.forEach(item => {
-            const img = document.createElement('img');
-            img.src = item.imagen;
-            img.alt = "Imagen de serie";
-            divImageSeries.appendChild(img);
-        });
-    } catch (error) {
-        console.error('Error en getSeries:', error);
-    }
-}
-
-async function getPaginaSeries() {
-    try {
-        const response = await fetch('http://localhost:3000/imagenes_serie');
+        const response = await fetch('http://localhost:3000/novedadesImagenSeries');
         if (!response.ok) throw new Error('Error en la solicitud');
 
         const data = await response.json();
@@ -116,7 +97,7 @@ async function getPaginaSeries() {
             divImageSeries.appendChild(gridItem);
         });
     } catch (error) {
-        console.error('Error en getSeries:', error);
+        console.error('Error en getNovedadesSeries:', error);
     }
 }
 
