@@ -7,75 +7,84 @@
     <link rel="stylesheet" href="./css/filtros.css">
 </head>
 <body>
-    
     <div class="menu">
-
-
         <div class="img_menu">
             <img src="./img/Inicio/Logo (1).png" alt="">
         </div>
-
-
         <div class="menu_enlaces">
-
             <a href="./inicio.html">Inicio</a>
-
             <a href="./series.html">Series</a>
-
             <a href="./peliculas.html">Películas</a>
-
             <a href="./novedades.html">Novedades</a>
-
             <a href="./miLista.html">Mi Lista</a>
-
             <a href="./filtros.html">Filtros</a>
-
         </div>
-
         <div class="menu_busquedaPerfil">
-
             <div class="contenedorBuscador">
                 <img src="./img/Inicio/lupa 3.png" alt="" width="" height="">
-                <input type="text" name="" id="searchTerm">
+                <input type="text" id="searchTerm" placeholder="Buscar...">
                 <button onclick="buscar()">Buscar</button>
             </div>
-
-            
-
             <img src="./img/Inicio/FotoPerfilInicio.png" alt="" width="" height="">
-
-        </div>
-
-
-    </div>
-
-    <div>
-
-        <div class="listaCheck">
-
-                        
-
-        </div>
-
-
-        <div class="vanImages">
-
-            <img src="" alt="">
-
         </div>
     </div>
 
-    <div id="results"></div>
+    <div class="content">
+        <div class="filters">
+            <h3>Géneros</h3>
+            <div>
+                <input type="checkbox" id="drama" name="genero" value="Drama">
+                <label for="drama">Drama</label>
+            </div>
+            <div>
+                <input type="checkbox" id="fantasia" name="genero" value="Fantasía">
+                <label for="fantasia">Fantasía</label>
+            </div>
+            <div>
+                <input type="checkbox" id="romance" name="genero" value="Romance">
+                <label for="romance">Romance</label>
+            </div>
+            <div>
+                <input type="checkbox" id="comedia" name="genero" value="Comedia">
+                <label for="comedia">Comedia</label>
+            </div>
+            <div>
+                <input type="checkbox" id="crimen" name="genero" value="Crimen">
+                <label for="crimen">Crimen</label>
+            </div>
+            <div>
+                <input type="checkbox" id="terror" name="genero" value="Terror">
+                <label for="terror">Terror</label>
+            </div>
+            <div>
+                <input type="checkbox" id="misterio" name="genero" value="Misterio">
+                <label for="misterio">Misterio</label>
+            </div>
+            <div>
+                <input type="checkbox" id="animacion" name="genero" value="Animación">
+                <label for="animacion">Animación</label>
+            </div>
+            <div>
+                <input type="checkbox" id="suspense" name="genero" value="Suspense">
+                <label for="suspense">Suspense</label>
+            </div>
+            <div>
+                <input type="checkbox" id="cienciaFiccion" name="genero" value="Ciencia ficción">
+                <label for="cienciaFiccion">Ciencia ficción</label>
+            </div>
+            <!-- Añade más géneros según sea necesario -->
+        </div>
 
+        <div class="results" id="results">
+            <!-- Resultados se insertarán aquí -->
+        </div>
+    </div>
 
     <div class="footer">
-
         <p>Política de privacidad | Condiciones de uso | Tratamiento de datos</p>
-        
         <p>© 1997-2024 HomeCinema, Inc.</p>
-
     </div>
 
-    <script src="../busqueda.js"></script>
+    <script src="../scriptFiltros.js"></script>
 </body>
 </html>

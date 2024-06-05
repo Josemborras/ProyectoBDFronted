@@ -12,7 +12,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 1100px;
+    height: auto;
 }
 
 .img_menu {
@@ -86,6 +86,7 @@ body {
 #scrollPelis img {
     width: 500px;
     height: 250px;
+    
 }
 
 .footer {
@@ -102,12 +103,25 @@ body {
     width: 300px;
     background-color: #f0c53c;
     border-radius: 8px;
-    margin-top: 20px;
     display: none;
     position: absolute;
-    top: 100px;
-    right: 50px;
+    top: 100px; /* Ajusta este valor para alinear el contenedor correctamente */
+    right: -3%; /* Centrará el contenedor horizontalmente */
+    transform: translateX(-50%); /* Ajustará el contenedor para que esté centrado */
     z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+#results-container.show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+#results-container.hide {
+    opacity: 0;
+    visibility: hidden;
 }
 
 #results-list {
@@ -138,3 +152,157 @@ body {
     font-size: 16px;
 }
 
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 700px; /* Ajusta la altura máxima según tus necesidades */
+  }
+  .carousel-caption {
+    position: absolute;
+    top: 60%;
+    left: 10%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: left;
+    max-width: 30%;
+    height: 350px;
+  }
+  .carousel-caption h3 {
+    color: white;
+    margin-bottom: 15px; /* Añade espacio debajo del título */
+  }
+  .carousel-caption p {
+    color: white;
+    margin-bottom: 20px; /* Añade espacio debajo de la descripción */
+  }
+  .carousel-caption .btn {
+    font-size: 27px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-decoration: none;
+    color: black;
+    background-color: #F0C53B;
+    padding: 10px 20px;
+    margin: 15px;
+    border-radius: 10px;
+  }
+
+  .carousel-caption .btn :hover{
+    background-color: #F2E4B6;
+    color: black;
+  }
+
+  .scrollPeliculas {
+    display: flex;
+    flex-wrap: wrap;
+    text-decoration: none; 
+    color: white; 
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 20px;
+    background-color: #000; /* Color de fondo opcional */
+}
+
+.scrollPeliculas > div:first-child {
+    margin-right: 20px;
+    align-self: center;
+    font-size: 1.5em;
+    color: white; /* Color de texto del título */
+}
+
+.scrollPeliculas img {
+    display: inline-block;
+    margin-right: 10px;
+    max-height: 200px; /* Ajusta la altura según sea necesario */
+    border-radius: 5px; /* Bordes redondeados opcionales */
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.scrollPeliculas img:hover {
+    transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
+}
+
+.imagePosition {
+    display: flex;
+    gap: 10px;
+}
+.scrollPeliculas::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollSeries {
+    display: flex;
+    flex-wrap: wrap;
+    text-decoration: none; 
+    color: white; 
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 20px;
+    background-color: #000; /* Color de fondo opcional */
+}
+
+.scrollSeries > div:first-child {
+    margin-right: 20px;
+    align-self: center;
+    font-size: 1.5em;
+    color: white; /* Color de texto del título */
+}
+
+.scrollSeries img {
+    display: inline-block;
+    margin-right: 10px;
+    max-height: 200px; /* Ajusta la altura según sea necesario */
+    border-radius: 5px; /* Bordes redondeados opcionales */
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.scrollSeries img:hover {
+    transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
+}
+
+.scrollSeries::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollRecomendaciones {
+    display: flex;
+    flex-wrap: wrap;
+    text-decoration: none; 
+    color: white; 
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 20px;
+    background-color: #000; /* Color de fondo opcional */
+}
+
+.scrollRecomendaciones > div:first-child {
+    margin-right: 20px;
+    align-self: center;
+    font-size: 1.5em;
+    color: white; /* Color de texto del título */
+}
+
+.scrollRecomendaciones img {
+    display: inline-block;
+    margin-right: 10px;
+    max-height: 200px; /* Ajusta la altura según sea necesario */
+    border-radius: 5px; /* Bordes redondeados opcionales */
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.scrollRecomendaciones img:hover {
+    transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
+}
+
+.scrollRecomendaciones::-webkit-scrollbar {
+    display: none;
+}
+  

@@ -59,4 +59,32 @@ GROUP BY s.id
     }
 });
 
+router.get('/carrusel', async (req, res) => {
+    const tipo = req.query.tipo;
+    
+    if (tipo === 'mejorValoradas') {
+        try {
+            const query = `
+            SELECT ip.url_foto, p.descripcion, p.nombre
+            FROM imagenes_pelicula ip
+            INNER JOIN peliculas p ON ip.id_pelicula = p.id
+            ORDER BY p.valoracion ASC, p.fecha ASC
+            LIMIT 5;
+            `;
+            
+            const [results] = await pool.query(query);
+    
+            if (results.length === 0) {
+                return res.status(404).send({ message: "No encontrado" });
+            }
+    
+            res.send(results);
+        } catch (error) {
+            res.status(500).send({ message: "Error en la búsqueda" });
+        }
+    } else {
+        return res.status(400).send({ message: "Tipo no válido" });
+    }
+});
+
 export default router
