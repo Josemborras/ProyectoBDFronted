@@ -68,9 +68,45 @@ async function getPeliculas() {
             const img = document.createElement('img');
             img.src = item.imagen;
             img.alt = "Imagen de película";
+            img.class = "imagenClick"
+
+            img.addEventListener('click', () =>{
+                console.log(item)
+            })
+
+            
 
             gridItem.appendChild(img);
             divImagePeliculas.appendChild(gridItem);
+
+
+            // item.addEventListener( 'DOMContentLoaded', function () {
+            //     const modal = document.getElementById("myModal");
+            //     const modalImg = document.getElementById("modalImg");
+            //     const closeBtn = document.querySelector(".close");
+            
+            //     document.querySelectorAll('.imagenClick').forEach(img => {
+            //         img.addEventListener('click', function () {
+            //             modal.style.display = "block";
+            //             modalImg.src = this.src;
+            //         });
+            //     });
+            
+            //     closeBtn.addEventListener('click', function () {
+            //         modal.style.display = "none";
+            //     });
+            
+            //     window.addEventListener('click', function (event) {
+            //         if (event.target == modal) {
+            //             modal.style.display = "none";
+            //         }
+            //     });
+
+            //     console.log()
+
+           
+                 
+            // })
         });
     } catch (error) {
         console.error('Error en getPeliculas:', error);
@@ -306,3 +342,4 @@ async function agregarAFavoritosSerie(id_serie, id_capitulo) {
         alert('Error: ' + result.message);
     }
 }
+

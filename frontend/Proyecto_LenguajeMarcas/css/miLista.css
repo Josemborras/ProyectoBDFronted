@@ -126,3 +126,27 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+
+
+.fotoFondo{
+    align-items: center;
+    background-image: url();
+    display: flex;
+    flex-direction: column;
+}
+
+.botonesAddReproducir{
+    display: flex;
+    flex-direction: row;
+}
+
+.botonesAddReproducir a{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-decoration: none;
+    color: black;
+    background-color: #eeeded;
+    padding: 10px 20px 10px 20px;
+    margin: 15px;
+    border-radius: 10px;
+}
