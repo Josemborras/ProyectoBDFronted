@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filtros</title>
+    <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/filtros.css">
 </head>
 <body>
@@ -21,11 +22,11 @@
         </div>
         <div class="menu_busquedaPerfil">
             <div class="contenedorBuscador">
-                <img src="./img/Inicio/lupa 3.png" alt="" width="" height="">
                 <input type="text" id="searchTerm" placeholder="Buscar...">
+                <img src="./img/Inicio/lupa 3.png" alt="" width="" height="">
                 <button onclick="buscar()">Buscar</button>
             </div>
-            <img src="./img/Inicio/FotoPerfilInicio.png" alt="" width="" height="">
+            <img class="fotoPerfilUser" src="./img/Inicio/FotoPerfilInicio.png">
         </div>
     </div>
 
@@ -84,5 +85,7 @@
     </div>
 
     <script src="../scriptFiltros.js"></script>
+    <script src="../lupa.js"></script>
+    <script src="../datosUser.js"></script>
 </body>
 </html>

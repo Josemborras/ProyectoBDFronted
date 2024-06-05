@@ -81,17 +81,69 @@
 
         forgotten.addEventListener('click', (e) =>{
             e.preventDefault()
-            console.log('hola')
+
             datosLogin.innerHTML += `
-            <div style="margin: 0 auto;width:800px; height:400px; background-color:white; position: absolute; opacity: 0.95; border-radius: 8px; display:flex; flex-direction: column; justify-content:space-evenly; align-items:center">
-                <h2 style="color:black">Introduce un email para recuperar la contraseña</h2>
-                <input type="email" placeholder="Introduce tu email" class="inputs">
-                <button onclick="">Recuperar contraseña</button>
+            <div id="divForgotten">
+                <h2 id="h2Forgotten">Introduce tu email para recuperar la contraseña</h2>
+                <input type="email" id="inputForgotten" placeholder="Introduce tu email" class="inputs">
+                <button id="recoverForgotten" onclick="recoverPassword()">Recuperar contraseña</button>
+                <button id="copiarForgotten" style="display:none">Copiar contraseña</button>
+                <a id="cerrarForgotten" onclick="cerrarForgottenFun()">Cerrar</a>
             </div>
             `
         })
 
-        function recoverPassword(email){
+        function recoverPassword(){
+            const correo = document.querySelector('#inputForgotten')
+            const h2Forgotten = document.querySelector('#h2Forgotten')
+            const botonForgotten = document.querySelector('#recoverForgotten')
+            const copiarForgotten = document.querySelector('#copiarForgotten')
+            const divForgotten = document.querySelector('#divForgotten')
+
+            if(validarEmail(correo.value)){
+                let encontrado = false
+                fetch('http://localhost:3000/usuarios')
+                    .then(res => res.json())
+                    .then(json =>{
+                        for(let i of json){
+                            if(i.correo == correo.value){
+                                encontrado = true
+                                correo.style.display = 'none'
+                                h2Forgotten.innerHTML = 'Tu contraseña es: " ' + i.password + ' "'
+                                botonForgotten.style.display = 'none'
+                                copiarForgotten.style.display = 'inline-block'
+                                copiarForgotten.addEventListener('click', () =>{
+                                    divForgotten.remove()
+                                    navigator.clipboard.writeText(i.password)
+                                    alert('Contraseña copiada al portapapeles')
+                                    window.location.reload()
+                                })
+                            }
+                        }
+                        if(!encontrado){
+                            correo.style.display = 'none'
+                                h2Forgotten.innerHTML = 'No hemos encontrado ninguna cuenta asociada a ese correo'
+                                botonForgotten.style.display = 'none'
+                                cerrarForgotten.style.display = 'inline-block'
+                                cerrarForgotten.addEventListener('click', () =>{
+                                    divForgotten.remove()
+                                    window.location.reload()
+                                })
+                        }
+                    })
+            }else{
+                alert('Dirección de correo no válida')
+            }
+        }
+
+        function validarEmail(email){
+                // Expresión regular para validar un email
+                var patron = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+                return patron.test(email)
+            }
+
+        function cerrarForgottenFun(){
+            divForgotten.remove()
         }
     </script>
 </body>
